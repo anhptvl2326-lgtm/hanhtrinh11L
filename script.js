@@ -1,14 +1,15 @@
-const cards = document.querySelectorAll('.card');
+const scenes = document.querySelectorAll('.scene');
 
 window.addEventListener('scroll', () => {
-  cards.forEach(card => {
-    const rect = card.getBoundingClientRect();
-    const img = card.querySelector('img');
+  scenes.forEach(scene => {
+    const card = scene.querySelector('.card');
+    const rect = scene.getBoundingClientRect();
+    const center = window.innerHeight / 2;
 
-    if (rect.top < window.innerHeight * 0.4 && rect.bottom > window.innerHeight * 0.6) {
-      img.style.transform = 'scale(1)';
+    if (rect.top < center && rect.bottom > center) {
+      card.classList.add('active');
     } else {
-      img.style.transform = 'scale(0.85)';
+      card.classList.remove('active');
     }
   });
 });
