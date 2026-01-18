@@ -6,62 +6,87 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #111;
+  background: #0e0e0e;
   color: #fff;
 }
 
-.wrapper {
+.scroller {
   height: 100vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
 
-.card {
-  scroll-snap-align: center;
-  height: 100vh;
+/* mỗi scene chiếm nhiều scroll để tạo cảm giác chậm */
+.scene {
+  height: 140vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  scroll-snap-align: start;
+}
+
+/* CARD */
+.card {
   position: relative;
+  width: 72%;
+  height: 70vh;
+  border-radius: 32px;
+  overflow: hidden;
+  transform: scale(0.85);
+  opacity: 0.5;
+  transition: all 0.6s ease;
 }
 
+.card.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* IMAGE */
 .card img {
-  width: 70%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 28px;
-  box-shadow: 0 40px 80px rgba(0,0,0,.6);
-  transition: transform .6s ease;
 }
 
+/* overlay */
 .card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
 }
 
+/* TEXT */
 .text {
   position: absolute;
-  bottom: 18%;
-  left: 18%;
+  bottom: 14%;
+  left: 10%;
   max-width: 420px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease 0.2s;
+}
+
+.card.active .text {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .text span {
   font-size: 13px;
   letter-spacing: 2px;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .text h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 44px;
+  font-size: 46px;
   margin: 12px 0;
 }
 
 .text p {
   font-size: 15px;
   line-height: 1.7;
-  opacity: .9;
+  opacity: 0.9;
 }
