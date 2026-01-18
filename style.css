@@ -5,88 +5,66 @@
 }
 
 body {
+  background: #0b0b0b;
+  color: white;
   font-family: 'Inter', sans-serif;
-  background: #0e0e0e;
-  color: #fff;
 }
 
-.scroller {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+.wrapper {
+  overflow: hidden;
 }
 
-/* mỗi scene chiếm nhiều scroll để tạo cảm giác chậm */
-.scene {
+/* mỗi panel tạo chiều sâu */
+.panel {
   height: 140vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  scroll-snap-align: start;
 }
 
-/* CARD */
 .card {
-  position: relative;
   width: 72%;
-  height: 70vh;
+  height: 72vh;
   border-radius: 32px;
   overflow: hidden;
-  transform: scale(0.85);
-  opacity: 0.5;
-  transition: all 0.6s ease;
+  position: relative;
+  transform-origin: center;
 }
 
-.card.active {
-  transform: scale(1);
-  opacity: 1;
-}
-
-/* IMAGE */
 .card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* overlay */
 .card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
 }
 
-/* TEXT */
-.text {
+.content {
   position: absolute;
   bottom: 14%;
   left: 10%;
   max-width: 420px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease 0.2s;
 }
 
-.card.active .text {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.text span {
+.content span {
   font-size: 13px;
   letter-spacing: 2px;
-  opacity: 0.8;
+  opacity: .8;
 }
 
-.text h1 {
+.content h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 46px;
-  margin: 12px 0;
+  font-size: 48px;
+  margin: 14px 0;
 }
 
-.text p {
+.content p {
   font-size: 15px;
   line-height: 1.7;
-  opacity: 0.9;
+  opacity: .9;
 }
