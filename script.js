@@ -1,15 +1,46 @@
-const scenes = document.querySelectorAll('.scene');
+gsap.registerPlugin(ScrollTrigger);
 
-window.addEventListener('scroll', () => {
-  scenes.forEach(scene => {
-    const card = scene.querySelector('.card');
-    const rect = scene.getBoundingClientRect();
-    const center = window.innerHeight / 2;
+/* SMOOTH SCROLL */
+const lenis = new Lenis({
+  smooth: true,
+  lerp: 0.08
+});
 
-    if (rect.top < center && rect.bottom > center) {
-      card.classList.add('active');
-    } else {
-      card.classList.remove('active');
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+/* CARD ANIMATION */
+document.querySelectorAll(".panel").forEach(panel => {
+  const card = panel.querySelector(".card");
+  const text = panel.querySelector(".content");
+
+  gsap.fromTo(card,
+    { scale: 0.85, opacity: 0.5 },
+    {
+      scale: 1,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: panel,
+        start: "top center",
+        end: "bottom center",
+        scrub: true
+      }
     }
-  });
+  );
+
+  gsap.fromTo(text,
+    { y: 40, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: panel,
+        start: "top center+=100",
+        scrub: true
+      }
+    }
+  );
 });
