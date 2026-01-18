@@ -1,14 +1,14 @@
-const cards = document.querySelectorAll('.reveal');
+const cards = document.querySelectorAll('.card');
 
-function revealOnScroll() {
-  const windowHeight = window.innerHeight;
+window.addEventListener('scroll', () => {
   cards.forEach(card => {
-    const cardTop = card.getBoundingClientRect().top;
-    if (cardTop < windowHeight - 80) {
-      card.classList.add('show');
+    const rect = card.getBoundingClientRect();
+    const img = card.querySelector('img');
+
+    if (rect.top < window.innerHeight * 0.4 && rect.bottom > window.innerHeight * 0.6) {
+      img.style.transform = 'scale(1)';
+    } else {
+      img.style.transform = 'scale(0.85)';
     }
   });
-}
-
-window.addEventListener('scroll', revealOnScroll);
-revealOnScroll();
+});
