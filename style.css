@@ -117,4 +117,60 @@
         margin: 30px 0 0 0;
         padding: 35px;
       }
+
+    /* ITEM CHUNG */
+       .item {
+       position: absolute;
+        width: 420px;
+        color: #4b3526;
+      }
+
+      .item h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+
+      .item p {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .item a {
+        font-size: 14px;
+        text-decoration: none;
+        color: #4b3526;
+        border-bottom: 1px solid #4b3526;
+      }
+
+   /* CANH TỪNG ITEM – THEO ẢNH */
+      .item-2010 {
+        top: 520px;
+        left: 620px;
+      }
+
+      .item-1911 {
+        top: 760px;
+        left: 180px;
+      }
+
+      .item-2011 {
+        top: 1020px;
+        left: 620px;
+      }
+
+      .item-giaidieu {
+        top: 1320px;
+        left: 180px;
+      }
+
+      .item-dalat {
+        top: 1580px;
+        left: 620px;
+      }
+
+      .item-hungvuong {
+        top: 1860px;
+        left: 180px;
+      }
     }
