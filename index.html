@@ -8,7 +8,96 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Be+Vietnam+Pro:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: #f4efe8;
+      color: #333;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 90px 0;
+    }
+
+    /* MỖI MỐC HÀNH TRÌNH */
+    .journey {
+      display: flex;
+      align-items: center;
+      margin-bottom: 140px;
+      position: relative;
+    }
+
+    .journey:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .journey img {
+      width: 45%;
+      border-radius: 10px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+    }
+
+    .content {
+      width: 55%;
+      padding: 50px 70px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      margin-left: -60px;
+    }
+
+    .journey:nth-child(even) .content {
+      margin-left: 0;
+      margin-right: -60px;
+    }
+
+    .content h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 34px;
+      color: #6a4b3c;
+      margin-bottom: 18px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .content h2:hover {
+      color: #b07a5a;
+    }
+
+    .content p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .journey,
+      .journey:nth-child(even) {
+        flex-direction: column;
+      }
+
+      .journey img,
+      .content {
+        width: 100%;
+      }
+
+      .content {
+        margin: 30px 0 0 0;
+        padding: 35px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -65,86 +154,5 @@
 
 </div>
 
-</body>
-</html><!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <title>Hành trình 11L</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="wrapper">
-
-  <section class="panel">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1520975922284-8b456906c813">
-      <div class="content">
-        <span>20/10</span>
-        <h1>Ngày Phụ nữ Việt Nam</h1>
-        <p>Dịu dàng và yêu thương – một phần ký ức của 11L.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9">
-      <div class="content">
-        <span>19/11</span>
-        <h1>Quốc tế Nam giới</h1>
-        <p>Những tiếng cười, sự mạnh mẽ và trách nhiệm.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f">
-      <div class="content">
-        <span>20/11</span>
-        <h1>Tri ân thầy cô</h1>
-        <p>Những người lặng lẽ tạo nên tương lai của chúng ta.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429">
-      <div class="content">
-        <span>Sự kiện</span>
-        <h1>Giai điệu tuổi hồng</h1>
-        <p>Nơi tuổi trẻ cất lên thành âm nhạc.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
-      <div class="content">
-        <span>Trải nghiệm</span>
-        <h1>Đà Lạt</h1>
-        <p>Những con dốc, làn sương và ký ức không quên.</p>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<!-- GSAP + ScrollTrigger + Lenis -->
-<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/@studio-freight/lenis@1/bundled/lenis.min.js"></script>
-
-<script src="script.js"></script>
 </body>
 </html>
