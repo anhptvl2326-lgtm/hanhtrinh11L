@@ -1,176 +1,111 @@
+* {
+  box-sizing: border-box;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  margin: 0;
+  background: #f4efe8;
+  font-family: 'Cormorant Garamond', serif;
+  color: #3b2f26;
+}
 
-    body {
-      font-family: 'Be Vietnam Pro', sans-serif;
-      background: #f4efe8;
-      color: #333;
-    }
+/* HEADER */
+.header {
+  position: relative;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
 
-    .container {
-      width: 80%;
-      max-width: 1100px;
-      margin: auto;
-      padding: 90px 0;
-    }
+.header img {
+  width: 100%;
+  border-radius: 14px;
+}
 
-  /* NỀN SCRAPBOOK */
-   .scrapbook {
-     position: relative;
-     width: 1200px;
-     height: 2400px;
-     margin: 0 auto;
-     background: url("background.jpg") no-repeat center top;
-     background-size: cover;
-   }
+.header-text {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #efe6db;
+  padding: 24px 40px;
+  text-align: center;
+  border-radius: 10px;
+}
 
-   /* TIÊU ĐỀ */
-   .title {
-     position: absolute;
-     top: 280px;
-     left: 50%;
-     transform: translateX(-50%);
-     width: 70%;
-     text-align: center;
-     font-family: 'Playfair Display', serif;
-     color: #4b3526;
-   }
+.header-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  margin: 0;
+}
 
-   .title h1 {
-     font-size: 42px;
-     margin-bottom: 12px;
-   }
+.header-text p {
+  margin-top: 10px;
+  font-style: italic;
+}
 
-   .title p {
-     font-size: 16px;
-     font-style: italic;
-   }
+/* SCRAPBOOK */
+.scrapbook {
+  position: relative;
+  max-width: 1100px;
+  margin: 120px auto;
+  padding: 0 20px;
+}
 
-    /* MỖI MỐC HÀNH TRÌNH */
-    .journey {
-      display: flex;
-      align-items: center;
-      margin-bottom: 140px;
-      position: relative;
-    }
+.line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #b9a48d 0 6px,
+    transparent 6px 14px
+  );
+  transform: translateX(-50%);
+}
 
-    .journey:nth-child(even) {
-      flex-direction: row-reverse;
-    }
+/* CARD */
+.card {
+  width: 48%;
+  background: #f9f4ed;
+  padding: 20px;
+  margin-bottom: 100px;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
 
-    .journey img {
-      width: 45%;
-      border-radius: 10px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.18);
-    }
+.card.left {
+  margin-right: auto;
+}
 
-    .content {
-      width: 55%;
-      padding: 50px 70px;
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      margin-left: -60px;
-    }
+.card.right {
+  margin-left: auto;
+}
 
-    .journey:nth-child(even) .content {
-      margin-left: 0;
-      margin-right: -60px;
-    }
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
 
-    .content h2 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 34px;
-      color: #6a4b3c;
-      margin-bottom: 18px;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
+.card .content {
+  margin-top: 14px;
+}
 
-    .content h2:hover {
-      color: #b07a5a;
-    }
+.card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin: 0;
+}
 
-    .content p {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #555;
-    }
+.card p {
+  margin: 8px 0;
+}
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .journey,
-      .journey:nth-child(even) {
-        flex-direction: column;
-      }
-
-      .journey img,
-      .content {
-        width: 100%;
-      }
-
-      .content {
-        margin: 30px 0 0 0;
-        padding: 35px;
-      }
-
-    /* ITEM CHUNG */
-       .item {
-       position: absolute;
-        width: 420px;
-        color: #4b3526;
-      }
-
-      .item h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: 20px;
-        margin-bottom: 8px;
-      }
-
-      .item p {
-        font-size: 14px;
-        margin-bottom: 6px;
-      }
-
-      .item a {
-        font-size: 14px;
-        text-decoration: none;
-        color: #4b3526;
-        border-bottom: 1px solid #4b3526;
-      }
-
-   /* CANH TỪNG ITEM – THEO ẢNH */
-      .item-2010 {
-        top: 520px;
-        left: 620px;
-      }
-
-      .item-1911 {
-        top: 760px;
-        left: 180px;
-      }
-
-      .item-2011 {
-        top: 1020px;
-        left: 620px;
-      }
-
-      .item-giaidieu {
-        top: 1320px;
-        left: 180px;
-      }
-
-      .item-dalat {
-        top: 1580px;
-        left: 620px;
-      }
-
-      .item-hungvuong {
-        top: 1860px;
-        left: 180px;
-      }
-    }
+.card a {
+  text-decoration: none;
+  color: #7a5c3e;
+  font-weight: 600;
+}
