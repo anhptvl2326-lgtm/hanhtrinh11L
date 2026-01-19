@@ -22,6 +22,16 @@
       line-height: 1.7;
     }
 
+     /* NỀN SCRAPBOOK */
+   .scrapbook {
+     position: relative;
+     width: 1200px;
+     height: 2400px;
+     margin: 0 auto;
+     background: url("background.jpg") no-repeat center top;
+     background-size: cover;
+   }
+
     /* ===== HERO ===== */
     .hero {
       padding: 80px 20px 120px;
@@ -61,10 +71,9 @@
     }
 
     .hero-title p {
-      margin-top: 10px;
-      font-style: italic;
-      opacity: 0.85;
-    }
+     font-size: 16px;
+     font-style: italic;
+   }
 
     /* ===== TIMELINE ===== */
     .timeline {
@@ -187,6 +196,63 @@
       .hero-title h1 {
         font-size: 32px;
       }
+
+      /* ITEM CHUNG */
+       .item {
+       position: absolute;
+        width: 420px;
+        color: #4b3526;
+      }
+
+      .item h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+
+      .item p {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .item a {
+        font-size: 14px;
+        text-decoration: none;
+        color: #4b3526;
+        border-bottom: 1px solid #4b3526;
+      }
+
+   /* CANH TỪNG ITEM – THEO ẢNH */
+      .item-2010 {
+        top: 520px;
+        left: 620px;
+      }
+
+      .item-1911 {
+        top: 760px;
+        left: 180px;
+      }
+
+      .item-2011 {
+        top: 1020px;
+        left: 620px;
+      }
+
+      .item-giaidieu {
+        top: 1320px;
+        left: 180px;
+      }
+
+      .item-dalat {
+        top: 1580px;
+        left: 620px;
+      }
+
+      .item-hungvuong {
+        top: 1860px;
+        left: 180px;
+      }
+    }
     }
   </style>
 </head>
@@ -253,12 +319,23 @@
 
     <div class="timeline-item">
       <div class="timeline-image">
-        <img src="thanh-pho-da-lat.jpg">
+        <img src="thanh-pho-da-lat.jpg" width="550" height="450">
       </div>
       <div class="timeline-card">
-        <h2>Chuyến đi Đà Lạt</h2>
-        <p>Hành trình trải nghiệm – học tập – gắn kết đầy kỷ niệm.</p>
+        <h2>Chuyến tham quan trải nghiệm thực tế tại Đà Lạt</h2>
+        <p>Học mà chơi – Chơi mà học.</p>
         <a href="dalat.html">Xem chi tiết →</a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-image">
+        <img src="https://i.pinimg.com/736x/f4/e9/8e/f4e98ef659aabaf602bccaf0a29a4aa2.jpg" width="550" height="450">
+      </div>
+      <div class="timeline-card">
+        <h2>Giỗ Tổ Hùng Vương</h2>
+        <p>Trải nghiệm gói bánh chưng – Hướng về cội nguồn – Gìn giữ hồn Việt.</p>
+        <a href="banhchung.html">Xem chi tiết →</a>
       </div>
     </div>
 
