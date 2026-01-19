@@ -4,138 +4,124 @@
 
 body {
   margin: 0;
-  background: #f3efe7;
+  background: #efe7dc;
   font-family: 'Inter', sans-serif;
+  color: #3a2f25;
 }
 
-.page {
-  max-width: 1100px;
-  margin: auto;
-  padding: 60px 20px;
-  background: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
-}
-
-h1 {
+/* HERO */
+.hero {
+  position: relative;
+  padding: 40px 0 80px;
   text-align: center;
+}
+
+.hero-img {
+  width: 85%;
+  border-radius: 6px;
+  filter: sepia(20%);
+}
+
+.hero-paper {
+  background: #f6efe6;
+  display: inline-block;
+  padding: 25px 40px;
+  margin-top: -40px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  color: #4b3a2a;
+  letter-spacing: 2px;
 }
 
-.subtitle {
-  text-align: center;
-  font-style: italic;
-  margin-bottom: 80px;
-  color: #6b5b4a;
-}
-
-/* TIMELINE LINE */
+/* TIMELINE */
 .timeline {
   position: relative;
+  padding: 80px 0;
 }
 
 .timeline::before {
   content: "";
   position: absolute;
   left: 50%;
-  top: 0;
-  bottom: 0;
   width: 2px;
-  background: #b9a98f;
-}
-
-/* ITEM */
-.item {
-  position: relative;
-  margin-bottom: 120px;
-}
-
-.item.left .paper {
-  margin-left: 0;
-  transform: rotate(-1.2deg);
-}
-
-.item.right .paper {
-  margin-left: auto;
-  transform: rotate(1.2deg);
-}
-
-/* DOT */
-.dot {
-  position: absolute;
-  left: 50%;
-  top: 40px;
-  width: 14px;
-  height: 14px;
-  background: #4b3a2a;
-  border-radius: 50%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    #cbbba6 0,
+    #cbbba6 6px,
+    transparent 6px,
+    transparent 14px
+  );
   transform: translateX(-50%);
 }
 
-/* PAPER */
-.paper {
-  width: 60%;
-  background: #fffaf0;
-  border: 1px solid #d6c7ad;
-  padding: 18px;
-  display: flex;
-  gap: 18px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
-  position: relative;
+.item {
+  width: 50%;
+  padding: 40px;
 }
 
-/* IMAGE */
-.paper img {
-  width: 45%;
-  object-fit: cover;
+.left { margin-left: 0; }
+.right { margin-left: 50%; }
+
+.paper {
+  position: relative;
+  background: #f8f1e8;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.18);
+  transform: rotate(-1deg);
+}
+
+.right .paper { transform: rotate(1deg); }
+
+.thumb {
+  width: 100%;
+  margin-bottom: 15px;
   filter: sepia(25%);
 }
 
-/* TEXT */
-.text {
-  width: 55%;
-}
-
-.text h2 {
+h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  margin: 0 0 10px;
-  color: #4b3a2a;
 }
 
-.text p {
-  margin: 0;
-  font-size: 15px;
-  color: #5c4c3c;
+a {
+  text-decoration: none;
+  color: #6b4c2f;
 }
 
 /* DECOR */
-.tape {
-  position: absolute;
-  top: -12px;
-  left: 30px;
-  width: 90px;
-  height: 26px;
-  background: rgba(210,190,150,0.6);
-  transform: rotate(-3deg);
-}
-
 .clip {
   position: absolute;
-  top: -22px;
-  right: 20px;
-  width: 26px;
-  height: 36px;
+  top: -12px;
+  right: 25px;
+  width: 20px;
+  height: 40px;
   border: 2px solid #777;
-  border-radius: 6px;
+  border-radius: 4px;
+}
+
+.tape {
+  position: absolute;
+  top: -10px;
+  left: 30px;
+  width: 80px;
+  height: 25px;
+  background: rgba(200,190,160,.6);
+  transform: rotate(-6deg);
 }
 
 .flower {
   position: absolute;
-  bottom: -24px;
-  right: -24px;
+  bottom: -20px;
+  right: -20px;
   width: 60px;
   height: 60px;
-  background: url("https://pngimg.com/uploads/flower/flower_PNG54769.png") center/contain no-repeat;
-  opacity: 0.7;
+  background: radial-gradient(circle, #d6b8a0 30%, transparent 31%);
+  opacity: .6;
+}
+
+.flower.small {
+  width: 40px;
+  height: 40px;
 }
