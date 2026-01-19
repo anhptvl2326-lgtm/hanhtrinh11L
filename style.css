@@ -4,133 +4,127 @@
 
 body {
   margin: 0;
-  font-family: 'Cormorant Garamond', serif;
-  background: url("https://pngtree.com/free-backgrounds-vectors/vintage-paper") center/cover no-repeat;
-  /* bạn có thể tải nền giấy thật tại trang có textures giấy cổ và dùng link ở trên làm background */ :contentReference[oaicite:1]{index=1}
-  color: #3b3028;
-  padding: 20px;
+  background: #e7dfd3;
+  font-family: 'Inter', sans-serif;
+  color: #4b3f35;
 }
 
-/* HERO */
-.hero {
+/* PAGE */
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+  background: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+}
+
+/* HEADER */
+.header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
-.hero-img {
+.class-photo {
   width: 100%;
   border-radius: 6px;
-  filter: sepia(20%);
+  filter: sepia(0.25) contrast(0.95);
 }
 
-.hero-text {
-  background: rgba(255,255,255,0.9);
-  display: inline-block;
-  padding: 24px 36px;
-  margin-top: -40px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.17);
+.title-paper {
+  margin: -60px auto 0;
+  max-width: 700px;
+  background: #f4ebdf;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgba(0,0,0,.15);
 }
 
-.hero-text h1 {
+.title-paper h1 {
   font-family: 'Playfair Display', serif;
-  margin: 0;
-  font-size: 38px;
-  color: #5b4636;
+  letter-spacing: 2px;
 }
 
-.hero-text p {
-  font-size: 16px;
-  margin-top: 10px;
-  font-style: italic;
-}
-
-/* SCRAPBOOK CARDS */
+/* TIMELINE */
 .timeline {
-  width: 100%;
+  position: relative;
+}
+
+.line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: 2px dashed rgba(120,100,80,.4);
+}
+
+/* EVENT */
+.event {
+  display: flex;
+  align-items: center;
+  margin: 70px 0;
+  gap: 30px;
+}
+
+.event.left {
+  justify-content: flex-start;
+}
+
+.event.right {
+  justify-content: flex-end;
 }
 
 .card {
-  width: 60%;
-  background: rgba(255,255,255,0.95);
-  padding: 24px;
-  margin: 40px 0;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  width: 380px;
+  background: #f6ede2;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 5px 12px rgba(0,0,0,.15);
   position: relative;
-  border: 1px solid #d9cab0;
 }
 
-.left {
-  margin-left: 0;
-  transform: rotate(-1.2deg);
-}
-
-.right {
-  margin-left: auto;
-  transform: rotate(1.2deg);
-}
-
-.card img {
-  width: 100%;
-  border-radius: 4px;
-  filter: sepia(22%);
-  margin-bottom: 14px;
-}
-
-.card h2 {
+.card h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  margin: 0 0 10px;
-  color: #5b4636;
-}
-
-.card p {
-  font-size: 15px;
-  margin: 0 0 8px;
+  margin-top: 0;
 }
 
 .card a {
   text-decoration: none;
-  color: #7a5f41;
-  font-size: 14px;
+  color: #7a5a3a;
   font-weight: 500;
 }
 
-/* DECOR ELEMENTS */
-.decor {
+/* PHOTO */
+.photo {
+  width: 280px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.2);
+  transform: rotate(-1.5deg);
+}
+
+.photo img {
+  width: 100%;
+  display: block;
+  filter: sepia(0.2) contrast(0.95);
+}
+
+/* TAPE */
+.taped::before {
+  content: "";
   position: absolute;
-  background-repeat: no-repeat;
-  background-size: contain;
+  top: -12px;
+  left: 50%;
+  width: 70px;
+  height: 20px;
+  background: rgba(230,220,200,.7);
+  transform: translateX(-50%) rotate(-2deg);
 }
 
-.clip {
+/* CLIP */
+.clipped::before {
+  content: "📎";
+  position: absolute;
   top: -18px;
-  right: 18px;
-  width: 28px;
-  height: 40px;
-  background: url("https://pngset.com/download-free-png-tshop") no-repeat center/contain; /* paper clip PNG */ :contentReference[oaicite:2]{index=2}
-}
-
-.tape {
-  top: -10px;
-  left: 18px;
-  width: 80px;
-  height: 24px;
-  background: url("https://www.pngkit.com/png/detail/257-2575675_free-digital-flower-scrapbooking-embellishment-blumen-clip-art.png") no-repeat center/contain; /* washi / tape PNG */ :contentReference[oaicite:3]{index=3}
-  opacity: 0.8;
-}
-
-.flower {
-  bottom: -22px;
-  right: -22px;
-  width: 68px;
-  height: 68px;
-  background: url("https://www.clipartmax.com/png/small/234-2340661_free-scrap-flower-png-flower-scrapbooking-embellishment-illustration.png") no-repeat center/contain; /* scrapbook flower PNG */ :contentReference[oaicite:4]{index=4}
-}
-
-.floral2 {
-  bottom: -18px;
-  left: -18px;
-  width: 60px;
-  height: 60px;
-  background: url("https://www.pngkey.com/png/detail/339-3391671_vintage-scrapbooking-wildflower-clip-art-of-flower-vintage.png") no-repeat center/contain; /* floral PNG */ :contentReference[oaicite:5]{index=5}
+  right: 10px;
+  font-size: 22px;
 }
