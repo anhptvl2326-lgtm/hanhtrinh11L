@@ -4,7 +4,7 @@ body {
   color: #3b332c;
 
   background: 
-    url("https://i.pinimg.com/736x/81/94/5d/81945d20b5b9b187d027105be3ba8b49.jpg")
+    url("https://i.pinimg.com/1200x/b1/c9/7e/b1c97ee2dd305e372f2ffd11f70be687.jpg")
     center / cover no-repeat fixed;
 }
 
@@ -165,7 +165,7 @@ height: 240px;
 
 object-fit: cover;
 
-transform: rotate(-2deg);
+transform: none;
 
 box-shadow: 0 12px 25px rgba(0,0,0,0.25);
 
