@@ -2,39 +2,346 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Thanh xuân 11L – Đà Lạt</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter&display=swap" rel="stylesheet">
+<title>Kỷ yếu 11L – Đà Lạt</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
 
+/* RESET */
+*{
+  box-sizing: border-box;
+}
+
+/* BODY */
 body{
-  font-family:'Inter',sans-serif;
-  background:#f4efe8;
-  color:#3a3a3a;
+  margin:0;
+  font-family:"Palatino Linotype", Georgia, serif;
+
+  background:
+    linear-gradient(
+      rgba(224,242,254,0.75),
+      rgba(224,242,254,0.75)
+    ),
+    url("https://i.pinimg.com/736x/81/94/5d/81945d20b5b9b187d027105be3ba8b49.jpg")
+    center/cover no-repeat fixed;
+
+  color:#2f2f2f;
 }
 
-/* ===== HERO (FIX LỖI) ===== */
-.hero{
-  height:75vh;
-  background:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee") center/cover no-repeat;
-  position:relative;
+/* KHUNG CHÍNH */
+.container{
+  max-width:900px;
+  margin:60px auto;
+  padding:50px 55px;
+
+  background:rgba(255,255,255,0.9);
+  border-radius:18px;
+
+  box-shadow:0 25px 45px rgba(0,0,0,0.15);
 }
 
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,.15));
-}
-
-.hero-text{
-  position:absolute;
-  bottom:60px;
-  width:100%;
+/* TIÊU ĐỀ */
+h1{
   text-align:center;
-  color:#f6f2ea;
+  font-size:38px;
+  color:#1e3a8a;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  text-align:center;
+  font-size:22px;
+  color:#475569;
+  margin-bottom:40px;
+}
+
+/* SECTION */
+.section{
+  margin-top:55px;
+}
+
+/* TIÊU ĐỀ MỤC */
+.section h2{
+  font-size:24px;
+  color:#1f2937;
+  margin-bottom:20px;
+}
+
+/* CARD */
+.card{
+  background:#fffdf8;
+  border-radius:15px;
+  padding:28px;
+  margin:30px 0;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.12);
+
+  transition:0.35s ease;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 35px rgba(0,0,0,0.2);
+}
+
+/* ẢNH */
+.card img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:18px;
+
+  transition:0.35s ease;
+}
+
+.card img:hover{
+  transform:scale(1.03);
+}
+
+/* CHỮ */
+p{
+  font-size:18px;
+  line-height:1.9;
+  margin:15px 0;
+  text-align:justify;
+}
+
+/* NGÀY */
+.day-title{
+  font-size:22px;
+  color:#0f172a;
+  margin-bottom:15px;
+}
+
+/* ĐƯỜNG NGĂN */
+hr{
+  border:none;
+  border-top:2px dashed #94a3b8;
+  margin:60px 0;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .container{
+    margin:30px 15px;
+    padding:35px 25px;
+  }
+
+  h1{
+    font-size:30px;
+  }
+
+  p{
+    font-size:16.5px;
+  }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+<h1>🌿 CHUYẾN THAM QUAN HỌC TẬP ĐÀ LẠT</h1>
+<div class="subtitle">Dấu ấn không phai trong miền ký ức lớp 11L</div>
+
+
+<!-- MỞ ĐẦU -->
+<div class="card">
+
+<img src="link-anh-toan-canh.jpg">
+
+<p>
+Có những miền đất ta chỉ ghé qua một lần trong đời, nhưng lại ở lại rất lâu trong ký ức.
+Có những chuyến đi tưởng chừng ngắn ngủi, nhưng khi ngoảnh lại,
+mới chợt nhận ra: đó là một phần tuổi trẻ đã lặng lẽ khép lại.
+</p>
+
+<p>
+Đà Lạt của lớp 11L là một miền như thế.
+Nơi sương sớm giăng mờ trên những triền đồi,
+nơi rừng thông thì thầm trong gió,
+nơi nhịp sống chậm rãi mở ra những khoảng lặng hiếm hoi.
+</p>
+
+<p>
+Và trong một khoảnh khắc rất đẹp của tuổi học trò,
+lớp 11L đã đặt dấu chân mình lên miền đất ấy
+bằng tất cả sự háo hức, trong veo và khát khao khám phá.
+</p>
+
+</div>
+
+
+<!-- Ý NGHĨA -->
+<div class="section">
+
+<h2>🌱 Ý nghĩa của một chuyến đi</h2>
+
+<div class="card">
+
+<img src="link-anh-sinh-hoat.jpg">
+
+<p>
+Chuyến đi đến như một khoảng thở dịu dàng
+giữa những tiết học và áp lực vô hình.
+</p>
+
+<p>
+Mỗi điểm đến là một trang sách sống động.
+Mỗi bước chân là một bài học không nằm trong giáo trình.
+</p>
+
+<p>
+Quan trọng hơn cả, đó là sợi dây gắn kết
+những tâm hồn tuổi mười bảy
+bằng sự sẻ chia và thấu hiểu.
+</p>
+
+</div>
+</div>
+
+
+<hr>
+
+
+<!-- HÀNH TRÌNH -->
+<div class="section">
+
+<h2>📍 Hành trình ba ngày – Một miền ký ức</h2>
+
+
+<!-- NGÀY 1 -->
+<div class="card">
+
+<div class="day-title">🗓️ Ngày 01: Khởi hành – Chạm ngõ cao nguyên</div>
+
+<img src="link-anh-len-xe.jpg">
+
+<p>
+Hành trình bắt đầu từ Bình Dương
+trong sự háo hức và mong chờ.
+</p>
+
+<img src="link-anh-an-sang.jpg">
+
+<p>
+Bữa sáng tại Ngã ba Dầu Dây
+tiếp thêm năng lượng cho cả đoàn.
+</p>
+
+<img src="link-anh-dh-da-lat.jpg">
+
+<p>
+Trường Đại học Đà Lạt gieo vào lòng chúng tôi
+niềm kính trọng với con đường học vấn.
+</p>
+
+</div>
+
+
+<!-- NGÀY 2 -->
+<div class="card">
+
+<div class="day-title">🗓️ Ngày 02: Trải nghiệm – Gắn kết – Trưởng thành</div>
+
+<img src="link-anh-cau-go.jpg">
+
+<p>
+Cầu Gỗ đón chúng tôi bằng biển mây trắng xóa,
+như chạm tay vào bầu trời.
+</p>
+
+<img src="link-anh-puppy.jpg">
+
+<p>
+Puppy Farm mang đến tiếng cười hồn nhiên
+giữa nắng và gió cao nguyên.
+</p>
+
+<img src="link-anh-lam-vien.jpg">
+
+<p>
+Quảng trường Lâm Viên cho chúng tôi
+cảm nhận nhịp sống trẻ trung của thành phố.
+</p>
+
+</div>
+
+
+<!-- NGÀY 3 -->
+<div class="card">
+
+<div class="day-title">🗓️ Ngày 03: Tạm biệt – Mang theo ký ức</div>
+
+<img src="link-anh-hanh-ly.jpg">
+
+<p>
+Buổi sáng cuối cùng trôi qua
+trong sự lưu luyến khó gọi tên.
+</p>
+
+<img src="link-anh-dinh3.jpg">
+
+<p>
+Dinh III khép lại hành trình
+bằng vẻ đẹp trầm mặc giữa rừng thông.
+</p>
+
+<img src="link-anh-len-xe-ve.jpg">
+
+<p>
+Thành phố lùi xa,
+nhưng ký ức thì ở lại.
+</p>
+
+</div>
+
+</div>
+
+
+<hr>
+
+
+<!-- KẾT -->
+<div class="section">
+
+<h2>🌸 Đà Lạt – Miền ký ức của 11L</h2>
+
+<div class="card">
+
+<img src="link-anh-tap-the.jpg">
+
+<p>
+Chuyến đi đánh dấu một đoạn đẹp
+trong hành trình trưởng thành của lớp 11L.
+</p>
+
+<p>
+Chúng tôi học cách sống chậm,
+lắng nghe,
+trân trọng hiện tại
+và giữ gìn những điều nhỏ bé.
+</p>
+
+<p>
+Nhiều năm sau,
+Đà Lạt vẫn còn ở lại
+trong ký ức tuổi học trò
+như một phần thanh xuân mang tên 11L.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</body>
+</html>  color:#f6f2ea;
   z-index:2;
 }
 
