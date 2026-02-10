@@ -123,6 +123,13 @@
     }
 
     /* ===== CARD ===== */
+
+/* Card kết nhỏ lại cho đồng đều */
+.paper:last-of-type .card{
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
+}
     .card{
       display:grid;
       grid-template-columns:1fr 1.3fr;
@@ -203,6 +210,24 @@
       to{opacity:1;transform:none}
     }
 
+    /* ===== HÀNH TRÌNH STYLE ===== */
+    .journey .card{
+      grid-template-columns:1.2fr 1fr;
+      padding:36px;
+      border-radius:30px;
+      background:#f1f7fd;
+      min-height:260px;
+    }
+
+    .journey .card img{
+      height:260px;
+      border-radius:22px;
+    }
+
+    .journey .card h4{
+      font-size:1.4rem;
+    }
+
     /* ===== QUOTE ===== */
     .quote{
       background:linear-gradient(135deg,#eaf3fb,#ffffff);
@@ -256,7 +281,7 @@
 
     <p class="intro">Đà Lạt của lớp 11L là một miền như thế.</p>
 
-    <div class="card vertical">
+    <div class="card">
       <img src="images/tongthe.jpg" alt="Toàn cảnh Đà Lạt">
       <div>
         <h4>Đà Lạt mộng mơ</h4>
@@ -269,7 +294,7 @@
       </div>
     </div>
 
-    <div class="card vertical">
+    <div class="card">
       <img src="images/tapthe.jpg" alt="Ảnh tập thể">
       <div>
         <h4>Dấu chân thanh xuân</h4>
@@ -290,7 +315,7 @@
       chuyến đi Đà Lạt đến như một khoảng thở dịu dàng.
     </p>
 
-    <div class="card vertical">
+    <div class="card">
       <img src="images/lenxe.jpg" alt="Trên xe">
       <div>
         <h4>Trang sách sống động</h4>
@@ -301,7 +326,7 @@
       </div>
     </div>
 
-    <div class="card vertical">
+    <div class="card">
       <img src="images/anduong.jpg" alt="Sinh hoạt">
       <div>
         <h4>Kết nối tuổi mười bảy</h4>
@@ -315,7 +340,7 @@
   </div>
 
   <!-- HÀNH TRÌNH (GIỮ NGUYÊN) -->
-  <div class="paper">
+  <div class="paper journey">
     <h3>📍 Hành trình ba ngày – Một miền ký ức</h3>
 
     <div class="tabs">
