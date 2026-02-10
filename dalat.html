@@ -1,8 +1,8 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thanh xuân 11L – Đà Lạt</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,416 +12,424 @@
 <style>
 
 :root{
---blue:#7fb6e6;
---blue-dark:#3f6f9e;
---blue-soft:#eaf3fb;
---paper:rgba(255,255,255,.92);
---text:#2b2b2b;
---shadow:0 20px 40px rgba(0,0,0,.1);
+  --blue:#7fb6e6;
+  --blue-dark:#3f6f9e;
+  --blue-soft:#eaf3fb;
+  --paper:rgba(255,255,255,.92);
+  --text:#2b2b2b;
+  --shadow:0 20px 40px rgba(0,0,0,.1);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 
 body{
-font-family:Inter, sans-serif;
-line-height:1.8;
-color:var(--text);
-background:
-linear-gradient(rgba(234,243,251,.85), rgba(234,243,251,.85)),
-url("nen.png") repeat fixed;
+  font-family:Inter,sans-serif;
+  line-height:1.8;
+  color:var(--text);
+  background:
+    linear-gradient(rgba(234,243,251,.85), rgba(234,243,251,.85)),
+    url("nen.png") center/cover fixed;
 }
 
-/* HERO */
+/* ===== LOADING ===== */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.spinner{
+  width:60px;
+  height:60px;
+  border:6px solid #eee;
+  border-top:6px solid var(--blue);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* ===== SCROLL PROGRESS ===== */
+#progress{
+  position:fixed;
+  top:0;left:0;
+  height:5px;
+  width:0%;
+  background:var(--blue);
+  z-index:9999;
+}
+
+/* ===== HERO ===== */
 header{
-min-height:100vh;
-background:
-linear-gradient(rgba(40,70,110,.55),rgba(40,70,110,.55)),
-url('images/hero.jpg') center/cover no-repeat;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:#fff;
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(40,70,110,.55),rgba(40,70,110,.55)),
+    url('images/hero.jpg') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
 }
 
 .hero{
-max-width:900px;
-padding:40px;
-animation:fadeUp 1.2s ease;
+  max-width:900px;
+  padding:40px;
+  animation:fadeUp 1s ease;
 }
 
 .hero h1{
-font-family:'Playfair Display', serif;
-font-size:3.5rem;
+  font-family:'Playfair Display',serif;
+  font-size:3.2rem;
 }
 
 .hero h2{
-margin-top:14px;
-font-size:1.3rem;
+  margin-top:14px;
+  font-size:1.3rem;
 }
 
 .hero p{
-margin:28px auto 36px;
-max-width:720px;
+  margin:25px auto 35px;
+  max-width:720px;
 }
 
 @keyframes fadeUp{
-from{opacity:0;transform:translateY(30px)}
-to{opacity:1}
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:none}
 }
 
 .btn{
-padding:14px 38px;
-border-radius:30px;
-background:var(--blue);
-color:#fff;
-text-decoration:none;
-font-weight:600;
-display:inline-block;
-transition:.3s;
+  display:inline-block;
+  padding:14px 38px;
+  border-radius:30px;
+  background:var(--blue);
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
 }
 
 .btn:hover{
-background:var(--blue-dark);
+  background:var(--blue-dark);
 }
 
-/* SECTION */
-
+/* ===== SECTIONS ===== */
 section{padding:90px 10%}
 
 .paper{
-background:var(--paper);
-border-radius:30px;
-padding:70px;
-box-shadow:var(--shadow);
-margin-bottom:90px;
+  background:var(--paper);
+  border-radius:30px;
+  padding:60px;
+  box-shadow:var(--shadow);
+  margin-bottom:80px;
 }
 
 h3{
-font-family:'Playfair Display', serif;
-font-size:2.5rem;
-color:var(--blue-dark);
-text-align:center;
-margin-bottom:30px;
+  font-family:'Playfair Display',serif;
+  font-size:2.4rem;
+  color:var(--blue-dark);
+  text-align:center;
+  margin-bottom:25px;
 }
 
 .intro{
-max-width:900px;
-margin:0 auto 45px;
-text-align:center;
+  max-width:900px;
+  margin:0 auto 40px;
+  text-align:center;
+  color:#444;
 }
 
-/* CARD */
-
+/* ===== CARD ===== */
 .card{
-display:grid;
-grid-template-columns:1fr 1.3fr;
-gap:30px;
-margin-bottom:45px;
-align-items:center;
-padding:24px;
-border-radius:22px;
-background:var(--blue-soft);
-transition:.3s;
+  display:grid;
+  grid-template-columns:1fr 1.3fr;
+  gap:25px;
+  margin-bottom:40px;
+  align-items:center;
+  padding:22px;
+  border-radius:20px;
+  background:var(--blue-soft);
+  transition:.3s;
 }
 
 .card:hover{
-transform:translateY(-4px);
-box-shadow:0 14px 30px rgba(0,0,0,.12);
+  transform:translateY(-4px);
 }
 
 .card img{
-width:100%;
-height:230px;
-object-fit:cover;
-border-radius:18px;
-transition:.4s;
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:16px;
+  cursor:pointer;
+  transition:.3s;
 }
 
 .card img:hover{
-transform:scale(1.05);
+  transform:scale(1.05);
 }
 
 .card h4{
-color:var(--blue-dark);
-margin-bottom:12px;
+  color:var(--blue-dark);
+  margin-bottom:10px;
 }
 
-/* CARD DỌC */
-
-.vertical-card{
-grid-template-columns:1fr;
-text-align:center;
-}
-
-.vertical-card img{
-height:260px;
-}
-
-.vertical-card div{
-padding-top:12px;
-}
-
-/* TABS */
-
+/* ===== TABS ===== */
 .tabs{
-display:flex;
-justify-content:center;
-gap:14px;
-margin-bottom:55px;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:45px;
+  flex-wrap:wrap;
 }
 
 .tab{
-padding:12px 28px;
-border-radius:999px;
-background:var(--blue-soft);
-color:var(--blue-dark);
-font-weight:600;
-cursor:pointer;
+  padding:12px 26px;
+  border-radius:999px;
+  background:var(--blue-soft);
+  color:var(--blue-dark);
+  font-weight:600;
+  cursor:pointer;
 }
 
 .tab.active{
-background:var(--blue);
-color:#fff;
+  background:var(--blue);
+  color:#fff;
 }
 
 .day-content{display:none}
 .day-content.active{display:block}
 
-/* QUOTE */
-
+/* ===== QUOTE ===== */
 .quote{
-background:linear-gradient(135deg,#eaf3fb,#ffffff);
-padding:45px;
-border-radius:22px;
-text-align:center;
-margin-top:50px;
-color:var(--blue-dark);
-box-shadow:var(--shadow);
+  background:#fff;
+  padding:40px;
+  border-radius:20px;
+  font-style:italic;
+  text-align:center;
+  margin-top:40px;
+  color:var(--blue-dark);
+  box-shadow:var(--shadow);
 }
 
-/* FOOTER */
+/* ===== LIGHTBOX ===== */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:9999;
+}
 
+.lightbox.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:16px;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:none;
+}
+
+/* ===== FOOTER ===== */
 footer{
-background:var(--blue-dark);
-color:#fff;
-text-align:center;
-padding:65px 20px;
+  background:var(--blue-dark);
+  color:#fff;
+  text-align:center;
+  padding:60px 20px;
 }
 
+/* ===== MOBILE ===== */
 @media(max-width:900px){
 
-.card{grid-template-columns:1fr}
-.paper{padding:40px}
-.hero h1{font-size:2.4rem}
+  section{padding:60px 5%}
+
+  .paper{padding:35px}
+
+  .card{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:2.2rem;
+  }
+
+  h3{
+    font-size:1.9rem;
+  }
 
 }
 
 </style>
 </head>
-
 <body>
 
-<header>
-<div class="hero">
-
-<h1>🌿 CHUYẾN THAM QUAN HỌC TẬP ĐÀ LẠT</h1>
-<h2>Dấu ấn không phai trong miền ký ức lớp 11L</h2>
-
-<p>
-Có những miền đất ta chỉ ghé qua một lần trong đời,
-nhưng lại ở lại rất lâu trong ký ức.
-</p>
-
-<a href="#story" class="btn">Bắt đầu hành trình</a>
-
+<!-- LOADING -->
+<div id="loader">
+  <div class="spinner"></div>
 </div>
+
+<!-- PROGRESS -->
+<div id="progress"></div>
+
+<header>
+  <div class="hero">
+    <h1>🌿 CHUYẾN THAM QUAN HỌC TẬP ĐÀ LẠT</h1>
+    <h2>Dấu ấn không phai trong miền ký ức lớp 11L</h2>
+    <p>
+      Có những miền đất ta chỉ ghé qua một lần trong đời, nhưng lại ở lại rất lâu trong ký ức.
+      Có những chuyến đi tưởng chừng ngắn ngủi, nhưng khi ngoảnh lại, mới chợt nhận ra:
+      đó là một phần tuổi trẻ đã lặng lẽ khép lại.
+    </p>
+    <a href="#story" class="btn">Bắt đầu hành trình</a>
+  </div>
 </header>
 
 <section id="story">
 
 <!-- GIỚI THIỆU -->
+<div class="paper reveal">
+  <h3>Miền ký ức mở ra</h3>
 
-<div class="paper">
+  <p class="intro">
+    Đà Lạt của lớp 11L là một miền như thế.
+  </p>
 
-<h3>Miền ký ức mở ra</h3>
+  <div class="card reveal">
+    <img src="images/tongthe.jpg">
+    <div>
+      <h4>Đà Lạt mộng mơ</h4>
+      <p>
+        Đó là nơi sương sớm giăng mờ trên những triền đồi, nơi rừng thông thì thầm trong gió,
+        nơi nhịp sống chậm rãi mở ra những khoảng lặng hiếm hoi.
+      </p>
+    </div>
+  </div>
 
-<p class="intro">Đà Lạt của lớp 11L là một miền như thế.</p>
-
-<div class="card vertical-card">
-
-<img src="images/tongthe.jpg">
-
-<div>
-<h4>Đà Lạt mộng mơ</h4>
-<p>Đó là nơi sương sớm giăng mờ trên những triền đồi...</p>
-</div>
-
-</div>
-
-<div class="card vertical-card">
-
-<img src="images/tapthe.jpg">
-
-<div>
-<h4>Dấu chân thanh xuân</h4>
-<p>Lớp 11L đã đặt dấu chân mình lên miền đất ấy.</p>
-</div>
-
-</div>
-
+  <div class="card reveal">
+    <img src="images/tapthe.jpg">
+    <div>
+      <h4>Dấu chân thanh xuân</h4>
+      <p>
+        Và trong một khoảnh khắc rất đẹp, lớp 11L đã đặt dấu chân mình
+        lên miền đất ấy bằng tất cả háo hức.
+      </p>
+    </div>
+  </div>
 </div>
 
 <!-- Ý NGHĨA -->
-
-<div class="paper">
+<div class="paper reveal">
 
 <h3>🌱 Ý nghĩa của một chuyến đi</h3>
 
-<p class="intro">Chuyến đi đến như một khoảng thở dịu dàng.</p>
+<p class="intro">
+Giữa những tiết học nối tiếp nhau,
+chuyến đi đến như một khoảng thở dịu dàng.
+</p>
 
-<div class="card vertical-card">
-
+<div class="card reveal">
 <img src="images/lenxe.jpg">
-
 <div>
 <h4>Trang sách sống động</h4>
-<p>Mỗi điểm đến đều là một trang sách.</p>
+<p>Mỗi điểm đến đều là một bài học sống.</p>
+</div>
 </div>
 
-</div>
-
-<div class="card vertical-card">
-
+<div class="card reveal">
 <img src="images/anduong.jpg">
-
 <div>
 <h4>Kết nối tuổi mười bảy</h4>
-<p>Chuyến đi là sợi dây kết nối tập thể.</p>
+<p>Chuyến đi là sợi dây gắn kết những tâm hồn trẻ.</p>
 </div>
-
 </div>
 
 </div>
 
 <!-- HÀNH TRÌNH -->
+<div class="paper reveal">
 
-<div class="paper">
-
-<h3>📍 Hành trình ba ngày</h3>
+<h3>📍 Hành trình ba ngày – Một miền ký ức</h3>
 
 <div class="tabs">
-
 <div class="tab active" data-day="day1">Ngày 01</div>
 <div class="tab" data-day="day2">Ngày 02</div>
 <div class="tab" data-day="day3">Ngày 03</div>
-
 </div>
-
-<!-- DAY 1 -->
 
 <div id="day1" class="day-content active">
 
-<div class="card">
-
+<div class="card reveal">
 <img src="images/lenxe.jpg">
-
 <div>
 <h4>Khởi hành</h4>
-<p>Hành trình bắt đầu.</p>
+<p>Hành trình bắt đầu trong háo hức.</p>
+</div>
 </div>
 
 </div>
-
-</div>
-
-<!-- DAY 2 -->
 
 <div id="day2" class="day-content">
 
-<div class="card">
-
+<div class="card reveal">
 <img src="images/puppy.jpg">
-
 <div>
 <h4>Puppy Farm</h4>
-<p>Tiếng cười rộn ràng.</p>
+<p>Niềm vui lan tỏa.</p>
+</div>
 </div>
 
 </div>
-
-</div>
-
-<!-- DAY 3 -->
 
 <div id="day3" class="day-content">
 
-<div class="card">
-
+<div class="card reveal">
 <img src="images/dinh3.jpg">
-
 <div>
 <h4>Dinh Bảo Đại</h4>
-<p>Vẻ đẹp cổ kính.</p>
+<p>Ký ức cổ kính.</p>
+</div>
 </div>
 
 </div>
 
-</div>
-
-<div class="quote">
-“Học cách trân trọng hiện tại.”
-</div>
-
-</div>
-
-<!-- KẾT -->
-
-<div class="paper">
-
-<h3>Đà Lạt – Miền ký ức</h3>
-
-<div class="card vertical-card">
-
-<img src="images/tapthecuoi.jpg">
-
-<div>
-<h4>Khép lại hành trình</h4>
-<p>Một đoạn thanh xuân đẹp.</p>
-</div>
-
-</div>
-
-<div class="card vertical-card">
-
-<img src="images/kyniem.jpg">
-
-<div>
-<h4>Thanh xuân</h4>
-<p>Những khoảnh khắc đáng nhớ.</p>
-</div>
-
-</div>
-
-<div class="card vertical-card">
-
-<img src="images/hanhphuc.jpg">
-
-<div>
-<h4>Ký ức còn mãi</h4>
-<p>Đà Lạt ở lại trong tim.</p>
-</div>
-
-</div>
-
-<div class="quote">
-“Một phần thanh xuân mang tên 11L.”
+<div class="quote reveal">
+“Đó là một phần thanh xuân không thể quên.”
 </div>
 
 </div>
 
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <img src="">
+</div>
 
 <footer>
 <p>🌌 Thanh xuân 11L – Đà Lạt 🌌</p>
@@ -429,20 +437,60 @@ nhưng lại ở lại rất lâu trong ký ức.
 
 <script>
 
-const tabs=document.querySelectorAll('.tab');
-const contents=document.querySelectorAll('.day-content');
+/* LOADING */
+window.addEventListener("load",()=>{
+  document.getElementById("loader").style.display="none";
+});
+
+/* PROGRESS */
+window.addEventListener("scroll",()=>{
+  const winScroll = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById("progress").style.width = (winScroll/height)*100 + "%";
+});
+
+/* TAB */
+const tabs=document.querySelectorAll(".tab");
+const contents=document.querySelectorAll(".day-content");
 
 tabs.forEach(tab=>{
-tab.addEventListener('click',()=>{
+tab.addEventListener("click",()=>{
+tabs.forEach(t=>t.classList.remove("active"));
+contents.forEach(c=>c.classList.remove("active"));
 
-tabs.forEach(t=>t.classList.remove('active'));
-contents.forEach(c=>c.classList.remove('active'));
-
-tab.classList.add('active');
-document.getElementById(tab.dataset.day).classList.add('active');
-
+tab.classList.add("active");
+document.getElementById(tab.dataset.day).classList.add("active");
 });
 });
+
+/* LIGHTBOX */
+const imgs=document.querySelectorAll(".card img");
+const lightbox=document.getElementById("lightbox");
+const lbImg=lightbox.querySelector("img");
+
+imgs.forEach(img=>{
+img.onclick=()=>{
+lbImg.src=img.src;
+lightbox.classList.add("show");
+}
+});
+
+lightbox.onclick=()=>{
+lightbox.classList.remove("show");
+}
+
+/* SCROLL REVEAL */
+const reveals=document.querySelectorAll(".reveal");
+
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){
+e.target.classList.add("active");
+}
+});
+},{threshold:0.2});
+
+reveals.forEach(el=>obs.observe(el));
 
 </script>
 
