@@ -145,7 +145,8 @@ h3{
 }
 
 .card:hover{
-  transform:translateY(-4px);
+transform: translateY(-6px);
+box-shadow: 0 18px 35px rgba(0,0,0,.15);
 }
 
 .card img{
@@ -159,10 +160,14 @@ h3{
   filter:brightness(95%);
 }
 
-/* Hiệu ứng khi rê chuột */
-.card:hover img{
-  transform:scale(1.08);
-  filter:brightness(110%);
+.card img{
+transition: all .4s ease;
+cursor: pointer;
+}
+
+/* Chỉ hover trực tiếp ảnh mới zoom */
+.card img:hover{
+transform: scale(1.08);
 }
 
 .card h4{
