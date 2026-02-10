@@ -130,17 +130,21 @@
   margin-left:auto;
   margin-right:auto;
 }
-    .card{
-      display:grid;
-      grid-template-columns:1fr 1.3fr;
-      gap:30px;
-      margin-bottom:45px;
-      align-items:center;
-      padding:24px;
-      border-radius:22px;
-      background:var(--blue-soft);
-      transition:.3s;
-    }
+   .card{
+  display:grid;
+  grid-template-columns:1fr 1.3fr;
+  gap:30px;
+  margin-bottom:45px;
+
+  align-items:start;   /* SỬA chỗ này */
+
+  padding:24px;
+  border-radius:22px;
+  background:var(--blue-soft);
+  transition:.3s;
+
+  min-height:260px;    /* THÊM */
+}
 
     /* Card dạng dọc (ảnh trên - chữ dưới) */
     .card.vertical{
