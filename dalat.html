@@ -89,6 +89,7 @@ header{
 }
 
 .btn{
+  display:inline-block;
   background:var(--blue);
   padding:12px 32px;
   border-radius:30px;
@@ -160,14 +161,14 @@ box-shadow: 0 18px 35px rgba(0,0,0,.15);
   filter:brightness(95%);
 }
 
-.card img{
-transition: all .4s ease;
-cursor: pointer;
-}
-
 /* Chỉ hover trực tiếp ảnh mới zoom */
 .card img:hover{
-transform: scale(1.08);
+transform: scale(1.1);
+}
+
+.image-box{
+  overflow: hidden;
+  border-radius: 15px;
 }
 
 .card h4{
@@ -233,6 +234,26 @@ transform: scale(1.08);
 
 /* Reveal */
 
+  const reveals=document.querySelectorAll(".reveal");
+
+function reveal(){
+
+  reveals.forEach(item=>{
+
+    const windowHeight=window.innerHeight;
+    const top=item.getBoundingClientRect().top;
+    const visible=120;
+
+    if(top < windowHeight - visible){
+      item.classList.add("show");
+    }
+
+  });
+
+}
+
+window.addEventListener("scroll",reveal);
+reveal();
 .reveal{
   opacity:0;
   transform:translateY(40px);
