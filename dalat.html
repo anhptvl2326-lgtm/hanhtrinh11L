@@ -1,486 +1,449 @@
 <!DOCTYPE html> 
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thanh xuân 11L – Đà Lạt</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thanh xuân 11L – Đà Lạt</title>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      /* Blue – Star Theme */
-      --blue:#7fb6e6;
-      --blue-dark:#3f6f9e;
-      --blue-soft:#eaf3fb;
-      --green-soft:#6fa59a;
-      --paper:rgba(255,255,255,.92);
-      --text:#2b2b2b;
-      --shadow:0 20px 40px rgba(0,0,0,.1);
-    }
+<style>
 
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
+:root{
+--blue:#7fb6e6;
+--blue-dark:#3f6f9e;
+--blue-soft:#eaf3fb;
+--paper:rgba(255,255,255,.92);
+--text:#2b2b2b;
+--shadow:0 20px 40px rgba(0,0,0,.1);
+}
 
-    body{
-      font-family:Inter, sans-serif;
-      line-height:1.8;
-      color:var(--text);
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 
-      /* Star background */
-      background:
-        linear-gradient(rgba(234,243,251,.85), rgba(234,243,251,.85)),
-        url("nen.png") center/cover repeat fixed;
-    }
+body{
+font-family:Inter, sans-serif;
+line-height:1.8;
+color:var(--text);
+background:
+linear-gradient(rgba(234,243,251,.85), rgba(234,243,251,.85)),
+url("nen.png") repeat fixed;
+}
 
-    /* ===== HERO ===== */
-    header{
-      min-height:100vh;
-      background:
-        linear-gradient(rgba(40,70,110,.55),rgba(40,70,110,.55)),
-        url('images/hero.jpg') center/cover no-repeat;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#fff;
-    }
+/* HERO */
+header{
+min-height:100vh;
+background:
+linear-gradient(rgba(40,70,110,.55),rgba(40,70,110,.55)),
+url('images/hero.jpg') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:#fff;
+}
 
-    .hero{
-      max-width:900px;
-      padding:40px;
-      animation:fadeUp 1.2s ease;
-      backdrop-filter: blur(2px);
-    }
+.hero{
+max-width:900px;
+padding:40px;
+animation:fadeUp 1.2s ease;
+}
 
-    .hero h1{
-      font-family:'Playfair Display', serif;
-      font-size:3.5rem;
-      letter-spacing:1px;
-    }
+.hero h1{
+font-family:'Playfair Display', serif;
+font-size:3.5rem;
+}
 
-    .hero h2{
-      margin-top:14px;
-      font-size:1.3rem;
-      font-weight:500;
-      opacity:.95;
-    }
+.hero h2{
+margin-top:14px;
+font-size:1.3rem;
+}
 
-    .hero p{
-      margin:28px auto 36px;
-      max-width:720px;
-      opacity:.95;
-      font-size:1.05rem;
-    }
+.hero p{
+margin:28px auto 36px;
+max-width:720px;
+}
 
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(30px)}
-      to{opacity:1;transform:none}
-    }
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1}
+}
 
-    .btn{
-      display:inline-block;
-      padding:14px 38px;
-      border-radius:30px;
-      background:var(--blue);
-      color:#fff;
-      text-decoration:none;
-      font-weight:600;
-      transition:.3s;
-      box-shadow:0 8px 20px rgba(0,0,0,.15);
-    }
+.btn{
+padding:14px 38px;
+border-radius:30px;
+background:var(--blue);
+color:#fff;
+text-decoration:none;
+font-weight:600;
+display:inline-block;
+transition:.3s;
+}
 
-    .btn:hover{
-      background:var(--blue-dark);
-      transform:translateY(-2px);
-    }
+.btn:hover{
+background:var(--blue-dark);
+}
 
-    /* ===== SECTIONS ===== */
-    section{padding:90px 10%}
+/* SECTION */
 
-    .paper{
-      background:var(--paper);
-      border-radius:30px;
-      padding:70px;
-      box-shadow:var(--shadow);
-      margin-bottom:90px;
-    }
+section{padding:90px 10%}
 
-    h3{
-      font-family:'Playfair Display', serif;
-      font-size:2.5rem;
-      color:var(--blue-dark);
-      text-align:center;
-      margin-bottom:30px;
-    }
+.paper{
+background:var(--paper);
+border-radius:30px;
+padding:70px;
+box-shadow:var(--shadow);
+margin-bottom:90px;
+}
 
-    .intro{
-      max-width:900px;
-      margin:0 auto 45px;
-      text-align:center;
-      font-size:1.06rem;
-      color:#444;
-    }
+h3{
+font-family:'Playfair Display', serif;
+font-size:2.5rem;
+color:var(--blue-dark);
+text-align:center;
+margin-bottom:30px;
+}
 
-    /* ===== CARD ===== */
-    .card{
-      display:grid;
-      grid-template-columns:1fr 1.3fr;
-      gap:30px;
-      margin-bottom:45px;
-      align-items:center;
-      padding:24px;
-      border-radius:22px;
-      background:var(--blue-soft);
-      transition:.3s;
-    }
+.intro{
+max-width:900px;
+margin:0 auto 45px;
+text-align:center;
+}
 
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 14px 30px rgba(0,0,0,.12);
-    }
+/* CARD */
 
-    .card img{
-      width:100%;
-      height:230px;
-      object-fit:cover;
-      border-radius:18px;
-      transition:.4s;
-      cursor:pointer;
-    }
+.card{
+display:grid;
+grid-template-columns:1fr 1.3fr;
+gap:30px;
+margin-bottom:45px;
+align-items:center;
+padding:24px;
+border-radius:22px;
+background:var(--blue-soft);
+transition:.3s;
+}
 
-    .card img:hover{
-      transform:scale(1.05);
-    }
+.card:hover{
+transform:translateY(-4px);
+box-shadow:0 14px 30px rgba(0,0,0,.12);
+}
 
-    .card h4{
-      color:var(--blue-dark);
-      margin-bottom:12px;
-      font-size:1.25rem;
-    }
+.card img{
+width:100%;
+height:230px;
+object-fit:cover;
+border-radius:18px;
+transition:.4s;
+}
 
-    /* ===== TABS ===== */
-    .tabs{
-      display:flex;
-      justify-content:center;
-      gap:14px;
-      margin-bottom:55px;
-      flex-wrap:wrap;
-    }
+.card img:hover{
+transform:scale(1.05);
+}
 
-    .tab{
-      padding:12px 28px;
-      border-radius:999px;
-      background:var(--blue-soft);
-      color:var(--blue-dark);
-      font-weight:600;
-      cursor:pointer;
-      transition:.3s;
-    }
+.card h4{
+color:var(--blue-dark);
+margin-bottom:12px;
+}
 
-    .tab.active{
-      background:var(--blue);
-      color:#fff;
-    }
+/* CARD DỌC */
 
-    .tab:hover{transform:translateY(-2px)}
+.vertical-card{
+grid-template-columns:1fr;
+text-align:center;
+}
 
-    .day-content{display:none;animation:fade .5s ease}
-    .day-content.active{display:block}
+.vertical-card img{
+height:260px;
+}
 
-    @keyframes fade{
-      from{opacity:0;transform:translateY(14px)}
-      to{opacity:1;transform:none}
-    }
+.vertical-card div{
+padding-top:12px;
+}
 
-    /* ===== QUOTE ===== */
-    .quote{
-      background:linear-gradient(135deg,#eaf3fb,#ffffff);
-      padding:45px;
-      border-radius:22px;
-      font-style:italic;
-      text-align:center;
-      margin-top:50px;
-      color:var(--blue-dark);
-      box-shadow:var(--shadow);
-    }
+/* TABS */
 
-    /* ===== FOOTER ===== */
-    footer{
-      background:var(--blue-dark);
-      color:#fff;
-      text-align:center;
-      padding:65px 20px;
-      letter-spacing:.5px;
-    }
+.tabs{
+display:flex;
+justify-content:center;
+gap:14px;
+margin-bottom:55px;
+}
 
-    /* ===== RESPONSIVE ===== */
-    @media(max-width:900px){
-      section{padding:70px 6%}
-      .card{grid-template-columns:1fr}
-      .paper{padding:40px}
-      .hero h1{font-size:2.4rem}
-      h3{font-size:2rem}
-    }
-  </style>
+.tab{
+padding:12px 28px;
+border-radius:999px;
+background:var(--blue-soft);
+color:var(--blue-dark);
+font-weight:600;
+cursor:pointer;
+}
+
+.tab.active{
+background:var(--blue);
+color:#fff;
+}
+
+.day-content{display:none}
+.day-content.active{display:block}
+
+/* QUOTE */
+
+.quote{
+background:linear-gradient(135deg,#eaf3fb,#ffffff);
+padding:45px;
+border-radius:22px;
+text-align:center;
+margin-top:50px;
+color:var(--blue-dark);
+box-shadow:var(--shadow);
+}
+
+/* FOOTER */
+
+footer{
+background:var(--blue-dark);
+color:#fff;
+text-align:center;
+padding:65px 20px;
+}
+
+@media(max-width:900px){
+
+.card{grid-template-columns:1fr}
+.paper{padding:40px}
+.hero h1{font-size:2.4rem}
+
+}
+
+</style>
 </head>
+
 <body>
 
 <header>
-  <div class="hero">
-    <h1>🌿 CHUYẾN THAM QUAN HỌC TẬP ĐÀ LẠT</h1>
-    <h2>Dấu ấn không phai trong miền ký ức lớp 11L</h2>
-    <p>
-      Có những miền đất ta chỉ ghé qua một lần trong đời, nhưng lại ở lại rất lâu trong ký ức.
-      Có những chuyến đi tưởng chừng ngắn ngủi, nhưng khi ngoảnh lại, mới chợt nhận ra: đó là một phần tuổi trẻ đã lặng lẽ khép lại.
-    </p>
-    <a href="#story" class="btn">Bắt đầu hành trình</a>
-  </div>
+<div class="hero">
+
+<h1>🌿 CHUYẾN THAM QUAN HỌC TẬP ĐÀ LẠT</h1>
+<h2>Dấu ấn không phai trong miền ký ức lớp 11L</h2>
+
+<p>
+Có những miền đất ta chỉ ghé qua một lần trong đời,
+nhưng lại ở lại rất lâu trong ký ức.
+</p>
+
+<a href="#story" class="btn">Bắt đầu hành trình</a>
+
+</div>
 </header>
 
 <section id="story">
 
-  <!-- GIỚI THIỆU -->
-  <div class="paper">
-    <h3>Miền ký ức mở ra</h3>
+<!-- GIỚI THIỆU -->
 
-    <p class="intro">
-      Đà Lạt của lớp 11L là một miền như thế.
-    </p>
+<div class="paper">
 
-    <div class="card">
-      <img src="images/tongthe.jpg" alt="Toàn cảnh Đà Lạt">
-      <div>
-        <h4>Đà Lạt mộng mơ</h4>
-        <p>
-          Đó là nơi sương sớm giăng mờ trên những triền đồi, nơi rừng thông thì thầm trong gió,
-          nơi nhịp sống chậm rãi mở ra những khoảng lặng hiếm hoi giữa những ngày học tập vội vã.
-          Đà Lạt không chỉ hiện lên trong vẻ đẹp thơ mộng của phố núi,
-          mà còn là không gian của tri thức, của lịch sử, của những giá trị bền bỉ được bồi đắp qua năm tháng.
-        </p>
-      </div>
-    </div>
+<h3>Miền ký ức mở ra</h3>
 
-    <div class="card">
-      <img src="images/tapthe.jpg" alt="Ảnh tập thể">
-      <div>
-        <h4>Dấu chân thanh xuân</h4>
-        <p>
-          Và trong một khoảnh khắc rất đẹp của tuổi học trò, lớp 11L đã đặt dấu chân mình
-          lên miền đất ấy – bằng tất cả sự háo hức, trong veo và khát khao khám phá.
-        </p>
-      </div>
-    </div>
-  </div>
+<p class="intro">Đà Lạt của lớp 11L là một miền như thế.</p>
 
-  <!-- Ý NGHĨA -->
-  <div class="paper">
-    <h3>🌱 Ý nghĩa của một chuyến đi</h3>
+<div class="card vertical-card">
 
-    <p class="intro">
-      Giữa những tiết học nối tiếp nhau, giữa những bài kiểm tra và áp lực vô hình,
-      chuyến đi Đà Lạt đến như một khoảng thở dịu dàng.
-    </p>
+<img src="images/tongthe.jpg">
 
-    <div class="card">
-      <img src="images/lenxe.jpg" alt="Trên xe">
-      <div>
-        <h4>Trang sách sống động</h4>
-        <p>
-          Mỗi điểm đến đều là một trang sách sống động.
-          Mỗi bước chân đều mở ra một bài học không nằm trong giáo trình.
-        </p>
-      </div>
-    </div>
+<div>
+<h4>Đà Lạt mộng mơ</h4>
+<p>Đó là nơi sương sớm giăng mờ trên những triền đồi...</p>
+</div>
 
-    <div class="card">
-      <img src="images/anduong.jpg" alt="Sinh hoạt">
-      <div>
-        <h4>Kết nối tuổi mười bảy</h4>
-        <p>
-          Từ thiên nhiên xanh mát đến những công trình mang dấu ấn lịch sử,
-          tất cả giúp chúng tôi hiểu rằng tri thức không chỉ nằm trong trang vở.
-          Quan trọng hơn cả, chuyến đi là sợi dây vô hình kết nối những tâm hồn tuổi mười bảy.
-          Qua những giờ sinh hoạt chung, những bữa ăn giản dị, những khoảnh khắc cười đùa vô tư,
-          chúng tôi học cách lắng nghe, thấu hiểu và trân trọng nhau hơn.
-        </p>
-      </div>
-    </div>
-  </div>
+</div>
 
-  <!-- HÀNH TRÌNH -->
-  <div class="paper">
-    <h3>📍 Hành trình ba ngày – Một miền ký ức</h3>
+<div class="card vertical-card">
 
-    <div class="tabs">
-      <div class="tab active" data-day="day1">Ngày 01</div>
-      <div class="tab" data-day="day2">Ngày 02</div>
-      <div class="tab" data-day="day3">Ngày 03</div>
-    </div>
+<img src="images/tapthe.jpg">
 
-    <!-- DAY 1 -->
-    <div id="day1" class="day-content active">
+<div>
+<h4>Dấu chân thanh xuân</h4>
+<p>Lớp 11L đã đặt dấu chân mình lên miền đất ấy.</p>
+</div>
 
-      <div class="card">
-        <img src="images/lenxe.jpg">
-        <div>
-          <h4>Khởi hành – Chạm ngõ cao nguyên</h4>
-          <p>Sau chặng đường dài từ Bình Dương, lớp 11L bắt đầu hành trình trong sự háo hức và mong chờ.</p>
-        </div>
-      </div>
+</div>
 
-      <div class="card">
-        <img src="images/anduong.jpg">
-        <div>
-          <h4>Bữa sáng đầu hành trình</h4>
-          <p>Bữa sáng tại Ngã ba Dầu Dây tiếp thêm năng lượng cho cả đoàn.</p>
-        </div>
-      </div>
+</div>
 
-      <div class="card">
-        <img src="images/dhdl.jpg">
-        <div>
-          <h4>Trường Đại học Đà Lạt</h4>
-          <p>Nơi tri thức và kiến trúc giao hòa, gieo vào lòng niềm kính trọng với học vấn.</p>
-        </div>
-      </div>
+<!-- Ý NGHĨA -->
 
-      <div class="card">
-        <img src="images/khachsan.jpg">
-        <div>
-          <h4>Buổi chiều tại khách sạn</h4>
-          <p>Sau khi nhận phòng, cả lớp nghỉ ngơi và lưu lại những khoảnh khắc đầu tiên.</p>
-        </div>
-      </div>
+<div class="paper">
 
-    </div>
+<h3>🌱 Ý nghĩa của một chuyến đi</h3>
 
-    <!-- DAY 2 -->
-    <div id="day2" class="day-content">
+<p class="intro">Chuyến đi đến như một khoảng thở dịu dàng.</p>
 
-      <div class="card">
-        <img src="images/caugio.jpg">
-        <div>
-          <h4>Săn mây Cầu Gỗ</h4>
-          <p>Biển mây trắng xóa mang đến cảm giác như chạm tay vào bầu trời.</p>
-        </div>
-      </div>
+<div class="card vertical-card">
 
-      <div class="card">
-        <img src="images/puppy.jpg">
-        <div>
-          <h4>Puppy Farm</h4>
-          <p>Tiếng cười hòa cùng ánh nắng và những chú cún nhỏ hồn nhiên.</p>
-        </div>
-      </div>
+<img src="images/lenxe.jpg">
 
-      <div class="card">
-        <img src="images/lamvien.jpg">
-        <div>
-          <h4>Quảng trường Lâm Viên</h4>
-          <p>Cảm nhận nhịp sống trẻ trung và năng động của thành phố cao nguyên.</p>
-        </div>
-      </div>
+<div>
+<h4>Trang sách sống động</h4>
+<p>Mỗi điểm đến đều là một trang sách.</p>
+</div>
 
-    </div>
+</div>
 
-    <!-- DAY 3 -->
-    <div id="day3" class="day-content">
+<div class="card vertical-card">
 
-      <div class="card">
-        <img src="images/dinh3.jpg">
-        <div>
-          <h4>Dinh Bảo Đại</h4>
-          <p>Vẻ đẹp trầm mặc, cổ kính giữa rừng thông xanh mát.</p>
-        </div>
-      </div>
+<img src="images/anduong.jpg">
 
-      <div class="card">
-        <img src="images/xeve.jpg">
-        <div>
-          <h4>Tạm biệt Đà Lạt</h4>
-          <p>Khi bánh xe lăn bánh, thành phố dần lùi xa, nhưng ký ức thì ở lại.</p>
-        </div>
-      </div>
+<div>
+<h4>Kết nối tuổi mười bảy</h4>
+<p>Chuyến đi là sợi dây kết nối tập thể.</p>
+</div>
 
-    </div>
+</div>
 
-    <div class="quote">
-      “Ở đó, chúng tôi đã cùng nhau học cách sống chậm, học cách lắng nghe,
-      học cách trân trọng hiện tại và học cách giữ gìn những điều nhỏ bé nhưng quý giá.”
-    </div>
+</div>
 
-  </div>
-</section>
+<!-- HÀNH TRÌNH -->
 
-      <!-- KẾT -->
-  <div class="paper">
-    <h3>Đà Lạt – Miền ký ức của 11L</h3>
+<div class="paper">
 
-    <p class="intro">[Ảnh tập thể cuối chuyến đi]</p>
+<h3>📍 Hành trình ba ngày</h3>
 
-    <div class="card">
-      <img src="images/tapthecuoi.jpg" alt="Ảnh tập thể cuối chuyến đi">
-      <div>
-        <h4>Khoảnh khắc khép lại hành trình</h4>
-        <p>
-          Chuyến tham quan học tập tại Đà Lạt không chỉ mang đến kiến thức và trải nghiệm,
-          mà còn đánh dấu một đoạn đẹp trong hành trình trưởng thành của lớp 11L.
-        </p>
-      </div>
-    </div>
+<div class="tabs">
 
-    <div class="card">
-      <img src="images/kyniem.jpg" alt="Kỷ niệm lớp 11L">
-      <div>
-        <h4>Thanh xuân trong từng khoảnh khắc</h4>
-        <p>
-          Ở đó, chúng tôi đã cùng nhau học cách sống chậm, học cách lắng nghe,
-          học cách trân trọng hiện tại và học cách giữ gìn những điều nhỏ bé nhưng quý giá.
-        </p>
-      </div>
-    </div>
+<div class="tab active" data-day="day1">Ngày 01</div>
+<div class="tab" data-day="day2">Ngày 02</div>
+<div class="tab" data-day="day3">Ngày 03</div>
 
-    <div class="card">
-      <img src="images/hanhphuc.jpg" alt="Những khoảnh khắc vui vẻ">
-      <div>
-        <h4>Ký ức còn mãi</h4>
-        <p>
-          Nhiều năm sau, khi những con đường đời đã rẽ sang nhiều hướng khác nhau,
-          có thể chúng tôi sẽ quên đi vài chi tiết nhỏ, nhưng chắc chắn Đà Lạt vẫn còn ở lại –
-          trong những bức ảnh cũ, trong những câu chuyện được kể lại
-          và trong một góc rất sâu của ký ức tuổi học trò.
-        </p>
-      </div>
-    </div>
+</div>
 
-    <div class="quote">
-      “Bởi đó không chỉ là một chuyến đi, đó là một phần thanh xuân, đó là miền nhớ mang tên lớp 11L.”
-    </div>
+<!-- DAY 1 -->
 
-  </div>
+<div id="day1" class="day-content active">
+
+<div class="card">
+
+<img src="images/lenxe.jpg">
+
+<div>
+<h4>Khởi hành</h4>
+<p>Hành trình bắt đầu.</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- DAY 2 -->
+
+<div id="day2" class="day-content">
+
+<div class="card">
+
+<img src="images/puppy.jpg">
+
+<div>
+<h4>Puppy Farm</h4>
+<p>Tiếng cười rộn ràng.</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- DAY 3 -->
+
+<div id="day3" class="day-content">
+
+<div class="card">
+
+<img src="images/dinh3.jpg">
+
+<div>
+<h4>Dinh Bảo Đại</h4>
+<p>Vẻ đẹp cổ kính.</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="quote">
+“Học cách trân trọng hiện tại.”
+</div>
+
+</div>
+
+<!-- KẾT -->
+
+<div class="paper">
+
+<h3>Đà Lạt – Miền ký ức</h3>
+
+<div class="card vertical-card">
+
+<img src="images/tapthecuoi.jpg">
+
+<div>
+<h4>Khép lại hành trình</h4>
+<p>Một đoạn thanh xuân đẹp.</p>
+</div>
+
+</div>
+
+<div class="card vertical-card">
+
+<img src="images/kyniem.jpg">
+
+<div>
+<h4>Thanh xuân</h4>
+<p>Những khoảnh khắc đáng nhớ.</p>
+</div>
+
+</div>
+
+<div class="card vertical-card">
+
+<img src="images/hanhphuc.jpg">
+
+<div>
+<h4>Ký ức còn mãi</h4>
+<p>Đà Lạt ở lại trong tim.</p>
+</div>
+
+</div>
+
+<div class="quote">
+“Một phần thanh xuân mang tên 11L.”
+</div>
+
+</div>
+
 </section>
 
 <footer>
-  <p>🌌 Thanh xuân 11L – Đà Lạt 🌌</p>
+<p>🌌 Thanh xuân 11L – Đà Lạt 🌌</p>
 </footer>
 
 <script>
-  const tabs = document.querySelectorAll('.tab');
-  const contents = document.querySelectorAll('.day-content');
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      contents.forEach(c => c.classList.remove('active'));
+const tabs=document.querySelectorAll('.tab');
+const contents=document.querySelectorAll('.day-content');
 
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.day).classList.add('active');
-    });
-  });
+tabs.forEach(tab=>{
+tab.addEventListener('click',()=>{
+
+tabs.forEach(t=>t.classList.remove('active'));
+contents.forEach(c=>c.classList.remove('active'));
+
+tab.classList.add('active');
+document.getElementById(tab.dataset.day).classList.add('active');
+
+});
+});
+
 </script>
 
 </body>
