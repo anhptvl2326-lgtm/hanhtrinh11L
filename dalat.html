@@ -1,436 +1,1150 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="vi">
-<head> 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thanh xuân 11L – Đà Lạt</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thanh xuân 11L – Đà Lạt</title>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --blue:#7fb6e6;
-      --blue-dark:#3f6f9e;
-      --blue-soft:#eaf3fb;
-      --green-soft:#6fa59a;
-      --paper:rgba(255,255,255,.92);
-      --text:#2b2b2b;
-      --shadow:0 20px 40px rgba(0,0,0,.1);
-    }
-
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-
-    body{
-      font-family:Inter, sans-serif;
-      line-height:1.8;
-      color:var(--text);
-      background:
-        linear-gradient(rgba(234,243,251,.85), rgba(234,243,251,.85)),
-        url("nen.png") center/cover repeat fixed;
-    }
-
-    /* ===== HERO ===== */
-    header{
-      min-height:100vh;
-      background:
-        linear-gradient(rgba(40,70,110,.55),rgba(40,70,110,.55)),
-        url('images/hero.jpg') center/cover no-repeat;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#fff;
-    }
-
-    .hero{
-      max-width:900px;
-      padding:40px;
-      animation:fadeUp 1.2s ease;
-      backdrop-filter: blur(2px);
-    }
-
-    .hero h1{
-      font-family:'Playfair Display', serif;
-      font-size:3.5rem;
-      letter-spacing:1px;
-    }
-
-    .hero h2{
-      margin-top:14px;
-      font-size:1.3rem;
-      font-weight:500;
-      opacity:.95;
-    }
-
-    .hero p{
-      margin:28px auto 36px;
-      max-width:720px;
-      opacity:.95;
-      font-size:1.05rem;
-    }
-
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(30px)}
-      to{opacity:1;transform:none}
-    }
-
-    .btn{
-      display:inline-block;
-      padding:14px 38px;
-      border-radius:30px;
-      background:var(--blue);
-      color:#fff;
-      text-decoration:none;
-      font-weight:600;
-      transition:.3s;
-      box-shadow:0 8px 20px rgba(0,0,0,.15);
-    }
-
-    .btn:hover{
-      background:var(--blue-dark);
-      transform:translateY(-2px);
-    }
-
-    /* ===== SECTIONS ===== */
-    section{padding:90px 10%}
-
-    .paper{
-      background:var(--paper);
-      border-radius:30px;
-      padding:70px;
-      box-shadow:var(--shadow);
-      margin-bottom:90px;
-    }
-
-    h3{
-      font-family:'Playfair Display', serif;
-      font-size:2.5rem;
-      color:var(--blue-dark);
-      text-align:center;
-      margin-bottom:30px;
-    }
-
-    .intro{
-      max-width:900px;
-      margin:0 auto 45px;
-      text-align:center;
-      font-size:1.06rem;
-      color:#444;
-    }
-
-    /* ===== CARD ===== */
-
-/* Card kết nhỏ lại cho đồng đều */
-.paper:last-of-type .card{
-  max-width:900px;
-  margin-left:auto;
-  margin-right:auto;
+<style>
+:root {
+    --pine: #1a4d2e;
+    --moss: #4a7c59;
+    --mist: #e8f3ec;
+    --cloud: #f5f9f7;
+    --fog: rgba(255, 255, 255, 0.75);
+    --earth: #3d3d3d;
+    --gold: #d4a574;
+    --shadow-soft: 0 8px 32px rgba(26, 77, 46, 0.08);
+    --shadow-lift: 0 20px 60px rgba(26, 77, 46, 0.12);
 }
-    .card{
-      display:grid;
-      grid-template-columns:1fr 1.3fr;
-      gap:30px;
-      margin-bottom:45px;
-      align-items:center;
-      padding:24px;
-      border-radius:22px;
-      background:var(--blue-soft);
-      transition:.3s;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.75;
+    color: var(--earth);
+    background: linear-gradient(180deg, var(--cloud) 0%, var(--mist) 100%);
+    overflow-x: hidden;
+}
+
+/* HERO SECTION */
+.hero-wrapper {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(26, 77, 46, 0.85), rgba(74, 124, 89, 0.75)),
+                url('images/hero.jpg') center/cover no-repeat fixed;
+}
+
+.hero-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(212, 165, 116, 0.15), transparent 60%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.hero {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    padding: 60px 40px;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.hero h1 {
+    font-family: 'Spectral', serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    animation: fadeInUp 1s ease 0.2s backwards;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.hero h2 {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 32px;
+    opacity: 0.95;
+    animation: fadeInUp 1s ease 0.4s backwards;
+    letter-spacing: 0.01em;
+}
+
+.hero-quote {
+    max-width: 720px;
+    margin: 0 auto 48px;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease 0.6s backwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
     }
-
-    /* Card dạng dọc (ảnh trên - chữ dưới) */
-    .card.vertical{
-      grid-template-columns:1fr;
-      text-align:center;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .card.vertical img{
-      height:260px;
+.btn-explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 42px;
+    background: linear-gradient(135deg, var(--gold), #c89560);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    border-radius: 50px;
+    box-shadow: 0 12px 32px rgba(212, 165, 116, 0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeInUp 1s ease 0.8s backwards;
+    letter-spacing: 0.02em;
+}
+
+.btn-explore:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(212, 165, 116, 0.5);
+}
+
+.btn-explore::after {
+    content: '↓';
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-explore:hover::after {
+    transform: translateY(4px);
+}
+
+/* SCROLL INDICATOR */
+.scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* SECTION STYLES */
+section {
+    padding: 120px 8%;
+    position: relative;
+}
+
+.section-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.paper {
+    background: var(--fog);
+    backdrop-filter: blur(20px);
+    border-radius: 32px;
+    padding: 80px 70px;
+    margin-bottom: 100px;
+    box-shadow: var(--shadow-lift);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pine), var(--moss), var(--gold));
+}
+
+.section-title {
+    font-family: 'Spectral', serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--pine);
+    text-align: center;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 32px auto 60px;
+    font-size: 1.15rem;
+    color: var(--moss);
+    line-height: 1.9;
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+}
+
+/* STORY CARDS */
+.story-grid {
+    display: grid;
+    gap: 48px;
+    margin-top: 60px;
+}
+
+.story-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(232, 243, 236, 0.6), rgba(255, 255, 255, 0.4));
+    border-radius: 24px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(26, 77, 46, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.story-card:nth-child(even) {
+    grid-template-columns: 1fr 1fr;
+}
+
+.story-card:nth-child(even) .story-image {
+    order: 2;
+}
+
+.story-card:nth-child(even) .story-text {
+    order: 1;
+}
+
+.story-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.story-card:hover::before {
+    left: 100%;
+}
+
+.story-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lift);
+}
+
+.story-image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+}
+
+.story-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.story-card:hover .story-image img {
+    transform: scale(1.08);
+}
+
+.story-text {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--earth);
+    font-family: 'Crimson Text', serif;
+}
+
+.story-text p {
+    margin-bottom: 16px;
+}
+
+/* JOURNEY SECTION */
+.journey-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 50px 0;
+    flex-wrap: wrap;
+}
+
+.journey-tab {
+    padding: 16px 36px;
+    background: var(--cloud);
+    color: var(--moss);
+    border: 2px solid var(--mist);
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+}
+
+.journey-tab:hover {
+    border-color: var(--moss);
+    transform: translateY(-2px);
+}
+
+.journey-tab.active {
+    background: linear-gradient(135deg, var(--pine), var(--moss));
+    color: #fff;
+    border-color: var(--pine);
+    box-shadow: 0 8px 24px rgba(26, 77, 46, 0.3);
+}
+
+.day-content {
+    display: none;
+    animation: fadeIn 0.6s ease;
+}
+
+.day-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 14px 30px rgba(0,0,0,.12);
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .card img{
-      width:100%;
-      height:230px;
-      object-fit:cover;
-      border-radius:18px;
-      transition:.4s;
-      cursor:pointer;
+.journey-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    padding: 48px;
+    background: linear-gradient(135deg, rgba(245, 249, 247, 0.9), rgba(232, 243, 236, 0.7));
+    border-radius: 28px;
+    margin-bottom: 40px;
+    align-items: center;
+    transition: all 0.5s ease;
+    border: 1px solid rgba(26, 77, 46, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.journey-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(212, 165, 116, 0.15), transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+    border-radius: 50%;
+}
+
+.journey-card:hover::after {
+    width: 600px;
+    height: 600px;
+}
+
+.journey-card:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-lift);
+}
+
+.journey-image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 3/2;
+    box-shadow: 0 12px 32px rgba(26, 77, 46, 0.15);
+}
+
+.journey-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.6s ease;
+    cursor: pointer;
+}
+
+.journey-card:hover .journey-image img {
+    transform: scale(1.05) rotate(1deg);
+}
+
+.journey-text {
+    position: relative;
+    z-index: 1;
+}
+
+.journey-text h4 {
+    font-family: 'Spectral', serif;
+    font-size: 1.8rem;
+    color: var(--pine);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.journey-text p {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: var(--earth);
+    font-family: 'Crimson Text', serif;
+}
+
+/* MEANING SECTION */
+.meaning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.meaning-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(232, 243, 236, 0.5));
+    padding: 48px 40px;
+    border-radius: 24px;
+    text-align: center;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(26, 77, 46, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.meaning-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--moss));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.meaning-card:hover::before {
+    transform: scaleX(1);
+}
+
+.meaning-card:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-lift);
+}
+
+.meaning-icon {
+    font-size: 3.5rem;
+    margin-bottom: 24px;
+    display: inline-block;
+    filter: drop-shadow(0 4px 8px rgba(26, 77, 46, 0.15));
+}
+
+.meaning-card h4 {
+    font-family: 'Spectral', serif;
+    font-size: 1.6rem;
+    color: var(--pine);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.meaning-card p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--earth);
+}
+
+/* QUOTE SECTION */
+.quote-block {
+    background: linear-gradient(135deg, var(--mist), var(--cloud));
+    padding: 60px 80px;
+    border-radius: 28px;
+    margin: 60px 0;
+    text-align: center;
+    position: relative;
+    border-left: 6px solid var(--gold);
+    box-shadow: var(--shadow-soft);
+}
+
+.quote-block::before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 8rem;
+    font-family: 'Spectral', serif;
+    color: var(--gold);
+    opacity: 0.2;
+    line-height: 1;
+}
+
+.quote-text {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--pine);
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
+/* FINAL SECTION */
+.final-grid {
+    display: grid;
+    gap: 60px;
+    margin-top: 60px;
+}
+
+.final-card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+    padding: 50px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(232, 243, 236, 0.6));
+    border-radius: 28px;
+    transition: all 0.5s ease;
+    border: 1px solid rgba(26, 77, 46, 0.08);
+}
+
+.final-card:nth-child(even) {
+    grid-template-columns: 1.2fr 1fr;
+}
+
+.final-card:nth-child(even) .final-image {
+    order: 2;
+}
+
+.final-card:nth-child(even) .final-text {
+    order: 1;
+}
+
+.final-card:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lift);
+}
+
+.final-image {
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    box-shadow: 0 16px 40px rgba(26, 77, 46, 0.2);
+}
+
+.final-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.final-card:hover .final-image img {
+    transform: scale(1.1);
+}
+
+.final-text p {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: var(--earth);
+    font-family: 'Crimson Text', serif;
+    margin-bottom: 20px;
+}
+
+/* FOOTER */
+footer {
+    background: linear-gradient(135deg, var(--pine), var(--moss));
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.3;
+}
+
+.footer-content {
+    position: relative;
+    z-index: 1;
+}
+
+.footer-title {
+    font-family: 'Spectral', serif;
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.footer-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+}
+
+/* IMAGE MODAL */
+.image-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 77, 46, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.image-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.image-modal img {
+    max-width: 92%;
+    max-height: 92%;
+    border-radius: 16px;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+    animation: zoomIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
     }
-
-    .card img:hover{
-      transform:scale(1.05);
+    to {
+        transform: scale(1);
+        opacity: 1;
     }
+}
 
-    .card h4{
-      color:var(--blue-dark);
-      margin-bottom:12px;
-      font-size:1.25rem;
+.modal-close {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* RESPONSIVE */
+@media (max-width: 968px) {
+    .hero h1 {
+        font-size: 3rem;
     }
-
-    /* ===== TABS ===== */
-    .tabs{
-      display:flex;
-      justify-content:center;
-      gap:14px;
-      margin-bottom:55px;
-      flex-wrap:wrap;
+    
+    .section-title {
+        font-size: 2.4rem;
     }
-
-    .tab{
-      padding:12px 28px;
-      border-radius:999px;
-      background:var(--blue-soft);
-      color:var(--blue-dark);
-      font-weight:600;
-      cursor:pointer;
-      transition:.3s;
+    
+    .story-card,
+    .journey-card,
+    .final-card {
+        grid-template-columns: 1fr !important;
+        gap: 32px;
     }
-
-    .tab.active{
-      background:var(--blue);
-      color:#fff;
+    
+    .story-card:nth-child(even) .story-image,
+    .final-card:nth-child(even) .final-image {
+        order: 0;
     }
-
-    .tab:hover{transform:translateY(-2px)}
-
-    .day-content{display:none;animation:fade .5s ease}
-    .day-content.active{display:block}
-
-    @keyframes fade{
-      from{opacity:0;transform:translateY(14px)}
-      to{opacity:1;transform:none}
+    
+    .story-card:nth-child(even) .story-text,
+    .final-card:nth-child(even) .final-text {
+        order: 0;
     }
-
-    /* ===== HÀNH TRÌNH STYLE ===== */
-    .journey .card{
-      grid-template-columns:1.2fr 1fr;
-      padding:36px;
-      border-radius:30px;
-      background:#f1f7fd;
-      min-height:260px;
+    
+    .paper {
+        padding: 50px 40px;
     }
-
-    .journey .card img{
-      height:260px;
-      border-radius:22px;
+    
+    .quote-block {
+        padding: 40px 32px;
     }
-
-    .journey .card h4{
-      font-size:1.4rem;
+    
+    .meaning-grid {
+        grid-template-columns: 1fr;
     }
+}
 
-    /* ===== QUOTE ===== */
-    .quote{
-      background:linear-gradient(135deg,#eaf3fb,#ffffff);
-      padding:45px;
-      border-radius:22px;
-      font-style:italic;
-      text-align:center;
-      margin-top:50px;
-      color:var(--blue-dark);
-      box-shadow:var(--shadow);
+@media (max-width: 640px) {
+    .hero h1 {
+        font-size: 2.2rem;
     }
+    
+    .hero h2 {
+        font-size: 1.3rem;
+    }
+    
+    .hero-quote {
+        font-size: 1rem;
+    }
+    
+    section {
+        padding: 80px 5%;
+    }
+    
+    .paper {
+        padding: 40px 28px;
+        margin-bottom: 60px;
+    }
+    
+    .journey-tabs {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .journey-tab {
+        width: 100%;
+        text-align: center;
+    }
+}
 
-    /* ===== FOOTER ===== */
-    footer{
-      background:var(--blue-dark);
-      color:#fff;
-      text-align:center;
-      padding:65px 20px;
-      letter-spacing:.5px;
-    }
+/* DECORATIVE ELEMENTS */
+.pine-decoration {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    opacity: 0.05;
+    pointer-events: none;
+}
 
-    /* ===== RESPONSIVE ===== */
-    @media(max-width:900px){
-      section{padding:70px 6%}
-      .card{grid-template-columns:1fr}
-      .paper{padding:40px}
-      .hero h1{font-size:2.4rem}
-      h3{font-size:2rem}
-    }
-  </style>
+.pine-decoration:nth-child(1) {
+    top: 10%;
+    left: 5%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.pine-decoration:nth-child(2) {
+    bottom: 15%;
+    right: 8%;
+    animation: float 7s ease-in-out infinite reverse;
+}
+
+</style>
 </head>
 <body>
 
-<header>
-  <div class="hero">
-    <h1>🌿 CHUYẾN THAM QUAN HỌC TẬP ĐÀ LẠT</h1>
-    <h2>Dấu ấn không phai trong miền ký ức lớp 11L</h2>
-    <p>
-      Có những miền đất ta chỉ ghé qua một lần trong đời, nhưng lại ở lại rất lâu trong ký ức.
-      Có những chuyến đi tưởng chừng ngắn ngủi, nhưng khi ngoảnh lại, mới chợt nhận ra: đó là một phần tuổi trẻ đã lặng lẽ khép lại.
-    </p>
-    <a href="#story" class="btn">Bắt đầu hành trình</a>
-  </div>
-</header>
-
-<section id="story">
-
-  <!-- GIỚI THIỆU -->
-  <div class="paper">
-    <h3>Miền ký ức mở ra</h3>
-
-    <p class="intro">Đà Lạt của lớp 11L là một miền như thế.</p>
-
-    <div class="card">
-      <img src="images/tongthe.jpg" alt="Toàn cảnh Đà Lạt">
-      <div>
-        <h4>Đà Lạt mộng mơ</h4>
-        <p>
-          Đó là nơi sương sớm giăng mờ trên những triền đồi, nơi rừng thông thì thầm trong gió,
-          nơi nhịp sống chậm rãi mở ra những khoảng lặng hiếm hoi giữa những ngày học tập vội vã.
-          Đà Lạt không chỉ hiện lên trong vẻ đẹp thơ mộng của phố núi,
-          mà còn là không gian của tri thức, của lịch sử, của những giá trị bền bỉ được bồi đắp qua năm tháng.
+<!-- HERO -->
+<div class="hero-wrapper">
+    <div class="hero">
+        <div class="hero-icon">🌿</div>
+        <h1>CHUYẾN THAM QUAN HỌC TẬP ĐÀ LẠT</h1>
+        <h2>Dấu ấn không phai trong miền ký ức lớp 11L</h2>
+        <p class="hero-quote">
+            Có những miền đất ta chỉ ghé qua một lần trong đời, nhưng lại ở lại rất lâu trong ký ức.<br>
+            Có những chuyến đi tưởng chừng ngắn ngủi, nhưng khi ngoảnh lại, mới chợt nhận ra: đó là một phần tuổi trẻ đã lặng lẽ khép lại.
         </p>
-      </div>
+        <a href="#story" class="btn-explore">Bắt đầu hành trình</a>
     </div>
-
-    <div class="card">
-      <img src="images/tapthe.jpg" alt="Ảnh tập thể">
-      <div>
-        <h4>Dấu chân thanh xuân</h4>
-        <p>
-          Và trong một khoảnh khắc rất đẹp của tuổi học trò, lớp 11L đã đặt dấu chân mình
-          lên miền đất ấy – bằng tất cả sự háo hức, trong veo và khát khao khám phá.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Ý NGHĨA -->
-  <div class="paper">
-    <h3>🌱 Ý nghĩa của một chuyến đi</h3>
-
-    <p class="intro">
-      Giữa những tiết học nối tiếp nhau, giữa những bài kiểm tra và áp lực vô hình,
-      chuyến đi Đà Lạt đến như một khoảng thở dịu dàng.
-    </p>
-
-    <div class="card">
-      <img src="images/lenxe.jpg" alt="Trên xe">
-      <div>
-        <h4>Trang sách sống động</h4>
-        <p>
-          Mỗi điểm đến đều là một trang sách sống động.
-          Mỗi bước chân đều mở ra một bài học không nằm trong giáo trình.
-        </p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/anduong.jpg" alt="Sinh hoạt">
-      <div>
-        <h4>Kết nối tuổi mười bảy</h4>
-        <p>
-          Từ thiên nhiên xanh mát đến những công trình mang dấu ấn lịch sử,
-          tất cả giúp chúng tôi hiểu rằng tri thức không chỉ nằm trong trang vở.
-          Quan trọng hơn cả, chuyến đi là sợi dây vô hình kết nối những tâm hồn tuổi mười bảy.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- HÀNH TRÌNH (GIỮ NGUYÊN) -->
-  <div class="paper journey">
-    <h3>📍 Hành trình ba ngày – Một miền ký ức</h3>
-
-    <div class="tabs">
-      <div class="tab active" data-day="day1">Ngày 01</div>
-      <div class="tab" data-day="day2">Ngày 02</div>
-      <div class="tab" data-day="day3">Ngày 03</div>
-    </div>
-
-    <div id="day1" class="day-content active">
-      <div class="card">
-        <img src="images/lenxe.jpg">
-        <div>
-          <h4>Khởi hành – Chạm ngõ cao nguyên</h4>
-          <p>Sau chặng đường dài từ Bình Dương, lớp 11L bắt đầu hành trình trong sự háo hức và mong chờ.</p>
-        </div>
-      </div>
-    </div>
-
-    <div id="day2" class="day-content"></div>
-    <div id="day3" class="day-content"></div>
-
-    <div class="quote">
-      “Ở đó, chúng tôi đã cùng nhau học cách sống chậm, học cách lắng nghe,
-      học cách trân trọng hiện tại và học cách giữ gìn những điều nhỏ bé nhưng quý giá.”
-    </div>
-
-  </div>
-</section>
-
-<!-- KẾT -->
-<div class="paper">
-  <h3>Đà Lạt – Miền ký ức của 11L</h3>
-
-  <p class="intro">[Ảnh tập thể cuối chuyến đi]</p>
-
-  <div class="card vertical">
-    <img src="images/tapthecuoi.jpg">
-    <div>
-      <h4>Khoảnh khắc khép lại hành trình</h4>
-      <p>
-        Chuyến tham quan học tập tại Đà Lạt không chỉ mang đến kiến thức và trải nghiệm,
-        mà còn đánh dấu một đoạn đẹp trong hành trình trưởng thành của lớp 11L.
-      </p>
-    </div>
-  </div>
-
-  <div class="card vertical">
-    <img src="images/kyniem.jpg">
-    <div>
-      <h4>Thanh xuân trong từng khoảnh khắc</h4>
-      <p>
-        Ở đó, chúng tôi đã cùng nhau học cách sống chậm, học cách lắng nghe,
-        học cách trân trọng hiện tại và học cách giữ gìn những điều nhỏ bé nhưng quý giá.
-      </p>
-    </div>
-  </div>
-
-  <div class="card vertical">
-    <img src="images/hanhphuc.jpg">
-    <div>
-      <h4>Ký ức còn mãi</h4>
-      <p>
-        Nhiều năm sau, khi những con đường đời đã rẽ sang nhiều hướng khác nhau,
-        Đà Lạt vẫn còn ở lại trong một góc rất sâu của ký ức tuổi học trò.
-      </p>
-    </div>
-  </div>
-
-  <div class="quote">
-    “Bởi đó không chỉ là một chuyến đi, đó là một phần thanh xuân, đó là miền nhớ mang tên lớp 11L.”
-  </div>
+    <div class="scroll-hint">↓ Cuộn xuống để khám phá</div>
 </div>
 
+<!-- OPENING STORY -->
+<section id="story">
+    <div class="section-container">
+        <div class="paper">
+            <h3 class="section-title">Miền ký ức mở ra</h3>
+            <p class="section-intro">
+                Đà Lạt của lớp 11L là một miền như thế.
+            </p>
+            
+            <div class="story-grid">
+                <div class="story-card">
+                    <div class="story-image">
+                        <img src="images/tongthe.jpg" alt="Đà Lạt toàn cảnh">
+                    </div>
+                    <div class="story-text">
+                        <p>Đó là nơi sương sớm giăng mờ trên những triền đồi, nơi rừng thông thì thầm trong gió, nơi nhịp sống chậm rãi mở ra những khoảng lặng hiếm hoi giữa những ngày học tập vội vã.</p>
+                    </div>
+                </div>
+
+                <div class="story-card">
+                    <div class="story-image">
+                        <img src="images/tapthe.jpg" alt="Tập thể lớp 11L">
+                    </div>
+                    <div class="story-text">
+                        <p>Đà Lạt không chỉ hiện lên trong vẻ đẹp thơ mộng của phố núi, mà còn là không gian của tri thức, của lịch sử, của những giá trị bền bỉ được bồi đắp qua năm tháng.</p>
+                        <p>Và trong một khoảnh khắc rất đẹp của tuổi học trò, lớp 11L đã đặt dấu chân mình lên miền đất ấy – bằng tất cả sự háo hức, trong veo và khát khao khám phá.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MEANING -->
+        <div class="paper">
+            <h3 class="section-title">🌱 Ý nghĩa của một chuyến đi</h3>
+            <p class="section-intro">
+                Giữa những tiết học nối tiếp nhau, giữa những bài kiểm tra và áp lực vô hình, chuyến đi Đà Lạt đến như một khoảng thở dịu dàng.
+            </p>
+
+            <div class="meaning-grid">
+                <div class="meaning-card">
+                    <div class="meaning-icon">📚</div>
+                    <h4>Tri thức sống động</h4>
+                    <p>Mỗi điểm đến đều là một trang sách sống động. Mỗi bước chân đều mở ra một bài học không nằm trong giáo trình.</p>
+                </div>
+
+                <div class="meaning-card">
+                    <div class="meaning-icon">🌲</div>
+                    <h4>Kết nối thiên nhiên</h4>
+                    <p>Từ thiên nhiên xanh mát đến những công trình mang dấu ấn lịch sử, tất cả giúp chúng tôi hiểu rằng tri thức hiện diện trong từng nhịp sống.</p>
+                </div>
+
+                <div class="meaning-card">
+                    <div class="meaning-icon">💫</div>
+                    <h4>Gắn kết tình bạn</h4>
+                    <p>Qua những giờ sinh hoạt chung, những khoảnh khắc cười đùa vô tư, chúng tôi học cách lắng nghe, thấu hiểu và trân trọng nhau hơn.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- JOURNEY -->
+        <div class="paper">
+            <h3 class="section-title">📍 Hành trình ba ngày – Một miền ký ức</h3>
+
+            <div class="journey-tabs">
+                <div class="journey-tab active" data-day="day1">🗓️ Ngày 01</div>
+                <div class="journey-tab" data-day="day2">🗓️ Ngày 02</div>
+                <div class="journey-tab" data-day="day3">🗓️ Ngày 03</div>
+            </div>
+
+            <!-- DAY 1 -->
+            <div id="day1" class="day-content active">
+                <div class="journey-card">
+                    <div class="journey-image">
+                        <img src="images/lenxe.jpg" alt="Lên xe">
+                    </div>
+                    <div class="journey-text">
+                        <h4>Khởi hành – Chạm ngõ cao nguyên</h4>
+                        <p>Sau chặng đường dài từ Bình Dương, lớp 11L bắt đầu hành trình trong sự háo hức và mong chờ. Bữa sáng trên đường đi như tiếp thêm năng lượng cho cả đoàn, mở đầu cho một chuyến đi tràn đầy cảm xúc.</p>
+                    </div>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-image">
+                        <img src="images/truongdh.jpg" alt="Trường ĐH Đà Lạt">
+                    </div>
+                    <div class="journey-text">
+                        <h4>Trường Đại học Đà Lạt</h4>
+                        <p>Điểm dừng chân đầu tiên là Trường Đại học Đà Lạt – nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng đối với con đường học vấn.</p>
+                    </div>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-image">
+                        <img src="images/khachsan.jpg" alt="Khách sạn">
+                    </div>
+                    <div class="journey-text">
+                        <h4>Nhận phòng & nghỉ ngơi</h4>
+                        <p>Buổi chiều, sau khi nhận phòng, cả lớp nghỉ ngơi, sửa soạn và lưu lại những khoảnh khắc đầu tiên tại nơi lưu trú.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 2 -->
+            <div id="day2" class="day-content">
+                <div class="journey-card">
+                    <div class="journey-image">
+                        <img src="images/caugo.jpg" alt="Cầu Gỗ">
+                    </div>
+                    <div class="journey-text">
+                        <h4>Săn mây Cầu Gỗ</h4>
+                        <p>Buổi sáng, Cầu Gỗ đón chúng tôi bằng biển mây trắng xóa, mang đến cảm giác như chạm tay vào bầu trời. Một trải nghiệm khó quên giữa thiên nhiên hùng vĩ.</p>
+                    </div>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-image">
+                        <img src="images/puppy.jpg" alt="Puppy Farm">
+                    </div>
+                    <div class="journey-text">
+                        <h4>Puppy Farm</h4>
+                        <p>Tại Puppy Farm, tiếng cười hòa cùng ánh nắng và những chú cún nhỏ, đưa chúng tôi trở về với sự hồn nhiên thuần khiết của tuổi thơ.</p>
+                    </div>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-image">
+                        <img src="images/quangtruong.jpg" alt="Quảng trường Lâm Viên">
+                    </div>
+                    <div class="journey-text">
+                        <h4>Quảng trường Lâm Viên</h4>
+                        <p>Buổi chiều, lớp tham quan Quảng trường Lâm Viên, cảm nhận nhịp sống trẻ trung và năng động của thành phố cao nguyên.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 3 -->
+            <div id="day3" class="day-content">
+                <div class="journey-card">
+                    <div class="journey-image">
+                        <img src="images/ansang.jpg" alt="Ăn sáng">
+                    </div>
+                    <div class="journey-text">
+                        <h4>Buổi sáng cuối cùng</h4>
+                        <p>Buổi sáng cuối cùng trôi qua chậm rãi trong sự lưu luyến khó gọi tên. Thu dọn hành lý, chúng tôi chuẩn bị tạm biệt Đà Lạt.</p>
+                    </div>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-image">
+                        <img src="images/dinh3.jpg" alt="Dinh Bảo Đại">
+                    </div>
+                    <div class="journey-text">
+                        <h4>Dinh III – Dinh Bảo Đại</h4>
+                        <p>Dinh III – Dinh Bảo Đại khép lại hành trình bằng vẻ đẹp trầm mặc, cổ kính giữa rừng thông xanh mát. Một điểm dừng đầy ý nghĩa lịch sử.</p>
+                    </div>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-image">
+                        <img src="images/roidal.jpg" alt="Rời Đà Lạt">
+                    </div>
+                    <div class="journey-text">
+                        <h4>Tạm biệt Đà Lạt</h4>
+                        <p>Khi bánh xe lăn bánh, thành phố dần lùi xa, nhưng ký ức thì ở lại. Đà Lạt sẽ mãi là một phần không thể xóa nhòa trong lòng mỗi người.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote-block">
+                <p class="quote-text">
+                    Đó là một phần thanh xuân mang tên 11L.
+                </p>
+            </div>
+        </div>
+
+        <!-- FINAL -->
+        <div class="paper">
+            <h3 class="section-title">🌸 Đà Lạt – Miền ký ức của 11L</h3>
+
+            <div class="final-grid">
+                <div class="final-card">
+                    <div class="final-image">
+                        <img src="images/final.jpg" alt="Tập thể 11L">
+                    </div>
+                    <div class="final-text">
+                        <p>Chuyến tham quan học tập tại Đà Lạt không chỉ mang đến kiến thức và trải nghiệm, mà còn đánh dấu một đoạn đẹp trong hành trình trưởng thành của lớp 11L.</p>
+                        <p>Ở đó, chúng tôi đã cùng nhau học cách sống chậm, học cách lắng nghe, học cách trân trọng hiện tại và học cách giữ gìn những điều nhỏ bé nhưng quý giá.</p>
+                    </div>
+                </div>
+
+                <div class="final-card">
+                    <div class="final-image">
+                        <img src="images/memory.jpg" alt="Kỷ niệm">
+                    </div>
+                    <div class="final-text">
+                        <p>Nhiều năm sau, khi những con đường đời đã rẽ sang nhiều hướng khác nhau, có thể chúng tôi sẽ quên đi vài chi tiết nhỏ, nhưng chắc chắn Đà Lạt vẫn còn ở lại.</p>
+                        <p>Trong những bức ảnh cũ, trong những câu chuyện được kể lại và trong một góc rất sâu của ký ức tuổi học trò.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote-block">
+                <p class="quote-text">
+                    Bởi đó không chỉ là một chuyến đi, đó là một phần thanh xuân, đó là miền nhớ mang tên lớp 11L.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>🌌 Thanh xuân 11L – Đà Lạt 🌌</p>
+    <div class="footer-content">
+        <h2 class="footer-title">🌌 Thanh xuân 11L – Đà Lạt 🌌</h2>
+        <p class="footer-subtitle">Nơi ký ức không bao giờ phai</p>
+    </div>
 </footer>
 
+<!-- IMAGE MODAL -->
+<div class="image-modal" id="imageModal">
+    <div class="modal-close">×</div>
+    <img id="modalImg" alt="Ảnh phóng to">
+</div>
+
 <script>
-  const tabs = document.querySelectorAll('.tab');
-  const contents = document.querySelectorAll('.day-content');
+// TAB SWITCHING
+const tabs = document.querySelectorAll('.journey-tab');
+const dayContents = document.querySelectorAll('.day-content');
 
-  tabs.forEach(tab => {
+tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      contents.forEach(c => c.classList.remove('active'));
-
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.day).classList.add('active');
+        // Remove active from all
+        tabs.forEach(t => t.classList.remove('active'));
+        dayContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active to clicked
+        tab.classList.add('active');
+        const dayId = tab.getAttribute('data-day');
+        document.getElementById(dayId).classList.add('active');
     });
-  });
+});
+
+// IMAGE MODAL
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImg');
+const modalClose = document.querySelector('.modal-close');
+
+// Add click event to all images
+document.querySelectorAll('.story-image img, .journey-image img, .final-image img').forEach(img => {
+    img.addEventListener('click', () => {
+        modal.classList.add('active');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Close modal
+function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+modal.addEventListener('click', (e) => {
+    if (e.target === modal || e.target === modalClose) {
+        closeModal();
+    }
+});
+
+// Keyboard support
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Scroll animations (optional enhancement)
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.story-card, .journey-card, .meaning-card, .final-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(card);
+});
 </script>
 
 </body>
