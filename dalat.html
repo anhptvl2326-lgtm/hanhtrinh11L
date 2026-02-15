@@ -593,25 +593,27 @@ body::after{
   position:absolute;
   top:50%;
   left:50%;
-  width:150%;
-  height:150%;
+  width:200%;
+  height:200%;
   transform:translate(-50%, -50%);
-  background:conic-gradient(
-    from 0deg,
-    #568c62 0deg,
-    #7aaa88 30deg,
-    #aeceba 60deg,
-    #568c62 90deg,
-    #7aaa88 120deg,
-    #aeceba 150deg,
-    #568c62 180deg,
-    #7aaa88 210deg,
-    #aeceba 240deg,
-    #568c62 270deg,
-    #7aaa88 300deg,
-    #aeceba 330deg,
-    #568c62 360deg
-  );
+  background:
+    radial-gradient(circle at 50% 50%, transparent 30%, rgba(122,170,136,.15) 35%, transparent 40%),
+    conic-gradient(
+      from 0deg at 50% 50%,
+      #568c62 0deg,
+      #7aaa88 30deg,
+      #aeceba 60deg,
+      #568c62 90deg,
+      #7aaa88 120deg,
+      #aeceba 150deg,
+      #568c62 180deg,
+      #7aaa88 210deg,
+      #aeceba 240deg,
+      #568c62 270deg,
+      #7aaa88 300deg,
+      #aeceba 330deg,
+      #568c62 360deg
+    );
   border-radius:50%;
   z-index:-1;
   opacity:0;
@@ -625,8 +627,8 @@ body::after{
 }
 
 @keyframes rotateBorder{
-  from{transform:rotate(0deg) scale(1);}
-  to{transform:rotate(360deg) scale(1);}
+  from{transform:translate(-50%, -50%) rotate(0deg);}
+  to{transform:translate(-50%, -50%) rotate(360deg);}
 }
 
 @keyframes cardRotateFull{
