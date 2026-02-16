@@ -465,9 +465,13 @@ canvas#sparkle {
   50% { transform: translateY(-8px); }
 }
 
+@keyframes floatIconHover {
+  0%, 100% { transform: translateY(0px) scale(1.4); }
+  50% { transform: translateY(-8px) scale(1.4); }
+}
+
 .book:hover .spine-icon {
-  animation: none;
-  transform: scale(1.4) !important;
+  animation: floatIconHover 3s ease-in-out infinite;
 }
 
 /* Bottom embossed stamp text */
