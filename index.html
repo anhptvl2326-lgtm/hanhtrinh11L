@@ -211,6 +211,1287 @@ canvas#sparkle {
 .header {
   text-align: center;
   padding: 0 20px;
+  margin-bottom: 18px;
+  animation: fadeDown 1s ease 0.1s both;
+}
+
+@keyframes fadeDown {
+  from { opacity:0; transform:translateY(-18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.h-top-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.h-top-line .rule {
+  width: 50px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(80,50,20,0.5));
+}
+.h-top-line .rule.r { background: linear-gradient(90deg, rgba(80,50,20,0.5), transparent); }
+.h-top-line span {
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgba(60,35,12,0.8);
+}
+
+.h-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(52px, 8vw, 82px);
+  font-weight: 700;
+  color: #2c1a08;
+  line-height: 0.95;
+  letter-spacing: -1px;
+  text-shadow:
+    0 2px 6px rgba(0,0,0,0.15),
+    1px 3px 8px rgba(100,60,20,0.25),
+    0 1px 0 rgba(255,255,255,0.15);
+}
+
+.h-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin: 8px 0;
+}
+.h-divider .d-rule {
+  width: 45px; height: 1px;
+  background: rgba(100,65,25,0.45);
+}
+.h-divider span {
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: rgba(80,50,18,0.75);
+  text-transform: uppercase;
+}
+
+/* ENHANCED QUOTE with background blur box */
+.h-quote {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(14px, 2vw, 17px);
+  font-weight: 500;
+  color: rgba(45,25,8,0.85);
+  line-height: 1.6;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: rgba(255,250,240,0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ─── BOOKS SHELF CONTAINER ─── */
+.shelf-container {
+  position: relative;
+  animation: fadeUp 1s ease 0.35s both;
+  width: min(800px, 80vw);
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(25px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ─── BOOKS ROW ─── */
+.books {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  padding: 0 6px;
+  position: relative;
+}
+
+/* ── Individual book - ENHANCED HOVER ── */
+.book {
+  position: relative;
+  cursor: pointer;
+  flex: 1;
+  max-width: 115px;
+  transform-origin: bottom center;
+  transition: transform 0.32s cubic-bezier(.34,1.5,.64,1);
+  animation: bookRise 0.8s ease both;
+}
+.book:nth-child(1) { animation-delay: 0.5s; }
+.book:nth-child(2) { animation-delay: 0.62s; }
+.book:nth-child(3) { animation-delay: 0.74s; }
+.book:nth-child(4) { animation-delay: 0.86s; }
+.book:nth-child(5) { animation-delay: 0.98s; }
+.book:nth-child(6) { animation-delay: 1.1s; }
+
+.book:nth-child(1) .spine-icon { animation-delay: 0s; }
+.book:nth-child(2) .spine-icon { animation-delay: 0.5s; }
+.book:nth-child(3) .spine-icon { animation-delay: 1s; }
+.book:nth-child(4) .spine-icon { animation-delay: 1.5s; }
+.book:nth-child(5) .spine-icon { animation-delay: 2s; }
+.book:nth-child(6) .spine-icon { animation-delay: 2.5s; }
+
+@keyframes bookRise {
+  from { opacity:0; transform:translateY(30px) scale(0.95); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+
+/* ENHANCED HOVER EFFECT */
+.book:hover { 
+  transform: translateY(-8px) scale(1.02); 
+}
+.book:hover .book-spine { 
+  box-shadow: 
+    -5px 0 rgba(0,0,0,0.28), 
+    0 0 35px var(--glow,rgba(200,150,100,0.6)), 
+    0 15px 30px rgba(0,0,0,0.35),
+    inset -2px 2px 20px rgba(255,255,255,0.15);
+  filter: brightness(1.08); 
+}
+.book:hover .book-glow  { opacity: 1; }
+
+/* Spine – the main book face */
+.book-spine {
+  position: relative;
+  width: 100%;
+  /* heights differ per book for realistic look */
+  height: var(--h, 195px);
+  background: var(--col);
+  border-radius: 2px 5px 5px 2px;
+  overflow: hidden;
+  transition: box-shadow 0.32s ease, filter 0.25s ease, transform 0.32s ease;
+  box-shadow:
+    -5px 0 rgba(0,0,0,0.26),
+    4px 8px 22px rgba(0,0,0,0.45),
+    inset -6px 0 15px rgba(0,0,0,0.2),
+    inset 0 0 0 0.5px rgba(0,0,0,0.15);
+}
+
+/* Leather texture */
+.book-spine::before {
+  content:"";
+  position:absolute; inset:0;
+  background:
+    /* worn highlight sheen */
+    linear-gradient(112deg,
+      rgba(255,255,255,0.28) 0%,
+      rgba(255,255,255,0.08) 25%,
+      transparent 45%,
+      rgba(0,0,0,0.08) 75%,
+      rgba(0,0,0,0.18) 100%),
+    /* horizontal leather grain */
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px, transparent 5px,
+      rgba(0,0,0,0.025) 5px, rgba(0,0,0,0.025) 6px
+    );
+  z-index:1;
+}
+
+/* Left spine shadow (binding) */
+.book-spine::after {
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0; width:12px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 60%, transparent 100%);
+  z-index:2;
+}
+
+/* Top highlight strip */
+.spine-top-light {
+  position:absolute;
+  top:0; left:12px; right:0; height:3px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1) 60%, transparent);
+  z-index:3;
+}
+
+/* Worn edges / corner scuffs */
+.spine-wear {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 40% 15% at 15% 95%, rgba(0,0,0,0.18), transparent),
+    radial-gradient(ellipse 30% 10% at 85% 98%, rgba(0,0,0,0.12), transparent),
+    radial-gradient(ellipse 20% 8% at 90% 3%, rgba(0,0,0,0.1), transparent);
+  z-index:2;
+}
+
+/* Book content layout */
+.spine-inner {
+  position:absolute; inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  padding: 14px 6px 12px;
+  z-index:4;
+}
+
+/* Date text at top of spine */
+.spine-date {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(11px, 1.3vw, 13px);
+  font-weight: 600;
+  color: rgba(255,240,200,0.92);
+  letter-spacing: 1px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 0 12px rgba(0,0,0,0.3);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Center icon / embossed symbol - ENHANCED */
+.spine-icon {
+  font-size: clamp(24px, 3vw, 32px);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+  flex: 1;
+  display: flex;
+  align-items: center;
+  animation: floatIcon 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes floatIconHover {
+  0%, 100% { transform: translateY(0px) scale(1.4); }
+  50% { transform: translateY(-8px) scale(1.4); }
+}
+
+.book:hover .spine-icon {
+  animation: floatIconHover 3s ease-in-out infinite;
+}
+
+/* Bottom embossed stamp text */
+.spine-stamp {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(10px, 1.1vw, 12px);
+  font-weight: 600;
+  color: rgba(255,235,185,0.85);
+  letter-spacing: 0.8px;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.6);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Horizontal decorative lines on spine */
+.spine-line-top, .spine-line-bot {
+  position: absolute;
+  left: 13px; right: 5px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,220,150,0.35), rgba(255,220,150,0.1));
+  z-index: 3;
+}
+.spine-line-top { top: 48px; }
+.spine-line-bot { bottom: 48px; }
+
+/* Glow ring on hover - ENHANCED */
+.book-glow {
+  position:absolute; inset:-3px;
+  border-radius:4px 7px 7px 4px;
+  box-shadow: 0 0 28px 6px var(--glow,rgba(200,160,80,0.55));
+  opacity:0;
+  pointer-events:none;
+  transition: opacity 0.3s ease;
+  z-index:10;
+}
+
+/* Drop shadow under book - ENHANCED */
+.book-shadow {
+  position:absolute;
+  bottom:-5px; left:5%; right:5%;
+  height:6px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.38) 0%, transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+  transition: all 0.3s ease;
+}
+.book:hover .book-shadow { 
+  transform: scaleX(1.3); 
+  opacity:0.6;
+  bottom: -8px;
+}
+
+/* ─── WOOD SHELF - ENHANCED 3D EFFECT ─── */
+.shelf {
+  position: relative;
+  width: 100%;
+}
+
+.shelf-top {
+  height: 20px;
+  background: linear-gradient(180deg,
+    #d4a060 0%,
+    #b87c3a 20%,
+    #9a6028 55%,
+    #7a4818 80%,
+    #603810 100%
+  );
+  border-radius: 2px 2px 0 0;
+  box-shadow:
+    0 -2px 6px rgba(0,0,0,0.2),
+    inset 0 3px 5px rgba(255,255,255,0.18),
+    inset 0 -1px 3px rgba(0,0,0,0.3);
+}
+/* Shelf wood grain */
+.shelf-top::before {
+  content:"";
+  position:absolute; inset:0;
+  background: repeating-linear-gradient(90deg,
+    transparent 0, transparent 30px,
+    rgba(0,0,0,0.04) 30px, rgba(0,0,0,0.04) 31px
+  );
+  border-radius: inherit;
+}
+/* Shelf edge highlight */
+.shelf-top::after {
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0; height:3px;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.05) 0%,
+    rgba(255,255,255,0.22) 30%,
+    rgba(255,255,255,0.28) 50%,
+    rgba(255,255,255,0.22) 70%,
+    rgba(255,255,255,0.05) 100%
+  );
+  border-radius: 2px 2px 0 0;
+}
+
+.shelf-face {
+  height: 14px;
+  background: linear-gradient(180deg, #5a3010 0%, #3a1c08 60%, #2a1006 100%);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.55);
+  position: relative;
+}
+
+/* NEW: 3D gradient on shelf face */
+.shelf-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, 
+    rgba(255,255,255,0.08) 0%, 
+    transparent 40%, 
+    rgba(0,0,0,0.2) 100%
+  );
+  border-radius: inherit;
+}
+
+/* Shelf cast shadow on wall behind - ENHANCED */
+.shelf-wall-shadow {
+  position: absolute;
+  bottom: -16px; left: -5%; right: -5%;
+  height: 22px;
+  background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,0,0,0.35), transparent);
+  border-radius: 0 0 50% 50%;
+  pointer-events: none;
+}
+
+/* ─── TIMELINE - ENHANCED WITH TOOLTIPS ─── */
+.timeline {
+  margin-top: 25px;
+  text-align: center;
+  animation: fadeUp 1s ease 0.7s both;
+  position: relative;
+  z-index: 15;
+}
+
+.tl-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(55,30,8,0.75);
+  letter-spacing: 2.5px;
+  margin-bottom: 14px;
+}
+.tl-title::before, .tl-title::after {
+  content:""; width:50px; height:1px;
+  background: rgba(55,30,8,0.3);
+}
+
+.tl-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  width: min(750px, 85vw);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Timeline connector */
+.tl-row::before {
+  content:"";
+  position:absolute;
+  top:18px; left:calc(100%/12); right:calc(100%/12);
+  height:1.5px;
+  background: linear-gradient(90deg,
+    #c8989a, #5a7090 20%, #888550 40%, #c0a055 60%, #587060 80%, #904040
+  );
+  opacity: 0.45;
+  z-index:0;
+}
+
+.tl-item {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  flex:1;
+  cursor:pointer;
+  position:relative; z-index:1;
+}
+
+.tl-lbl {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(55,30,8,0.7);
+  letter-spacing: 0.5px;
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+/* ENHANCED TIMELINE DOT */
+.tl-dot {
+  width: 36px; height: 36px;
+  border-radius:50%;
+  background: var(--c);
+  display:flex; align-items:center; justify-content:center;
+  font-size: 17px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 0 0 2px rgba(210,180,120,0.7);
+  transition: transform 0.25s cubic-bezier(.34,1.6,.64,1), box-shadow 0.25s;
+}
+.tl-item:hover .tl-dot {
+  transform: scale(1.1);
+  box-shadow: 0 3px 14px rgba(0,0,0,0.35), 0 0 0 3px rgba(230,200,140,0.9), 0 0 14px var(--c);
+}
+.tl-item:hover .tl-lbl { color: rgba(40,20,4,0.95); font-weight:700; }
+
+/* NEW: TOOLTIP */
+.tl-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(40,25,10,0.95);
+  color: rgba(255,245,220,0.95);
+  padding: 7px 13px;
+  border-radius: 5px;
+  font-family: 'Lora', serif;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+.tl-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(40,25,10,0.95);
+}
+
+.tl-item:hover .tl-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+/* Bottom sparkle diamond */
+.diamond {
+  position: fixed;
+  bottom: 18px; right: 24px;
+  font-size: 20px;
+  color: rgba(255,245,200,0.7);
+  text-shadow: 0 0 14px rgba(255,240,180,0.8), 0 0 30px rgba(255,200,80,0.4);
+  animation: twinkle 2.5s ease-in-out infinite;
+  z-index: 30;
+}
+@keyframes twinkle {
+  0%,100% { opacity:0.5; transform:scale(1) rotate(0deg); }
+  50%      { opacity:1;   transform:scale(1.15) rotate(15deg); }
+}
+
+/* ─── MODAL OVERLAY ─── */
+.modal-overlay {
+  position:fixed; inset:0;
+  background: rgba(50,30,10,0.72);
+  backdrop-filter: blur(12px) sepia(0.2);
+  z-index:100;
+  display:flex; align-items:center; justify-content:center;
+  padding: 20px;
+  opacity:0; pointer-events:none;
+  transition: opacity 0.38s ease;
+}
+.modal-overlay.open { opacity:1; pointer-events:all; }
+
+.modal-book {
+  width: min(88vw, 600px);
+  max-height: 80vh;
+  display:grid;
+  grid-template-columns: 65px 1fr;
+  border-radius: 2px 10px 10px 2px;
+  overflow:hidden;
+  box-shadow: -10px 0 rgba(0,0,0,0.32), 0 36px 100px rgba(0,0,0,0.7);
+  transform: perspective(1000px) rotateY(-12deg) scale(0.9);
+  transform-origin: left center;
+  transition: transform 0.46s cubic-bezier(.34,1.3,.64,1);
+}
+.modal-overlay.open .modal-book {
+  transform: perspective(1000px) rotateY(0deg) scale(1);
+}
+
+.modal-spine {
+  background: var(--mc, #c8989a);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding: 18px 6px;
+  position: relative;
+  overflow:hidden;
+}
+.modal-spine::before {
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(112deg, rgba(255,255,255,0.22) 0%, transparent 45%, rgba(0,0,0,0.14) 100%);
+}
+.ms-icon  { font-size:32px; z-index:1; margin-bottom:12px; }
+.ms-label {
+  font-family:'Playfair Display',serif; font-size:12px; font-weight:600;
+  color:rgba(255,242,210,0.95); writing-mode:vertical-rl;
+  transform:rotate(180deg); letter-spacing:2px;
+  text-shadow:0 1px 5px rgba(0,0,0,0.6); z-index:1; text-align:center;
+}
+
+.modal-page {
+  background: linear-gradient(170deg, #f5ead0 0%, #ede0c0 100%);
+  padding: 28px 30px 24px;
+  position:relative; overflow:auto;
+}
+/* Ruled lines */
+.modal-page::before {
+  content:"";
+  position:absolute; inset:0;
+  background: repeating-linear-gradient(180deg,
+    transparent 0, transparent 24px,
+    rgba(150,110,50,0.1) 24px, rgba(150,110,50,0.1) 25px
+  );
+  pointer-events:none;
+}
+/* Red margin line */
+.modal-page::after {
+  content:"";
+  position:absolute;
+  top:0; left:50px; bottom:0; width:1px;
+  background: rgba(160,60,40,0.18);
+}
+.m-close {
+  position:absolute; top:12px; right:14px;
+  width:26px; height:26px;
+  border:none; border-radius:50%;
+  background: rgba(80,50,20,0.12);
+  cursor:pointer; font-size:13px; color:#5a3810;
+  display:flex; align-items:center; justify-content:center;
+  transition: background 0.2s, transform 0.2s; z-index:5;
+}
+.m-close:hover { background:rgba(80,50,20,0.22); transform:rotate(90deg); }
+.m-num  {
+  font-family:'Playfair Display',serif; 
+  font-size: 11px; 
+  font-weight: 600;
+  letter-spacing:3px;
+  text-transform:uppercase; 
+  color:var(--mc); 
+  margin-bottom:8px; 
+  position:relative; 
+  z-index:1;
+}
+.m-title {
+  font-family:'Lora',serif; 
+  font-size:clamp(18px, 2.8vw, 24px);
+  font-weight:600; 
+  color:#2c1a08; 
+  line-height:1.3;
+  margin-bottom:12px; 
+  position:relative; 
+  z-index:1;
+}
+.m-body  {
+  font-family:'Lora',serif; 
+  font-style:normal;
+  font-size: 15px; 
+  line-height:1.7; 
+  color:#5a3810;
+  margin-bottom:20px; 
+  position:relative; 
+  z-index:1;
+}
+.m-link {
+  display:inline-flex; 
+  align-items:center; 
+  gap:7px;
+  font-family:'Playfair Display',serif; 
+  font-size:11px; 
+  font-weight: 600;
+  letter-spacing:1.8px;
+  text-transform:uppercase; 
+  color:var(--mc);
+  text-decoration:none; 
+  border-bottom:1.5px solid currentColor;
+  padding-bottom:2px; 
+  position:relative; 
+  z-index:1;
+  transition: gap 0.3s, opacity 0.3s; 
+  opacity:0.85;
+}
+.m-link:hover { gap:12px; opacity:1; }
+.m-fold {
+  position:absolute; bottom:0; right:0;
+  width:0; height:0;
+  border:28px solid transparent;
+  border-bottom:28px solid rgba(150,115,60,0.2);
+  border-right:28px solid rgba(150,115,60,0.2);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:860px) {
+  .side-tags { display:none; }
+  .shelf-container { width: 90vw; }
+}
+@media (max-width:520px) {
+  .book-spine { min-height:130px !important; }
+  .h-title    { font-size:38px; }
+  .h-top-line span { font-size: 11px; }
+  .h-quote { font-size: 12px; padding: 7px 14px; }
+  .modal-book { grid-template-columns:50px 1fr; }
+  .modal-page { padding:22px 18px 20px; }
+  .m-body { font-size: 14px; line-height: 1.65; }
+  .tl-lbl { font-size: 11px; }
+  .tl-dot { width: 28px; height: 28px; font-size: 14px; }
+  .foliage.top-right { width: 100px; }
+  .foliage.top-left { width: 90px; }
+}
+
+@media (max-height: 700px) {
+  .h-title { font-size: clamp(36px, 6vw, 56px); }
+  .h-quote { font-size: 12px; padding: 6px 14px; margin-top: 6px; }
+  .header { margin-bottom: 10px; }
+  .shelf-container { width: min(600px, 70vw); }
+  .book-spine { height: calc(var(--h, 170px) * 0.85) !important; }
+  .timeline { margin-top: 15px; }
+  .tl-title { font-size: 12px; margin-bottom: 10px; }
+  .scene { padding: 15px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="grain"></div>
+<div class="vignette"></div>
+<div class="light-flare"></div>
+<canvas id="sparkle"></canvas>
+
+<!-- Corner foliage SVGs -->
+<svg class="foliage top-right" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M200 0 C180 30, 160 20, 140 60 C120 100, 130 130, 100 150 C70 170, 40 160, 20 180 C40 155, 60 130, 55 100 C50 70, 30 50, 50 30 C70 10, 110 20, 140 10 C160 3, 185 -5, 200 0Z" fill="rgba(60,40,15,0.55)"/>
+  <path d="M195 5 C175 40, 145 35, 120 65 C95 95, 105 125, 75 148" stroke="rgba(40,25,8,0.4)" stroke-width="1.2" fill="none"/>
+  <circle cx="105" cy="55" r="5" fill="rgba(80,55,20,0.4)"/>
+  <circle cx="80"  cy="100" r="4" fill="rgba(80,55,20,0.3)"/>
+</svg>
+
+<svg class="foliage top-left" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M200 0 C180 30, 160 20, 140 60 C120 100, 130 130, 100 150 C70 170, 40 160, 20 180 C40 155, 60 130, 55 100 C50 70, 30 50, 50 30 C70 10, 110 20, 140 10 C160 3, 185 -5, 200 0Z" fill="rgba(60,40,15,0.5)"/>
+</svg>
+
+<!-- Side tags LEFT -->
+<nav class="side-tags left">
+  <a class="wood-tag" href="#" onclick="openModal(0);return false;">
+    <div class="wood-tag-rope"></div>
+    <span class="wood-tag-text">20<br>/10</span>
+    <span class="wood-tag-dot" style="background:#c8989a;color:#c8989a"></span>
+  </a>
+  <a class="wood-tag" href="#" onclick="openModal(1);return false;">
+    <div class="wood-tag-rope"></div>
+    <span class="wood-tag-text">19/11</span>
+    <span class="wood-tag-dot" style="background:#5a7090"></span>
+  </a>
+  <a class="wood-tag" href="#" onclick="openModal(2);return false;">
+    <div class="wood-tag-rope"></div>
+    <span class="wood-tag-text">20<br>/11</span>
+    <span class="wood-tag-dot" style="background:#a68250"></span>
+  </a>
+</nav>
+
+<!-- Side tags RIGHT -->
+<nav class="side-tags right" style="align-items:flex-end">
+  <a class="wood-tag" href="#" onclick="openModal(3);return false;" style="border-radius:5px 0 0 5px">
+    <div class="wood-tag-rope"></div>
+    <span class="wood-tag-text">Giai<br>Điệu</span>
+    <span class="wood-tag-dot" style="background:#9d8ab5"></span>
+  </a>
+  <a class="wood-tag" href="#" onclick="openModal(4);return false;" style="border-radius:5px 0 0 5px">
+    <div class="wood-tag-rope"></div>
+    <span class="wood-tag-text">Đà<br>Lạt</span>
+    <span class="wood-tag-dot" style="background:#587060"></span>
+  </a>
+  <a class="wood-tag" href="#" onclick="openModal(5);return false;" style="border-radius:5px 0 0 5px">
+    <div class="wood-tag-rope"></div>
+    <span class="wood-tag-text">Giỗ<br>Tổ</span>
+    <span class="wood-tag-dot" style="background:#904040"></span>
+  </a>
+</nav>
+
+<!-- MAIN SCENE -->
+<div class="scene">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="h-top-line">
+      <div class="rule"></div>
+      <span>Lớp 11L &nbsp;·&nbsp; Năm Học 2024–2025</span>
+      <div class="rule r"></div>
+    </div>
+    <div class="h-title">Thư Viện Nhật Ký Tuổi 16</div>
+    <div class="h-divider">
+      <div class="d-rule"></div>
+      <span>Hành Trình Thanh Xuân</span>
+      <div class="d-rule"></div>
+    </div>
+    <div class="h-quote">
+      Có những trang ký ức, khi mở ra là thấy cả một khoảng trời.<br>
+      Sáu cuốn nhật ký – sáu mốc không thể nào quên.
+    </div>
+  </div>
+
+  <!-- BOOKS + SHELF -->
+  <div class="shelf-container">
+
+    <div class="books" id="booksRow">
+
+      <!-- BOOK 1: 20/10 – DUSTY PINK -->
+      <div class="book" onclick="openModal(0)"
+           style="--glow:rgba(200,150,152,0.7)">
+        <div class="book-spine" style="--col:#bf8e90; --h:var(--bh1,190px)">
+          <div class="spine-top-light"></div>
+          <div class="spine-wear"></div>
+          <div class="spine-line-top"></div>
+          <div class="spine-line-bot"></div>
+          <div class="spine-inner">
+            <div class="spine-date">20/10</div>
+            <div class="spine-icon">💗</div>
+            <div class="spine-stamp">20/10</div>
+          </div>
+        </div>
+        <div class="book-glow"></div>
+        <div class="book-shadow"></div>
+      </div>
+
+      <!-- BOOK 2: 19/11 – DEEP NAVY BLUE -->
+      <div class="book" onclick="openModal(1)"
+           style="--glow:rgba(80,105,140,0.7)">
+        <div class="book-spine" style="--col:#4a607e; --h:var(--bh2,215px)">
+          <div class="spine-top-light"></div>
+          <div class="spine-wear"></div>
+          <div class="spine-line-top"></div>
+          <div class="spine-line-bot"></div>
+          <div class="spine-inner">
+            <div class="spine-date">19/11</div>
+            <div class="spine-icon">👔</div>
+            <div class="spine-stamp">19/11</div>
+          </div>
+        </div>
+        <div class="book-glow"></div>
+        <div class="book-shadow"></div>
+      </div>
+
+      <!-- BOOK 3: 20/11 – BROWN-YELLOW -->
+      <div class="book" onclick="openModal(2)"
+           style="--glow:rgba(160,130,70,0.7)">
+        <div class="book-spine" style="--col:#a68250; --h:var(--bh3,230px)">
+          <div class="spine-top-light"></div>
+          <div class="spine-wear"></div>
+          <div class="spine-line-top"></div>
+          <div class="spine-line-bot"></div>
+          <div class="spine-inner">
+            <div class="spine-date">20/11</div>
+            <div class="spine-icon">💌</div>
+            <div class="spine-stamp">20/11</div>
+          </div>
+        </div>
+        <div class="book-glow"></div>
+        <div class="book-shadow"></div>
+      </div>
+
+      <!-- BOOK 4: Giai Điệu – PASTEL PURPLE -->
+      <div class="book" onclick="openModal(3)"
+           style="--glow:rgba(160,140,180,0.7)">
+        <div class="book-spine" style="--col:#9d8ab5; --h:var(--bh4,218px)">
+          <div class="spine-top-light"></div>
+          <div class="spine-wear"></div>
+          <div class="spine-line-top"></div>
+          <div class="spine-line-bot"></div>
+          <div class="spine-inner">
+            <div class="spine-date">Giai Điệu</div>
+            <div class="spine-icon">🎵</div>
+            <div class="spine-stamp">Giai Điệu</div>
+          </div>
+        </div>
+        <div class="book-glow"></div>
+        <div class="book-shadow"></div>
+      </div>
+
+      <!-- BOOK 5: Đà Lạt – FOREST GREEN -->
+      <div class="book" onclick="openModal(4)"
+           style="--glow:rgba(80,108,85,0.7)">
+        <div class="book-spine" style="--col:#4e6855; --h:var(--bh5,210px)">
+          <div class="spine-top-light"></div>
+          <div class="spine-wear"></div>
+          <div class="spine-line-top"></div>
+          <div class="spine-line-bot"></div>
+          <div class="spine-inner">
+            <div class="spine-date">Đà Lạt</div>
+            <div class="spine-icon">🌲</div>
+            <div class="spine-stamp">Đà Lạt</div>
+          </div>
+        </div>
+        <div class="book-glow"></div>
+        <div class="book-shadow"></div>
+      </div>
+
+      <!-- BOOK 6: Giỗ Tổ – DEEP BURGUNDY RED -->
+      <div class="book" onclick="openModal(5)"
+           style="--glow:rgba(140,55,55,0.7)">
+        <div class="book-spine" style="--col:#823838; --h:var(--bh6,200px)">
+          <div class="spine-top-light"></div>
+          <div class="spine-wear"></div>
+          <div class="spine-line-top"></div>
+          <div class="spine-line-bot"></div>
+          <div class="spine-inner">
+            <div class="spine-date">Giỗ Tổ</div>
+            <div class="spine-icon">🎋</div>
+            <div class="spine-stamp">Giỗ Tổ</div>
+          </div>
+        </div>
+        <div class="book-glow"></div>
+        <div class="book-shadow"></div>
+      </div>
+
+    </div><!-- /books -->
+
+    <!-- SHELF -->
+    <div class="shelf">
+      <div class="shelf-top"></div>
+      <div class="shelf-face"></div>
+      <div class="shelf-wall-shadow"></div>
+    </div>
+
+  </div><!-- /shelf-container -->
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+    <div class="tl-title">+ Dòng Thời Gian +</div>
+    <div class="tl-row">
+      <div class="tl-item" onclick="openModal(0)">
+        <div class="tl-lbl">20/10</div>
+        <div class="tl-dot" style="--c:#c8989a">💗</div>
+        <div class="tl-tooltip">20/10 – Ngày Phụ nữ Việt Nam</div>
+      </div>
+      <div class="tl-item" onclick="openModal(1)">
+        <div class="tl-lbl">19/11</div>
+        <div class="tl-dot" style="--c:#5a7090">👔</div>
+        <div class="tl-tooltip">19/11 – Ngày Quốc tế Đàn Ông</div>
+      </div>
+      <div class="tl-item" onclick="openModal(2)">
+        <div class="tl-lbl">20/11</div>
+        <div class="tl-dot" style="--c:#a68250">💌</div>
+        <div class="tl-tooltip">20/11 – Ngày Nhà giáo Việt Nam</div>
+      </div>
+      <div class="tl-item" onclick="openModal(3)">
+        <div class="tl-lbl">Giai Điệu</div>
+        <div class="tl-dot" style="--c:#9d8ab5">🎵</div>
+        <div class="tl-tooltip">Giai Điệu Tuổi Hồng & Thanh Lịch</div>
+      </div>
+      <div class="tl-item" onclick="openModal(4)">
+        <div class="tl-lbl">Đà Lạt</div>
+        <div class="tl-dot" style="--c:#587060">🌲</div>
+        <div class="tl-tooltip">Chuyến Tham Quan Đà Lạt</div>
+      </div>
+      <div class="tl-item" onclick="openModal(5)">
+        <div class="tl-lbl">Giỗ Tổ</div>
+        <div class="tl-dot" style="--c:#904040">🎋</div>
+        <div class="tl-tooltip">Giỗ Tổ Hùng Vương</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /scene -->
+
+<!-- Sparkle diamond bottom right -->
+<div class="diamond">✦</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="overlay" onclick="handleOvClick(event)">
+  <div class="modal-book" id="modalBook">
+    <div class="modal-spine" id="mSpine">
+      <div class="ms-icon"  id="msIcon"></div>
+      <div class="ms-label" id="msLabel"></div>
+    </div>
+    <div class="modal-page">
+      <button class="m-close" onclick="closeModal()">✕</button>
+      <div class="m-num"   id="mNum"></div>
+      <div class="m-title" id="mTitle"></div>
+      <div class="m-body"  id="mBody"></div>
+      <a class="m-link"    id="mLink" href="#">Mở trang nhật ký →</a>
+      <div class="m-fold"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── SPARKLE DUST PARTICLES - ENHANCED ── */
+(function(){
+  const cv = document.getElementById('sparkle');
+  const cx = cv.getContext('2d');
+  let W, H;
+  const resize = () => { W = cv.width = innerWidth; H = cv.height = innerHeight; };
+  addEventListener('resize', resize); resize();
+
+  const N = 80;
+  const pts = Array.from({length:N}, () => ({
+    x: Math.random()*1000, y: Math.random()*700,
+    vx:(Math.random()-.5)*.15, vy:-(Math.random()*.28+.07),
+    r: Math.random()*1.8+.3,
+    a: Math.random()*.45+.08,
+    life:Math.random()*500, max:Math.random()*460+180,
+    bright: Math.random()>.55
+  }));
+
+  function frame(){
+    cx.clearRect(0,0,W,H);
+    for(const p of pts){
+      p.x += p.vx + Math.sin(p.life*.011)*.18;
+      p.y += p.vy;
+      p.life++;
+      const f = p.life<60 ? p.life/60 : p.life>p.max-60 ? (p.max-p.life)/60 : 1;
+      const alpha = p.a*f;
+      if(p.bright && f>.5){
+        cx.save();
+        cx.globalAlpha = alpha*.8;
+        cx.strokeStyle = `rgba(255,240,180,${alpha})`;
+        cx.lineWidth = .5;
+        cx.beginPath();
+        cx.moveTo(p.x-p.r*3, p.y); cx.lineTo(p.x+p.r*3, p.y);
+        cx.moveTo(p.x, p.y-p.r*3); cx.lineTo(p.x, p.y+p.r*3);
+        cx.stroke();
+        cx.restore();
+      }
+      cx.beginPath();
+      cx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      cx.fillStyle = `rgba(255,232,155,${alpha})`;
+      cx.fill();
+      if(p.life>=p.max || p.y<-10 || p.x<-10 || p.x>W+10){
+        p.x=Math.random()*W; p.y=H+8;
+        p.life=0; p.max=Math.random()*460+180;
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+/* ── BOOK HEIGHTS (varied, matching photo) ── */
+const bh = [190,215,230,218,210,200];
+document.querySelectorAll('.book-spine').forEach((s,i)=>{
+  s.style.height = bh[i]+'px';
+});
+
+/* ── BOOK DATA ── */
+const data = [
+  { col:'#bf8e90', icon:'💗', label:'20/10', num:'Nhật Ký · I',
+    title:'20/10 – Ngày Phụ nữ Việt Nam',
+    body:'Những năm tháng cuối cấp trôi qua rất nhanh, nhưng có những kỉ niệm vẫn ở lại nguyên vẹn trong tim mỗi người. Ngày Phụ nữ Việt Nam 20/10 năm lớp 11 là một trong những khoảnh khắc như thế – giản dị thôi nhưng đầy ắp yêu thương, tiếng cười và sự gắn kết của cả tập thể.',
+    href:'2010.html' },
+  { col:'#4a607e', icon:'👔', label:'19/11', num:'Nhật Ký · II',
+    title:'19/11 – Ngày Quốc tế Đàn Ông',
+    body:'Có những ngày đến rất nhẹ, nhưng khi đi qua rồi mới nhận ra mình đã lưu giữ được thêm một kỷ niệm đẹp. Những nụ cười, những lời chúc chân thành – tất cả in lại trong cuốn nhật ký tuổi 16 của chúng mình.',
+    href:'1911.html' },
+  { col:'#a68250', icon:'💌', label:'20/11', num:'Nhật Ký · III',
+    title:'20/11 – Ngày Nhà giáo Việt Nam',
+    body:'Thầy cô là những người đã âm thầm gieo từng con chữ, nâng đỡ từng ước mơ và kiên nhẫn dìu dắt chúng em trên con đường tri thức. Ngày 20/11 là dịp để học sinh bày tỏ lòng kính trọng với những người đã thắp sáng tương lai.',
+    href:'2011.html' },
+  { col:'#9d8ab5', icon:'🎵', label:'Giai Điệu', num:'Nhật Ký · IV',
+    title:'Giai Điệu Tuổi Hồng & Thanh Lịch',
+    body:'Lớp chúng mình đã cùng nhau tạo nên dấu ấn riêng qua sân chơi lớn đầy ý nghĩa: "Giai Điệu Tuổi Hồng" và "Hùng Vương Những Mùa Nhớ". Đó là hành trình của sự đoàn kết, sáng tạo và những nỗ lực không ngừng.',
+    href:'giaidieu.html' },
+  { col:'#4e6855', icon:'🌲', label:'Đà Lạt', num:'Nhật Ký · V',
+    title:'Chuyến Tham Quan Đà Lạt',
+    body:'Không chỉ là một chuyến đi, hành trình Đà Lạt của tập thể lớp 11L là sự kết hợp giữa học tập, trải nghiệm và gắn kết – nơi những ký ức thanh xuân được lưu giữ trọn vẹn giữa sương mù và thông xanh.',
+    href:'dalat.html' },
+  { col:'#823838', icon:'🎋', label:'Giỗ Tổ', num:'Nhật Ký · VI',
+    title:'Giỗ Tổ Hùng Vương',
+    body:'Giỗ Tổ hôm ấy là ngày của sự biết ơn công lao dựng nước của Vua Hùng – là ngày đám trẻ 11L nháo nhào chuẩn bị cho cuộc thi gói bánh chưng, và là ngày đã giữ cho chúng mình những kỉ niệm đẹp đẽ chẳng thể quên.',
+    href:'banhchung.html' }
+];
+
+function openModal(i){
+  const d = data[i];
+  document.getElementById('mSpine').style.background = d.col;
+  document.getElementById('modalBook').style.setProperty('--mc', d.col);
+  document.getElementById('msIcon').textContent   = d.icon;
+  document.getElementById('msLabel').textContent  = d.label;
+  document.getElementById('mNum').textContent     = d.num;
+  document.getElementById('mNum').style.color     = d.col;
+  document.getElementById('mTitle').textContent   = d.title;
+  document.getElementById('mBody').textContent    = d.body;
+  const l = document.getElementById('mLink');
+  l.href = d.href; l.style.color = d.col; l.style.borderColor = d.col;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleOvClick(e){ if(e.target===document.getElementById('overlay')) closeModal(); }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thư Viện Nhật Ký Tuổi 16 – Lớp 11L</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:100%; height:100%; overflow:hidden; }
+
+/* ─── BACKGROUND: warm sandy parchment like in photo ─── */
+body {
+  font-family: 'Lora', serif;
+  background: #c8a87a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Multi-layer background matching the photo exactly */
+.bg {
+  position: fixed; inset: 0;
+  background:
+    /* top-center light bloom */
+    radial-gradient(ellipse 70% 55% at 50% -5%, rgba(255,235,180,0.55) 0%, transparent 65%),
+    /* right-side sunlight angle */
+    radial-gradient(ellipse 45% 60% at 95% 15%, rgba(255,220,140,0.35) 0%, transparent 60%),
+    /* left bokeh glow */
+    radial-gradient(ellipse 35% 50% at 5% 40%, rgba(200,175,120,0.25) 0%, transparent 55%),
+    /* center falloff */
+    radial-gradient(ellipse 80% 70% at 50% 40%, rgba(210,170,110,0.15) 0%, transparent 70%),
+    /* bottom dark */
+    radial-gradient(ellipse 100% 40% at 50% 110%, rgba(100,65,30,0.4) 0%, transparent 55%),
+    /* base parchment sand color */
+    linear-gradient(170deg, #d4b07a 0%, #c09060 30%, #b07848 55%, #c8a060 75%, #b89050 100%);
+  z-index: 0;
+}
+
+/* Paper noise grain texture - ENHANCED */
+.grain {
+  position: fixed; inset: 0;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23f)'/%3E%3C/svg%3E");
+  z-index: 1; pointer-events: none;
+}
+
+/* Vignette edges */
+.vignette {
+  position: fixed; inset: 0;
+  box-shadow:
+    inset 0 0 160px rgba(70,40,10,0.55),
+    inset 0 0 60px rgba(70,40,10,0.3);
+  z-index: 2; pointer-events: none;
+}
+
+/* Floating sparkle dust canvas */
+canvas#sparkle {
+  position: fixed; inset: 0;
+  z-index: 3; pointer-events: none;
+}
+
+/* NEW: Light flare effect */
+.light-flare {
+  position: fixed;
+  top: 10%;
+  right: 15%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,240,200,0.12) 0%, transparent 60%);
+  border-radius: 50%;
+  filter: blur(50px);
+  animation: flareMove 8s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes flareMove {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  50% { transform: translate(-30px, 20px) scale(1.15); opacity: 0.7; }
+}
+
+/* Decorative foliage corners (SVG inline) */
+.foliage {
+  position: fixed;
+  z-index: 4; pointer-events: none;
+  opacity: 0.45;
+}
+.foliage.top-right {
+  top: -10px; right: -10px;
+  width: 140px;
+  transform: rotate(0deg);
+}
+.foliage.top-left {
+  top: -10px; left: -10px;
+  width: 120px;
+  transform: scaleX(-1);
+}
+
+/* ─── MAIN SCENE ─── */
+.scene {
+  position: relative;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 20px;
+}
+
+/* ─── SIDE WOOD TAGS - ENHANCED ─── */
+.side-tags {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 20;
+}
+.side-tags.left  { left: 0; }
+.side-tags.right { right: 0; }
+
+.wood-tag {
+  position: relative;
+  width: 65px;
+  padding: 10px 8px 10px;
+  background: linear-gradient(160deg, #b89050 0%, #9a6c30 40%, #7a5020 80%, #604018 100%);
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow:
+    3px 3px 14px rgba(0,0,0,0.45),
+    inset 1px 0 2px rgba(255,255,255,0.18),
+    inset -1px 0 3px rgba(0,0,0,0.25);
+  transition: transform 0.22s cubic-bezier(.34,1.5,.64,1), box-shadow 0.22s;
+  overflow: hidden;
+}
+.side-tags.right .wood-tag {
+  border-radius: 5px 0 0 5px;
+  box-shadow: -3px 3px 14px rgba(0,0,0,0.45), inset 1px 0 2px rgba(255,255,255,0.18);
+}
+
+/* Wood grain lines */
+.wood-tag::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(92deg, transparent 0, transparent 6px, rgba(0,0,0,0.05) 6px, rgba(0,0,0,0.05) 7px);
+}
+
+/* NEW: Hanging rope effect */
+.wood-tag-rope {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 12px;
+  background: linear-gradient(180deg, rgba(100,70,40,0.6), rgba(100,70,40,0.3));
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Nail/pin at top */
+.wood-tag::after {
+  content: "";
+  position: absolute;
+  top: 5px; left: 50%;
+  transform: translateX(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #d0a060, #5a3010);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.wood-tag-text {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,238,200,0.92);
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  padding-top: 8px;
+  position: relative; z-index: 1;
+}
+
+.wood-tag-dot {
+  display: block;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  margin: 5px auto 0;
+  box-shadow: 0 0 6px currentColor;
+  position: relative; z-index: 1;
+}
+
+.side-tags.left  .wood-tag:hover { transform: translateX(5px); }
+.side-tags.right .wood-tag:hover { transform: translateX(-5px); }
+.wood-tag:hover {
+  box-shadow: 5px 4px 20px rgba(0,0,0,0.55), inset 1px 0 2px rgba(255,255,255,0.22), 0 0 12px rgba(220,170,80,0.35);
+}
+
+/* ─── HEADER - COMPACT ─── */
+.header {
+  text-align: center;
+  padding: 0 20px;
   margin-bottom: 15px;
   animation: fadeDown 1s ease 0.1s both;
 }
