@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-html, body { width:100%; height:100%; overflow:hidden; }
+html, body { width:100%; height:100%; overflow-x:hidden; overflow-y: auto; }
 
 /* ─── BACKGROUND: warm sandy parchment like in photo ─── */
 body {
@@ -112,6 +112,9 @@ canvas#sparkle {
   align-items: center;
   justify-content: center;
   gap: 0;
+  padding-top: 40px;
+  padding-bottom: 60px;
+  overflow-y: auto;
 }
 
 /* ─── SIDE WOOD TAGS - ENHANCED ─── */
@@ -211,7 +214,7 @@ canvas#sparkle {
 .header {
   text-align: center;
   padding: 0 20px;
-  margin-bottom: 18px;
+  margin-bottom: 30px;
   animation: fadeDown 1s ease 0.1s both;
 }
 
@@ -464,7 +467,7 @@ canvas#sparkle {
 
 .book:hover .spine-icon {
   animation: none;
-  transform: scale(1.1) translateY(-2px);
+  transform: scale(1.4) !important;
 }
 
 /* Bottom embossed stamp text */
@@ -596,9 +599,11 @@ canvas#sparkle {
 
 /* ─── TIMELINE - ENHANCED WITH TOOLTIPS ─── */
 .timeline {
-  margin-top: 26px;
+  margin-top: 40px;
   text-align: center;
   animation: fadeUp 1s ease 0.7s both;
+  position: relative;
+  z-index: 15;
 }
 
 .tl-title {
