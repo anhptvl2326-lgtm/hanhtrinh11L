@@ -69,8 +69,8 @@ canvas#sparkle {
   position: fixed;
   top: 10%;
   right: 15%;
-  width: 250px;
-  height: 250px;
+  width: 280px;
+  height: 280px;
   background: radial-gradient(circle, rgba(255,240,200,0.12) 0%, transparent 60%);
   border-radius: 50%;
   filter: blur(50px);
@@ -92,12 +92,12 @@ canvas#sparkle {
 }
 .foliage.top-right {
   top: -10px; right: -10px;
-  width: 140px;
+  width: 160px;
   transform: rotate(0deg);
 }
 .foliage.top-left {
   top: -10px; left: -10px;
-  width: 130px;
+  width: 145px;
   transform: scaleX(-1);
 }
 
@@ -112,19 +112,19 @@ canvas#sparkle {
   align-items: center;
   justify-content: center;
   gap: 0;
-  padding-top: 60px;
-  padding-bottom: 40px;
+  padding-top: 75px;
+  padding-bottom: 50px;
   overflow-y: auto;
 }
 
-/* ─── SIDE WOOD TAGS - COMPACT ─── */
+/* ─── SIDE WOOD TAGS ─── */
 .side-tags {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
   z-index: 20;
 }
 .side-tags.left  { left: 0; }
@@ -132,8 +132,8 @@ canvas#sparkle {
 
 .wood-tag {
   position: relative;
-  width: 65px;
-  padding: 10px 8px 10px;
+  width: 72px;
+  padding: 12px 9px 11px;
   background: linear-gradient(160deg, #b89050 0%, #9a6c30 40%, #7a5020 80%, #604018 100%);
   border-radius: 0 5px 5px 0;
   cursor: pointer;
@@ -160,11 +160,11 @@ canvas#sparkle {
 /* NEW: Hanging rope effect */
 .wood-tag-rope {
   position: absolute;
-  top: -12px;
+  top: -13px;
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
-  height: 12px;
+  height: 13px;
   background: linear-gradient(180deg, rgba(100,70,40,0.6), rgba(100,70,40,0.3));
   box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
@@ -184,20 +184,20 @@ canvas#sparkle {
 .wood-tag-text {
   display: block;
   font-family: 'Playfair Display', serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: rgba(255,238,200,0.92);
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: 0.5px;
   text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-  padding-top: 8px;
+  padding-top: 9px;
   position: relative; z-index: 1;
 }
 
 .wood-tag-dot {
   display: block;
-  width: 9px; height: 9px;
+  width: 10px; height: 10px;
   border-radius: 50%;
   margin: 5px auto 0;
   box-shadow: 0 0 6px currentColor;
@@ -210,11 +210,11 @@ canvas#sparkle {
   box-shadow: 5px 4px 20px rgba(0,0,0,0.55), inset 1px 0 2px rgba(255,255,255,0.22), 0 0 12px rgba(220,170,80,0.35);
 }
 
-/* ─── HEADER - COMPACT ─── */
+/* ─── HEADER ─── */
 .header {
   text-align: center;
   padding: 0 20px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   animation: fadeDown 1s ease 0.1s both;
 }
 
@@ -227,25 +227,25 @@ canvas#sparkle {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 8px;
+  gap: 11px;
+  margin-bottom: 9px;
 }
 .h-top-line .rule {
-  width: 50px; height: 1px;
+  width: 58px; height: 1px;
   background: linear-gradient(90deg, transparent, rgba(80,50,20,0.5));
 }
 .h-top-line .rule.r { background: linear-gradient(90deg, rgba(80,50,20,0.5), transparent); }
 .h-top-line span {
   font-family: 'Lora', serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 2.2px;
   color: rgba(60,35,12,0.8);
 }
 
 .h-title {
   font-family: 'Dancing Script', cursive;
-  font-size: clamp(42px, 7vw, 68px);
+  font-size: clamp(50px, 8vw, 78px);
   font-weight: 700;
   color: #2c1a08;
   line-height: 0.95;
@@ -259,19 +259,19 @@ canvas#sparkle {
 .h-divider {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   justify-content: center;
-  margin: 10px 0;
+  margin: 11px 0;
 }
 .h-divider .d-rule {
-  width: 50px; height: 1px;
+  width: 55px; height: 1px;
   background: rgba(100,65,25,0.45);
 }
 .h-divider span {
   font-family: 'Playfair Display', serif;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 600;
-  letter-spacing: 4px;
+  letter-spacing: 4.5px;
   color: rgba(80,50,18,0.75);
   text-transform: uppercase;
 }
@@ -280,26 +280,26 @@ canvas#sparkle {
 .h-quote {
   font-family: 'Lora', serif;
   font-style: italic;
-  font-size: clamp(13px, 1.8vw, 15px);
+  font-size: clamp(14px, 1.9vw, 16px);
   font-weight: 500;
   color: rgba(45,25,8,0.85);
-  line-height: 1.6;
-  margin-top: 8px;
-  padding: 10px 20px;
+  line-height: 1.65;
+  margin-top: 9px;
+  padding: 11px 22px;
   background: rgba(255,250,240,0.15);
   backdrop-filter: blur(8px);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  max-width: 550px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* ─── BOOKS SHELF CONTAINER - COMPACT ─── */
+/* ─── BOOKS SHELF CONTAINER ─── */
 .shelf-container {
   position: relative;
   animation: fadeUp 1s ease 0.35s both;
-  width: min(650px, 84vw);
+  width: min(750px, 84vw);
 }
 
 @keyframes fadeUp {
@@ -312,17 +312,17 @@ canvas#sparkle {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 3px;
-  padding: 0 6px;
+  gap: 3.5px;
+  padding: 0 7px;
   position: relative;
 }
 
-/* ── Individual book - COMPACT ── */
+/* ── Individual book ── */
 .book {
   position: relative;
   cursor: pointer;
   flex: 1;
-  max-width: 95px;
+  max-width: 108px;
   transform-origin: bottom center;
   transition: transform 0.32s cubic-bezier(.34,1.5,.64,1);
   animation: bookRise 0.8s ease both;
@@ -365,7 +365,7 @@ canvas#sparkle {
   position: relative;
   width: 100%;
   /* heights differ per book for realistic look */
-  height: var(--h, 160px);
+  height: var(--h, 180px);
   background: var(--col);
   border-radius: 2px 5px 5px 2px;
   overflow: hidden;
@@ -402,7 +402,7 @@ canvas#sparkle {
 .book-spine::after {
   content:"";
   position:absolute;
-  left:0; top:0; bottom:0; width:10px;
+  left:0; top:0; bottom:0; width:11px;
   background: linear-gradient(90deg, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 60%, transparent 100%);
   z-index:2;
 }
@@ -410,7 +410,7 @@ canvas#sparkle {
 /* Top highlight strip */
 .spine-top-light {
   position:absolute;
-  top:0; left:10px; right:0; height:2px;
+  top:0; left:11px; right:0; height:2.5px;
   background: linear-gradient(90deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1) 60%, transparent);
   z-index:3;
 }
@@ -432,25 +432,25 @@ canvas#sparkle {
   flex-direction:column;
   align-items:center;
   justify-content:space-between;
-  padding: 15px 6px 12px;
+  padding: 17px 7px 14px;
   z-index:4;
 }
 
 /* Date text at top of spine */
 .spine-date {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(9px, 1vw, 11px);
+  font-size: clamp(10px, 1.1vw, 12.5px);
   font-weight: 600;
   color: rgba(255,240,200,0.92);
-  letter-spacing: 1px;
+  letter-spacing: 1.1px;
   text-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 0 12px rgba(0,0,0,0.3);
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.22;
 }
 
-/* Center icon / embossed symbol - COMPACT */
+/* Center icon / embossed symbol */
 .spine-icon {
-  font-size: clamp(20px, 2.5vw, 26px);
+  font-size: clamp(23px, 2.8vw, 30px);
   text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
   flex: 1;
@@ -462,12 +462,12 @@ canvas#sparkle {
 
 @keyframes floatIcon {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-7px); }
 }
 
 @keyframes floatIconHover {
-  0%, 100% { transform: translateY(0px) scale(1.3); }
-  50% { transform: translateY(-6px) scale(1.3); }
+  0%, 100% { transform: translateY(0px) scale(1.35); }
+  50% { transform: translateY(-7px) scale(1.35); }
 }
 
 .book:hover .spine-icon {
@@ -477,25 +477,25 @@ canvas#sparkle {
 /* Bottom embossed stamp text */
 .spine-stamp {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(8px, 0.95vw, 11px);
+  font-size: clamp(9px, 1.05vw, 12px);
   font-weight: 600;
   color: rgba(255,235,185,0.85);
-  letter-spacing: 0.8px;
+  letter-spacing: 0.9px;
   text-shadow: 0 1px 5px rgba(0,0,0,0.6);
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 /* Horizontal decorative lines on spine */
 .spine-line-top, .spine-line-bot {
   position: absolute;
-  left: 11px; right: 4px;
+  left: 12px; right: 4.5px;
   height: 1px;
   background: linear-gradient(90deg, rgba(255,220,150,0.35), rgba(255,220,150,0.1));
   z-index: 3;
 }
-.spine-line-top { top: 40px; }
-.spine-line-bot { bottom: 40px; }
+.spine-line-top { top: 46px; }
+.spine-line-bot { bottom: 46px; }
 
 /* Glow ring on hover - ENHANCED */
 .book-glow {
@@ -511,8 +511,8 @@ canvas#sparkle {
 /* Drop shadow under book - ENHANCED */
 .book-shadow {
   position:absolute;
-  bottom:-5px; left:5%; right:5%;
-  height:6px;
+  bottom:-5.5px; left:5%; right:5%;
+  height:7px;
   background: radial-gradient(ellipse, rgba(0,0,0,0.38) 0%, transparent 70%);
   border-radius:50%;
   pointer-events:none;
@@ -521,17 +521,17 @@ canvas#sparkle {
 .book:hover .book-shadow { 
   transform: scaleX(1.3); 
   opacity:0.6;
-  bottom: -8px;
+  bottom: -9px;
 }
 
-/* ─── WOOD SHELF - COMPACT ─── */
+/* ─── WOOD SHELF ─── */
 .shelf {
   position: relative;
   width: 100%;
 }
 
 .shelf-top {
-  height: 18px;
+  height: 20px;
   background: linear-gradient(180deg,
     #d4a060 0%,
     #b87c3a 20%,
@@ -559,7 +559,7 @@ canvas#sparkle {
 .shelf-top::after {
   content:"";
   position:absolute;
-  top:0; left:0; right:0; height:2px;
+  top:0; left:0; right:0; height:2.5px;
   background: linear-gradient(90deg,
     rgba(255,255,255,0.05) 0%,
     rgba(255,255,255,0.22) 30%,
@@ -571,7 +571,7 @@ canvas#sparkle {
 }
 
 .shelf-face {
-  height: 12px;
+  height: 13px;
   background: linear-gradient(180deg, #5a3010 0%, #3a1c08 60%, #2a1006 100%);
   border-radius: 0 0 4px 4px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.55);
@@ -591,19 +591,19 @@ canvas#sparkle {
   border-radius: inherit;
 }
 
-/* Shelf cast shadow on wall behind - COMPACT */
+/* Shelf cast shadow on wall behind */
 .shelf-wall-shadow {
   position: absolute;
-  bottom: -16px; left: -5%; right: -5%;
-  height: 22px;
+  bottom: -18px; left: -5%; right: -5%;
+  height: 25px;
   background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,0,0,0.35), transparent);
   border-radius: 0 0 50% 50%;
   pointer-events: none;
 }
 
-/* ─── TIMELINE - COMPACT ─── */
+/* ─── TIMELINE ─── */
 .timeline {
-  margin-top: 28px;
+  margin-top: 34px;
   text-align: center;
   animation: fadeUp 1s ease 0.7s both;
   position: relative;
@@ -613,17 +613,17 @@ canvas#sparkle {
 .tl-title {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   justify-content: center;
   font-family: 'Lora', serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: rgba(55,30,8,0.75);
-  letter-spacing: 2.5px;
-  margin-bottom: 12px;
+  letter-spacing: 2.8px;
+  margin-bottom: 13px;
 }
 .tl-title::before, .tl-title::after {
-  content:""; width:50px; height:1px;
+  content:""; width:58px; height:1px;
   background: rgba(55,30,8,0.3);
 }
 
@@ -632,7 +632,7 @@ canvas#sparkle {
   align-items: flex-start;
   justify-content: center;
   gap: 0;
-  width: min(650px, 88vw);
+  width: min(735px, 88vw);
   margin: 0 auto;
   position: relative;
 }
@@ -641,7 +641,7 @@ canvas#sparkle {
 .tl-row::before {
   content:"";
   position:absolute;
-  top:16px; left:calc(100%/12); right:calc(100%/12);
+  top:17px; left:calc(100%/12); right:calc(100%/12);
   height:1.5px;
   background: linear-gradient(90deg,
     #c8989a, #5a7090 20%, #888550 40%, #c0a055 60%, #587060 80%, #904040
@@ -654,7 +654,7 @@ canvas#sparkle {
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:6px;
+  gap:7px;
   flex:1;
   cursor:pointer;
   position:relative; z-index:1;
@@ -662,43 +662,43 @@ canvas#sparkle {
 
 .tl-lbl {
   font-family: 'Playfair Display', serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: rgba(55,30,8,0.7);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.55px;
   text-align: center;
   white-space: nowrap;
   transition: color 0.2s;
 }
 
-/* COMPACT TIMELINE DOT */
+/* TIMELINE DOT */
 .tl-dot {
-  width: 32px; height: 32px;
+  width: 35px; height: 35px;
   border-radius:50%;
   background: var(--c);
   display:flex; align-items:center; justify-content:center;
-  font-size: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 0 0 2px rgba(210,180,120,0.7);
+  font-size: 16.5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 0 0 2.2px rgba(210,180,120,0.7);
   transition: transform 0.25s cubic-bezier(.34,1.6,.64,1), box-shadow 0.25s;
 }
 .tl-item:hover .tl-dot {
   transform: scale(1.1);
-  box-shadow: 0 3px 14px rgba(0,0,0,0.35), 0 0 0 2.5px rgba(230,200,140,0.9), 0 0 14px var(--c);
+  box-shadow: 0 3px 14px rgba(0,0,0,0.35), 0 0 0 2.8px rgba(230,200,140,0.9), 0 0 14px var(--c);
 }
 .tl-item:hover .tl-lbl { color: rgba(40,20,4,0.95); font-weight:700; }
 
-/* COMPACT TOOLTIP */
+/* TOOLTIP */
 .tl-tooltip {
   position: absolute;
   bottom: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(-6px);
+  transform: translateX(-50%) translateY(-7px);
   background: rgba(40,25,10,0.95);
   color: rgba(255,245,220,0.95);
-  padding: 6px 12px;
-  border-radius: 5px;
+  padding: 7px 13px;
+  border-radius: 5.5px;
   font-family: 'Lora', serif;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 500;
   white-space: nowrap;
   opacity: 0;
@@ -714,20 +714,20 @@ canvas#sparkle {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  border: 5px solid transparent;
+  border: 5.5px solid transparent;
   border-top-color: rgba(40,25,10,0.95);
 }
 
 .tl-item:hover .tl-tooltip {
   opacity: 1;
-  transform: translateX(-50%) translateY(-10px);
+  transform: translateX(-50%) translateY(-11px);
 }
 
 /* Bottom sparkle diamond */
 .diamond {
   position: fixed;
-  bottom: 20px; right: 25px;
-  font-size: 20px;
+  bottom: 22px; right: 28px;
+  font-size: 22px;
   color: rgba(255,245,200,0.7);
   text-shadow: 0 0 14px rgba(255,240,180,0.8), 0 0 30px rgba(255,200,80,0.4);
   animation: twinkle 2.5s ease-in-out infinite;
@@ -752,9 +752,9 @@ canvas#sparkle {
 .modal-overlay.open { opacity:1; pointer-events:all; }
 
 .modal-book {
-  width: min(88vw, 580px);
+  width: min(88vw, 620px);
   display:grid;
-  grid-template-columns: 65px 1fr;
+  grid-template-columns: 70px 1fr;
   border-radius: 2px 10px 10px 2px;
   overflow:hidden;
   box-shadow: -10px 0 rgba(0,0,0,0.32), 0 36px 100px rgba(0,0,0,0.7);
@@ -770,7 +770,7 @@ canvas#sparkle {
   background: var(--mc, #c8989a);
   display:flex; flex-direction:column;
   align-items:center; justify-content:center;
-  padding: 18px 6px;
+  padding: 19px 7px;
   position: relative;
   overflow:hidden;
 }
@@ -779,17 +779,17 @@ canvas#sparkle {
   position:absolute; inset:0;
   background: linear-gradient(112deg, rgba(255,255,255,0.22) 0%, transparent 45%, rgba(0,0,0,0.14) 100%);
 }
-.ms-icon  { font-size:32px; z-index:1; margin-bottom:12px; }
+.ms-icon  { font-size:35px; z-index:1; margin-bottom:13px; }
 .ms-label {
-  font-family:'Playfair Display',serif; font-size:12px; font-weight:600;
+  font-family:'Playfair Display',serif; font-size:13px; font-weight:600;
   color:rgba(255,242,210,0.95); writing-mode:vertical-rl;
-  transform:rotate(180deg); letter-spacing:2px;
+  transform:rotate(180deg); letter-spacing:2.2px;
   text-shadow:0 1px 5px rgba(0,0,0,0.6); z-index:1; text-align:center;
 }
 
 .modal-page {
   background: linear-gradient(170deg, #f5ead0 0%, #ede0c0 100%);
-  padding: 32px 30px 26px;
+  padding: 35px 33px 28px;
   position:relative; overflow:hidden;
 }
 /* Ruled lines */
@@ -797,8 +797,8 @@ canvas#sparkle {
   content:"";
   position:absolute; inset:0;
   background: repeating-linear-gradient(180deg,
-    transparent 0, transparent 24px,
-    rgba(150,110,50,0.1) 24px, rgba(150,110,50,0.1) 25px
+    transparent 0, transparent 25.5px,
+    rgba(150,110,50,0.1) 25.5px, rgba(150,110,50,0.1) 26.5px
   );
   pointer-events:none;
 }
@@ -806,58 +806,58 @@ canvas#sparkle {
 .modal-page::after {
   content:"";
   position:absolute;
-  top:0; left:52px; bottom:0; width:1px;
+  top:0; left:56px; bottom:0; width:1px;
   background: rgba(160,60,40,0.18);
 }
 .m-close {
-  position:absolute; top:12px; right:14px;
-  width:26px; height:26px;
+  position:absolute; top:13px; right:15px;
+  width:27px; height:27px;
   border:none; border-radius:50%;
   background: rgba(80,50,20,0.12);
-  cursor:pointer; font-size:13px; color:#5a3810;
+  cursor:pointer; font-size:13.5px; color:#5a3810;
   display:flex; align-items:center; justify-content:center;
   transition: background 0.2s, transform 0.2s; z-index:5;
 }
 .m-close:hover { background:rgba(80,50,20,0.22); transform:rotate(90deg); }
 .m-num  {
   font-family:'Playfair Display',serif; 
-  font-size: 12px; 
+  font-size: 12.5px; 
   font-weight: 600;
-  letter-spacing:3.5px;
+  letter-spacing:3.8px;
   text-transform:uppercase; 
   color:var(--mc); 
-  margin-bottom:8px; 
+  margin-bottom:9px; 
   position:relative; 
   z-index:1;
 }
 .m-title {
   font-family:'Lora',serif; 
-  font-size:clamp(19px, 2.8vw, 25px);
+  font-size:clamp(20px, 3vw, 27px);
   font-weight:600; 
   color:#2c1a08; 
   line-height:1.3;
-  margin-bottom:14px; 
+  margin-bottom:15px; 
   position:relative; 
   z-index:1;
 }
 .m-body  {
   font-family:'Lora',serif; 
   font-style:normal;
-  font-size: 16px; 
-  line-height:1.75; 
+  font-size: 17px; 
+  line-height:1.8; 
   color:#5a3810;
-  margin-bottom:22px; 
+  margin-bottom:24px; 
   position:relative; 
   z-index:1;
 }
 .m-link {
   display:inline-flex; 
   align-items:center; 
-  gap:7px;
+  gap:7.5px;
   font-family:'Playfair Display',serif; 
-  font-size:12px; 
+  font-size:12.5px; 
   font-weight: 600;
-  letter-spacing:1.8px;
+  letter-spacing:1.9px;
   text-transform:uppercase; 
   color:var(--mc);
   text-decoration:none; 
@@ -868,13 +868,13 @@ canvas#sparkle {
   transition: gap 0.3s, opacity 0.3s; 
   opacity:0.85;
 }
-.m-link:hover { gap:12px; opacity:1; }
+.m-link:hover { gap:13px; opacity:1; }
 .m-fold {
   position:absolute; bottom:0; right:0;
   width:0; height:0;
-  border:28px solid transparent;
-  border-bottom:28px solid rgba(150,115,60,0.2);
-  border-right:28px solid rgba(150,115,60,0.2);
+  border:30px solid transparent;
+  border-bottom:30px solid rgba(150,115,60,0.2);
+  border-right:30px solid rgba(150,115,60,0.2);
 }
 
 /* ─── RESPONSIVE ─── */
@@ -883,13 +883,13 @@ canvas#sparkle {
   .shelf-container { width: 96vw; }
 }
 @media (max-width:520px) {
-  .book-spine { min-height:130px !important; }
-  .h-title    { font-size:38px; }
-  .h-top-line span { font-size: 12px; }
-  .h-quote { font-size: 13px; padding: 8px 14px; }
-  .modal-book { grid-template-columns:50px 1fr; }
-  .modal-page { padding:24px 18px 20px; }
-  .m-body { font-size: 15px; line-height: 1.7; }
+  .book-spine { min-height:140px !important; }
+  .h-title    { font-size:42px; }
+  .h-top-line span { font-size: 12.5px; }
+  .h-quote { font-size: 13.5px; padding: 9px 15px; }
+  .modal-book { grid-template-columns:52px 1fr; }
+  .modal-page { padding:26px 19px 22px; }
+  .m-body { font-size: 15.5px; line-height: 1.72; }
 }
 </style>
 </head>
@@ -981,7 +981,7 @@ canvas#sparkle {
       <!-- BOOK 1: 20/10 – DUSTY PINK -->
       <div class="book" onclick="openModal(0)"
            style="--glow:rgba(200,150,152,0.7)">
-        <div class="book-spine" style="--col:#bf8e90; --h:var(--bh1,155px)">
+        <div class="book-spine" style="--col:#bf8e90; --h:var(--bh1,177px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -999,7 +999,7 @@ canvas#sparkle {
       <!-- BOOK 2: 19/11 – DEEP NAVY BLUE -->
       <div class="book" onclick="openModal(1)"
            style="--glow:rgba(80,105,140,0.7)">
-        <div class="book-spine" style="--col:#4a607e; --h:var(--bh2,175px)">
+        <div class="book-spine" style="--col:#4a607e; --h:var(--bh2,200px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -1017,7 +1017,7 @@ canvas#sparkle {
       <!-- BOOK 3: 20/11 – BROWN-YELLOW -->
       <div class="book" onclick="openModal(2)"
            style="--glow:rgba(160,130,70,0.7)">
-        <div class="book-spine" style="--col:#a68250; --h:var(--bh3,185px)">
+        <div class="book-spine" style="--col:#a68250; --h:var(--bh3,212px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -1035,7 +1035,7 @@ canvas#sparkle {
       <!-- BOOK 4: Giai Điệu – PASTEL PURPLE -->
       <div class="book" onclick="openModal(3)"
            style="--glow:rgba(160,140,180,0.7)">
-        <div class="book-spine" style="--col:#9d8ab5; --h:var(--bh4,177px)">
+        <div class="book-spine" style="--col:#9d8ab5; --h:var(--bh4,202px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -1053,7 +1053,7 @@ canvas#sparkle {
       <!-- BOOK 5: Đà Lạt – FOREST GREEN -->
       <div class="book" onclick="openModal(4)"
            style="--glow:rgba(80,108,85,0.7)">
-        <div class="book-spine" style="--col:#4e6855; --h:var(--bh5,169px)">
+        <div class="book-spine" style="--col:#4e6855; --h:var(--bh5,193px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -1071,7 +1071,7 @@ canvas#sparkle {
       <!-- BOOK 6: Giỗ Tổ – DEEP BURGUNDY RED -->
       <div class="book" onclick="openModal(5)"
            style="--glow:rgba(140,55,55,0.7)">
-        <div class="book-spine" style="--col:#823838; --h:var(--bh6,163px)">
+        <div class="book-spine" style="--col:#823838; --h:var(--bh6,186px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -1158,7 +1158,7 @@ canvas#sparkle {
 </div>
 
 <script>
-/* ── SPARKLE DUST PARTICLES - COMPACT ── */
+/* ── SPARKLE DUST PARTICLES ── */
 (function(){
   const cv = document.getElementById('sparkle');
   const cx = cv.getContext('2d');
@@ -1166,20 +1166,20 @@ canvas#sparkle {
   const resize = () => { W = cv.width = innerWidth; H = cv.height = innerHeight; };
   addEventListener('resize', resize); resize();
 
-  const N = 60; // Reduced particle count
+  const N = 70;
   const pts = Array.from({length:N}, () => ({
     x: Math.random()*1000, y: Math.random()*700,
-    vx:(Math.random()-.5)*.12, vy:-(Math.random()*.24+.06),
-    r: Math.random()*1.5+.3,
-    a: Math.random()*.4+.08,
+    vx:(Math.random()-.5)*.13, vy:-(Math.random()*.26+.065),
+    r: Math.random()*1.6+.3,
+    a: Math.random()*.42+.08,
     life:Math.random()*500, max:Math.random()*460+180,
-    bright: Math.random()>.6
+    bright: Math.random()>.57
   }));
 
   function frame(){
     cx.clearRect(0,0,W,H);
     for(const p of pts){
-      p.x += p.vx + Math.sin(p.life*.011)*.15;
+      p.x += p.vx + Math.sin(p.life*.011)*.16;
       p.y += p.vy;
       p.life++;
       const f = p.life<60 ? p.life/60 : p.life>p.max-60 ? (p.max-p.life)/60 : 1;
@@ -1190,8 +1190,8 @@ canvas#sparkle {
         cx.strokeStyle = `rgba(255,240,180,${alpha})`;
         cx.lineWidth = .5;
         cx.beginPath();
-        cx.moveTo(p.x-p.r*2.5, p.y); cx.lineTo(p.x+p.r*2.5, p.y);
-        cx.moveTo(p.x, p.y-p.r*2.5); cx.lineTo(p.x, p.y+p.r*2.5);
+        cx.moveTo(p.x-p.r*2.8, p.y); cx.lineTo(p.x+p.r*2.8, p.y);
+        cx.moveTo(p.x, p.y-p.r*2.8); cx.lineTo(p.x, p.y+p.r*2.8);
         cx.stroke();
         cx.restore();
       }
@@ -1209,8 +1209,8 @@ canvas#sparkle {
   frame();
 })();
 
-/* ── BOOK HEIGHTS (compact, ~25% smaller) ── */
-const bh = [155,175,185,177,169,163];
+/* ── BOOK HEIGHTS (medium size - between compact and original) ── */
+const bh = [177,200,212,202,193,186];
 document.querySelectorAll('.book-spine').forEach((s,i)=>{
   s.style.height = bh[i]+'px';
 });
