@@ -3,1412 +3,935 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thực Viện Nhật Ký Tuổi 16 - Lớp 11L</title>
+<title>Thư Viện Nhật Ký Tuổi 16 - Lớp 11L</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'EB Garamond', serif;
-  background: 
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="n"><feTurbulence baseFrequency="0.9" numOctaves="3"/></filter><rect width="100" height="100" filter="url(%23n)" opacity="0.05"/></svg>'),
-    radial-gradient(ellipse at top left, rgba(255,245,230,0.3) 0%, transparent 50%),
-    radial-gradient(ellipse at top right, rgba(245,230,215,0.2) 0%, transparent 50%),
-    linear-gradient(135deg, #c9b8a3 0%, #a89880 30%, #8d7a65 60%, #6b5742 100%);
-  min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
-  color: #3b332c;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px),
-    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);
-  opacity: 0.3;
-  pointer-events: none;
-  z-index: 1;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  box-shadow: inset 0 0 200px rgba(60,40,20,0.5);
-  pointer-events: none;
-  z-index: 1;
-}
-
-body {
-  animation: pageLoad 1.5s ease-out;
-}
-
-@keyframes pageLoad {
-  from {
-    opacity: 0;
-    filter: blur(10px);
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  to {
-    opacity: 1;
-    filter: blur(0);
+
+  body {
+    font-family: 'EB Garamond', serif;
+    color: #3b332c;
+    background: 
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="200" height="200" filter="url(%23noise)" opacity="0.08"/></svg>'),
+      radial-gradient(ellipse at 50% 40%, rgba(220,200,170,0.4) 0%, transparent 60%),
+      linear-gradient(to bottom, #b8a68f 0%, #a89880 25%, #9a8770 50%, #8d7a65 75%, #7d6a55 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
   }
-}
 
-/* Corner leaves decoration */
-.corner-leaves {
-  position: fixed;
-  width: 250px;
-  height: 250px;
-  pointer-events: none;
-  z-index: 3;
-  opacity: 0.35;
-}
-
-.corner-leaves.top-left {
-  top: 0;
-  left: 0;
-  background: 
-    radial-gradient(ellipse at 20% 20%, rgba(80, 100, 60, 0.3), transparent 50%),
-    radial-gradient(ellipse at 40% 10%, rgba(90, 110, 70, 0.25), transparent 45%),
-    radial-gradient(ellipse at 10% 40%, rgba(70, 90, 50, 0.25), transparent 45%);
-  transform: rotate(-15deg);
-}
-
-.corner-leaves.top-right {
-  top: 0;
-  right: 0;
-  background: 
-    radial-gradient(ellipse at 80% 20%, rgba(80, 100, 60, 0.3), transparent 50%),
-    radial-gradient(ellipse at 60% 10%, rgba(90, 110, 70, 0.25), transparent 45%),
-    radial-gradient(ellipse at 90% 40%, rgba(70, 90, 50, 0.25), transparent 45%);
-  transform: rotate(15deg);
-}
-
-/* Warm glow effect */
-.glow-overlay {
-  position: fixed;
-  top: -50%;
-  left: -10%;
-  width: 120%;
-  height: 150%;
-  background: 
-    radial-gradient(ellipse at 50% 30%, 
-      rgba(255,248,220,0.25) 0%, 
-      rgba(255,240,200,0.12) 25%, 
-      transparent 55%);
-  pointer-events: none;
-  animation: glowPulse 6s ease-in-out infinite;
-  z-index: 1;
-}
-
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 0.4; }
-}
-
-/* Floating particles */
-.particles-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 2;
-}
-
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: radial-gradient(circle, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
-  border-radius: 50%;
-  animation: particleFloat linear infinite;
-  opacity: 0;
-}
-
-@keyframes particleFloat {
-  0% {
-    transform: translateY(100vh) translateX(0) scale(0);
-    opacity: 0;
+  body {
+    animation: pageLoad 1.5s ease-out;
   }
-  10% {
-    opacity: 0.9;
+
+  @keyframes pageLoad {
+    from {
+      opacity: 0;
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
   }
-  90% {
-    opacity: 0.9;
+
+  /* Heavy vignette */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(ellipse at center, 
+        transparent 0%, 
+        transparent 30%,
+        rgba(40,30,20,0.3) 60%,
+        rgba(30,20,10,0.6) 100%);
+    pointer-events: none;
+    z-index: 1;
   }
-  100% {
-    transform: translateY(-100px) translateX(150px) scale(1.2);
-    opacity: 0;
-  }
-}
 
-/* Sparkles */
-.sparkles-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.sparkle {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
-  animation: sparkleAnim 3s ease-in-out infinite;
-}
-
-@keyframes sparkleAnim {
-  0%, 100% { 
-    opacity: 0; 
-    transform: scale(0) rotate(0deg);
-  }
-  50% { 
-    opacity: 1; 
-    transform: scale(1) rotate(180deg);
-  }
-}
-
-/* Big star */
-.big-star {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  font-size: 60px;
-  color: rgba(255, 255, 255, 0.8);
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  z-index: 5;
-  animation: starPulse 4s ease-in-out infinite;
-}
-
-@keyframes starPulse {
-  0%, 100% { 
-    opacity: 0.6;
-    transform: scale(1) rotate(0deg);
-  }
-  50% { 
-    opacity: 1;
-    transform: scale(1.2) rotate(90deg);
-  }
-}
-
-/* Main container */
-.main-container {
-  position: relative;
-  z-index: 4;
-  padding: 50px 20px 100px;
-}
-
-/* Header */
-.header-section {
-  text-align: center;
-  margin-bottom: 60px;
-  animation: fadeInDown 1.2s ease-out 0.2s backwards;
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.class-label {
-  font-family: 'EB Garamond', serif;
-  font-size: 15px;
-  letter-spacing: 5px;
-  color: #6b5644;
-  margin-bottom: 12px;
-  font-weight: 400;
-  opacity: 0.85;
-  text-shadow: 1px 1px 3px rgba(255,255,255,0.3);
-}
-
-.main-title {
-  font-family: 'Dancing Script', cursive;
-  font-size: 82px;
-  font-weight: 700;
-  color: #2d2417;
-  margin: 18px 0;
-  text-shadow: 
-    2px 2px 6px rgba(0,0,0,0.3),
-    0 0 30px rgba(255,255,255,0.4);
-  line-height: 1.1;
-  letter-spacing: 2px;
-}
-
-.subtitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 19px;
-  font-weight: 600;
-  letter-spacing: 4px;
-  color: #3d2f23;
-  text-transform: uppercase;
-  margin-bottom: 22px;
-  opacity: 0.9;
-}
-
-.quote {
-  font-family: 'EB Garamond', serif;
-  font-size: 20px;
-  font-style: italic;
-  color: #5a4935;
-  max-width: 750px;
-  margin: 0 auto;
-  line-height: 1.9;
-  opacity: 0.9;
-  text-shadow: 1px 1px 3px rgba(255,255,255,0.6);
-}
-
-/* Side wooden tags */
-.side-nav {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  animation: slideIn 1s ease-out 0.8s backwards;
-}
-
-.side-nav.left {
-  left: 20px;
-}
-
-.side-nav.right {
-  right: 20px;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-50%) translateX(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
-  }
-}
-
-.nav-card {
-  background: 
-    linear-gradient(135deg, 
-      rgba(120,95,70,0.92) 0%, 
-      rgba(100,80,60,0.92) 50%,
-      rgba(80,65,50,0.92) 100%);
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
-    3px 3px 10px rgba(0,0,0,0.5),
-    inset 1px 1px 0 rgba(255,255,255,0.15);
-  border: 2px solid rgba(255,235,200,0.4);
-  position: relative;
-  overflow: hidden;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-
-.nav-card::before {
-  content: '📌';
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 18px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
-}
-
-.nav-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-  transition: left 0.5s;
-}
-
-.nav-card:hover::after {
-  left: 100%;
-}
-
-.nav-card:hover {
-  transform: translateX(8px) scale(1.05);
-  box-shadow: 
-    0 0 25px rgba(179, 149, 120, 0.5),
-    4px 4px 18px rgba(0,0,0,0.4);
-  filter: brightness(1.15);
-}
-
-.side-nav.right .nav-card:hover {
-  transform: translateX(-8px) scale(1.05);
-}
-
-.nav-card span {
-  font-family: 'Playfair Display', serif;
-  font-size: 13px;
-  color: #f5e8d8;
-  letter-spacing: 1.5px;
-  font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-  display: block;
-  transform: rotate(180deg);
-}
-
-/* Bookshelf */
-.bookshelf-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-  padding: 70px 40px 40px;
-}
-
-.bookshelf {
-  position: relative;
-  animation: fadeInUp 1.5s ease-out 0.4s backwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Books */
-.books-row {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 12px;
-  margin-bottom: 10px;
-  perspective: 1500px;
-  transform: rotate(-0.8deg);
-}
-
-.book {
-  width: 120px;
-  height: 200px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  transform-origin: bottom center;
-  transform-style: preserve-3d;
-  filter: drop-shadow(0 12px 25px rgba(0,0,0,0.5));
-  animation: bookAppear 1s ease-out backwards;
-}
-
-.book:nth-child(1) { 
-  animation-delay: 0.5s;
-  transform: rotate(1deg);
-}
-.book:nth-child(2) { 
-  animation-delay: 0.6s;
-  transform: rotate(-0.5deg);
-}
-.book:nth-child(3) { 
-  animation-delay: 0.7s;
-  transform: rotate(0.5deg);
-}
-.book:nth-child(4) { 
-  animation-delay: 0.8s;
-  transform: rotate(-1deg);
-}
-.book:nth-child(5) { 
-  animation-delay: 0.9s;
-  transform: rotate(0.5deg);
-}
-.book:nth-child(6) { 
-  animation-delay: 1s;
-  transform: rotate(-0.5deg);
-}
-
-@keyframes bookAppear {
-  from {
-    opacity: 0;
-    transform: translateY(35px) scale(0.7) rotateX(-20deg);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotateX(0);
-  }
-}
-
-.book:hover {
-  transform: translateY(-28px) rotateY(6deg) rotateX(-2deg) scale(1.1) !important;
-  filter: 
-    drop-shadow(0 35px 55px rgba(0,0,0,0.6))
-    brightness(1.2) saturate(1.3);
-  z-index: 10;
-}
-
-.book:hover::after {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  right: -15px;
-  bottom: -15px;
-  border-radius: 12px;
-  box-shadow: 0 0 35px rgba(255, 255, 255, 0.6);
-  animation: glow 1.5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes glow {
-  0%, 100% { opacity: 0.3; transform: scale(0.95); }
-  50% { opacity: 0.8; transform: scale(1); }
-}
-
-.book-spine {
-  width: 100%;
-  height: 100%;
-  border-radius: 4px 11px 11px 4px;
-  box-shadow: 
-    inset -6px 0 15px rgba(0,0,0,0.5),
-    inset 5px 0 15px rgba(255,255,255,0.2),
-    inset 0 -4px 10px rgba(0,0,0,0.3);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 22px 10px;
-  color: rgba(255, 255, 255, 0.95);
-  overflow: hidden;
-}
-
-/* Realistic spine texture */
-.book-spine::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    linear-gradient(
-      to right,
-      rgba(0,0,0,0.4) 0%,
-      rgba(0,0,0,0.1) 5%,
-      transparent 10%,
-      transparent 90%,
-      rgba(0,0,0,0.15) 95%,
-      rgba(0,0,0,0.5) 100%
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 1.5px,
-      rgba(255,255,255,0.02) 1.5px,
-      rgba(255,255,255,0.02) 3px
-    );
-  pointer-events: none;
-}
-
-/* Shine effect */
-.book-spine::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255,255,255,0.25) 50%,
-    transparent 70%
-  );
-  transform: translateX(-100%);
-  transition: transform 0.7s;
-}
-
-.book:hover .book-spine::after {
-  transform: translateX(100%);
-}
-
-/* Book colors - more saturated */
-.book-pink .book-spine { 
-  background: linear-gradient(135deg, #e898ad 0%, #d67894 40%, #c55c7d 100%); 
-}
-.book-blue .book-spine { 
-  background: linear-gradient(135deg, #6b98ba 0%, #5280a5 40%, #446b8f 100%); 
-}
-.book-gold .book-spine { 
-  background: linear-gradient(135deg, #d4b374 0%, #bf9a5c 40%, #a8834a 100%); 
-}
-.book-rose .book-spine { 
-  background: linear-gradient(135deg, #daa8b8 0%, #c88da0 40%, #b37488 100%); 
-}
-.book-sage .book-spine { 
-  background: linear-gradient(135deg, #a3b698 0%, #8a9f7f 40%, #738a6b 100%); 
-}
-.book-burgundy .book-spine { 
-  background: linear-gradient(135deg, #c75e5e 0%, #b24848 40%, #9d3535 100%); 
-}
-
-.book-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  width: 100%;
-}
-
-.book-icon {
-  font-size: 42px;
-  margin: 18px 0;
-  filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));
-  animation: iconFloat 3s ease-in-out infinite;
-}
-
-@keyframes iconFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-.book:hover .book-icon {
-  animation: iconSpin 0.6s ease;
-}
-
-@keyframes iconSpin {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.25); }
-  100% { transform: rotate(360deg) scale(1); }
-}
-
-.book-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 17px;
-  font-weight: 700;
-  text-align: center;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  letter-spacing: 2px;
-  text-shadow: 
-    2px 2px 5px rgba(0,0,0,0.5),
-    0 0 15px rgba(255,255,255,0.3);
-  transform: rotate(180deg);
-  line-height: 1.3;
-}
-
-/* Wooden shelf - realistic */
-.shelf-wood {
-  width: 100%;
-  height: 28px;
-  background: 
-    repeating-linear-gradient(
-      90deg,
-      #8b7355 0px,
-      #8b7355 3px,
-      #7d6548 3px,
-      #7d6548 6px
-    ),
-    linear-gradient(to bottom, 
-      #9a8268 0%, 
-      #8b7355 15%, 
-      #7d6548 50%, 
-      #6b5742 85%, 
-      #5a4935 100%);
-  border-radius: 8px;
-  box-shadow: 
-    0 10px 20px rgba(0,0,0,0.6),
-    inset 0 3px 6px rgba(255,255,255,0.15),
-    inset 0 -3px 6px rgba(0,0,0,0.4);
-  position: relative;
-  margin-top: 10px;
-}
-
-.shelf-wood::before {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 0;
-  width: 100%;
-  height: 12px;
-  background: linear-gradient(to bottom, #4a3820 0%, #3a2818 100%);
-  border-radius: 0 0 6px 6px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-}
-
-.shelf-wood::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255, 255, 255, 0.1) 10%, 
-    transparent 20%,
-    rgba(255, 255, 255, 0.05) 40%,
-    transparent 60%,
-    rgba(255, 255, 255, 0.1) 80%,
-    transparent 100%
-  );
-}
-
-/* Timeline */
-.timeline-container {
-  margin-top: 75px;
-  padding: 0 60px;
-  position: relative;
-  animation: fadeIn 1.5s ease-out 1.2s backwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.timeline-label {
-  text-align: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  color: #2d2417;
-  margin-bottom: 35px;
-  position: relative;
-  text-shadow: 1px 1px 3px rgba(255,255,255,0.6);
-}
-
-.timeline-label::before,
-.timeline-label::after {
-  content: '•••';
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 12px;
-  color: #7d6548;
-  letter-spacing: 3px;
-}
-
-.timeline-label::before {
-  left: 20%;
-}
-
-.timeline-label::after {
-  right: 20%;
-}
-
-.timeline-line {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 50px;
-}
-
-.timeline-line::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 80px;
-  right: 80px;
-  height: 3px;
-  background: 
-    repeating-linear-gradient(
-      to right,
-      #7d6548 0px,
-      #7d6548 12px,
-      transparent 12px,
-      transparent 20px
-    );
-  transform: translateY(-50%);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.timeline-event {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  animation: eventPop 0.9s ease-out backwards;
-  position: relative;
-}
-
-.timeline-event:nth-child(1) { animation-delay: 1.3s; }
-.timeline-event:nth-child(2) { animation-delay: 1.4s; }
-.timeline-event:nth-child(3) { animation-delay: 1.5s; }
-.timeline-event:nth-child(4) { animation-delay: 1.6s; }
-.timeline-event:nth-child(5) { animation-delay: 1.7s; }
-.timeline-event:nth-child(6) { animation-delay: 1.8s; }
-
-@keyframes eventPop {
-  0% {
-    opacity: 0;
-    transform: scale(0) rotate(-180deg);
-  }
-  70% {
-    transform: scale(1.15) rotate(10deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0);
-  }
-}
-
-.timeline-event:hover {
-  transform: scale(1.2) translateY(-8px);
-}
-
-.event-dot {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  background: 
-    radial-gradient(circle at 35% 35%, 
-      rgba(255,250,240,1), 
-      rgba(245,235,220,0.98));
-  box-shadow: 
-    0 8px 22px rgba(0,0,0,0.4),
-    inset 0 2px 6px rgba(255,255,255,0.9);
-  margin-bottom: 12px;
-  position: relative;
-  border: 3px solid #7d6548;
-  transition: all 0.3s ease;
-  animation: pointPulse 2.5s ease-in-out infinite;
-}
-
-@keyframes pointPulse {
-  0%, 100% {
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     box-shadow: 
-      0 8px 22px rgba(0,0,0,0.4),
-      inset 0 2px 6px rgba(255,255,255,0.9),
-      0 0 0 0 rgba(125,101,72,0.5);
+      inset 0 0 200px rgba(20,15,10,0.8),
+      inset 0 0 100px rgba(0,0,0,0.5);
+    pointer-events: none;
+    z-index: 2;
   }
-  50% {
-    box-shadow: 
-      0 8px 22px rgba(0,0,0,0.4),
-      inset 0 2px 6px rgba(255,255,255,0.9),
-      0 0 0 12px rgba(125,101,72,0);
-  }
-}
 
-.event-dot::before {
-  content: '';
-  position: absolute;
-  width: 3px;
-  height: 28px;
-  background: linear-gradient(to bottom, #7d6548, transparent);
-  top: -28px;
-}
-
-.timeline-event:hover .event-dot {
-  box-shadow: 
-    0 0 30px rgba(255, 255, 255, 0.7),
-    0 10px 25px rgba(0,0,0,0.5),
-    inset 0 2px 6px rgba(255,255,255,1);
-  border-color: #5a4935;
-  animation: dotPulse 0.8s ease-in-out;
-}
-
-@keyframes dotPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-}
-
-.event-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: #3d2f23;
-  text-align: center;
-  white-space: nowrap;
-  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.9);
-}
-
-/* Modal */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
-
-.modal-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.book-modal {
-  background: #fffcf5;
-  width: 85%;
-  max-width: 850px;
-  height: 85vh;
-  border-radius: 15px;
-  box-shadow: 
-    0 30px 80px rgba(0,0,0,0.7),
-    inset 0 0 80px rgba(139, 111, 71, 0.1);
-  padding: 55px;
-  position: relative;
-  transform: scale(0.7) rotateY(-90deg);
-  opacity: 0;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow-y: auto;
-}
-
-.modal-overlay.active .book-modal {
-  transform: scale(1) rotateY(0);
-  opacity: 1;
-}
-
-.book-modal::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(to bottom, transparent, #d4c4a8 20%, #d4c4a8 80%, transparent);
-  transform: translateX(-50%);
-  box-shadow: 0 0 10px rgba(139, 111, 71, 0.2);
-}
-
-.close-modal {
-  position: absolute;
-  top: 22px;
-  right: 22px;
-  font-size: 36px;
-  cursor: pointer;
-  color: #8b6f47;
-  transition: all 0.3s ease;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(160, 130, 109, 0.12);
-  border: none;
-}
-
-.close-modal:hover {
-  transform: rotate(90deg) scale(1.2);
-  background: rgba(160, 130, 109, 0.25);
-  color: #5a4328;
-}
-
-.book-modal h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
-  color: #2d2417;
-  margin-bottom: 28px;
-  text-align: center;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.book-modal p {
-  font-family: 'EB Garamond', serif;
-  font-size: 21px;
-  line-height: 2;
-  color: #3d2f23;
-  margin-bottom: 28px;
-  text-align: justify;
-}
-
-.book-modal a {
-  display: inline-block;
-  font-family: 'Playfair Display', serif;
-  font-size: 19px;
-  font-weight: 600;
-  color: #8b6f47;
-  text-decoration: none;
-  border: 2px solid #8b6f47;
-  padding: 14px 35px;
-  border-radius: 8px;
-  transition: all 0.35s ease;
-  margin-top: 22px;
-}
-
-.book-modal a:hover {
-  background: #8b6f47;
-  color: #fffcf5;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(139, 111, 71, 0.35);
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-  .side-nav {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
+  /* Corner leaves */
   .corner-leaves {
-    width: 150px;
-    height: 150px;
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.35;
   }
-  
-  .main-title {
-    font-size: 54px;
+
+  .corner-leaves.top-left {
+    top: 0;
+    left: 0;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(80, 100, 60, 0.3), transparent 50%),
+      radial-gradient(ellipse at 40% 10%, rgba(90, 110, 70, 0.25), transparent 45%);
+    transform: rotate(-15deg);
   }
-  
-  .subtitle {
-    font-size: 15px;
+
+  .corner-leaves.top-right {
+    top: 0;
+    right: 0;
+    background: 
+      radial-gradient(ellipse at 80% 20%, rgba(80, 100, 60, 0.3), transparent 50%),
+      radial-gradient(ellipse at 60% 10%, rgba(90, 110, 70, 0.25), transparent 45%);
+    transform: rotate(15deg);
+  }
+
+  /* Glow effect */
+  .glow {
+    position: fixed;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60%;
+    background: 
+      radial-gradient(ellipse at center, 
+        rgba(255,245,220,0.15) 0%, 
+        rgba(255,235,200,0.08) 30%, 
+        transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+    animation: glowPulse 8s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.9; }
+  }
+
+  /* Particles */
+  .particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(255,255,255,0.8), rgba(255,240,220,0.3));
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+    opacity: 0;
+    box-shadow: 0 0 4px rgba(255,255,255,0.5);
+  }
+
+  @keyframes particleFloat {
+    0% {
+      transform: translateY(110vh) translateX(-20px);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.9;
+    }
+    90% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-10vh) translateX(50px);
+      opacity: 0;
+    }
+  }
+
+  /* Sparkles */
+  .sparkles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .sparkle {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    animation: sparkleAnim 3s ease-in-out infinite;
+  }
+
+  @keyframes sparkleAnim {
+    0%, 100% { 
+      opacity: 0; 
+      transform: scale(0) rotate(0deg);
+    }
+    50% { 
+      opacity: 1; 
+      transform: scale(1) rotate(180deg);
+    }
+  }
+
+  /* Big star */
+  .big-star {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    z-index: 5;
+    animation: starPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes starPulse {
+    0%, 100% { 
+      opacity: 0.6;
+      transform: scale(1) rotate(0deg);
+    }
+    50% { 
+      opacity: 1;
+      transform: scale(1.2) rotate(90deg);
+    }
+  }
+
+  /* Page container */
+  .page {
+    position: relative;
+    z-index: 5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeInDown 1.5s ease-out;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .header-subtitle {
+    font-family: 'Crimson Text', serif;
+    font-size: 13px;
+    color: #6b5742;
+    letter-spacing: 2.5px;
+    margin-bottom: 12px;
+    font-weight: 400;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .header-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 58px;
+    color: #2d2417;
+    margin-bottom: 15px;
+    text-shadow: 
+      2px 2px 4px rgba(0,0,0,0.4),
+      0 0 20px rgba(255,255,255,0.3);
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+
+  .header-description {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: #3d2f23;
+    letter-spacing: 2.5px;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+
+  .header-quote {
+    font-family: 'Crimson Text', serif;
+    font-size: 14px;
+    color: #5a4935;
+    font-style: italic;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  }
+
+  /* Side nav */
+  .side-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: slideIn 1s ease-out 0.8s backwards;
+  }
+
+  .side-nav.left {
+    left: 15px;
+  }
+
+  .side-nav.right {
+    right: 15px;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-50%) translateX(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+  }
+
+  .nav-card {
+    background: 
+      linear-gradient(135deg, 
+        rgba(120,95,70,0.92), 
+        rgba(100,80,60,0.92) 50%,
+        rgba(80,65,50,0.92));
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+      3px 3px 10px rgba(0,0,0,0.5),
+      inset 1px 1px 0 rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,235,200,0.4);
+    position: relative;
+    overflow: hidden;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .nav-card::before {
+    content: '📌';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  }
+
+  .nav-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.5s;
+  }
+
+  .nav-card:hover::after {
+    left: 100%;
+  }
+
+  .nav-card:hover {
+    transform: translateX(8px) scale(1.05);
+    box-shadow: 
+      0 0 25px rgba(179, 149, 120, 0.5),
+      4px 4px 18px rgba(0,0,0,0.4);
+    filter: brightness(1.15);
+  }
+
+  .side-nav.right .nav-card:hover {
+    transform: translateX(-8px) scale(1.05);
+  }
+
+  .nav-card span {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: #f5e8d8;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    display: block;
+    transform: rotate(180deg);
+  }
+
+  /* Bookshelf */
+  .bookshelf-section {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto 60px;
+    animation: fadeInUp 1.8s ease-out 0.3s both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .bookshelf {
+    position: relative;
+    padding: 80px 40px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 12px;
+    perspective: 1000px;
+  }
+
+  /* Book */
+  .book {
+    width: 120px;
+    height: 290px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    animation: bookDrop 1s ease-out both;
+    z-index: 2;
+  }
+
+  .book:nth-child(1) { animation-delay: 0.5s; }
+  .book:nth-child(2) { animation-delay: 0.6s; }
+  .book:nth-child(3) { animation-delay: 0.7s; }
+  .book:nth-child(4) { animation-delay: 0.8s; }
+  .book:nth-child(5) { animation-delay: 0.9s; }
+  .book:nth-child(6) { animation-delay: 1.0s; }
+
+  @keyframes bookDrop {
+    from {
+      opacity: 0;
+      transform: translateY(35px) scale(0.7) rotateX(-20deg);
+    }
+    60% {
+      transform: translateY(-5px) scale(1.02) rotateX(2deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateX(0deg);
+    }
+  }
+
+  .book:hover {
+    transform: translateY(-28px) rotateY(6deg) rotateX(-2deg) scale(1.1) !important;
+    filter: 
+      drop-shadow(0 35px 55px rgba(0,0,0,0.6))
+      brightness(1.2) saturate(1.3);
+    z-index: 10;
+  }
+
+  .book:hover::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    border-radius: 12px;
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.6);
+    animation: bookGlow 1.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes bookGlow {
+    0%, 100% { 
+      opacity: 0.3; 
+      transform: scale(0.95); 
+    }
+    50% { 
+      opacity: 0.8; 
+      transform: scale(1); 
+    }
+  }
+
+  .book-spine {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 3px 8px 8px 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 10px;
+    overflow: hidden;
+    box-shadow: 
+      inset -8px 0 16px rgba(0,0,0,0.5),
+      inset 6px 0 16px rgba(255,255,255,0.15),
+      inset 0 -5px 12px rgba(0,0,0,0.3),
+      inset 0 5px 12px rgba(255,255,255,0.1);
+  }
+
+  /* Spine texture */
+  .book-spine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(
+        to right,
+        rgba(0,0,0,0.5) 0%,
+        rgba(0,0,0,0.2) 4%,
+        transparent 8%,
+        transparent 92%,
+        rgba(0,0,0,0.2) 96%,
+        rgba(0,0,0,0.6) 100%
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 1px,
+        rgba(255,255,255,0.02) 1px,
+        rgba(255,255,255,0.02) 2px
+      );
+    pointer-events: none;
+  }
+
+  /* Shine */
+  .book-spine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      50deg,
+      transparent 35%,
+      rgba(255,255,255,0.2) 50%,
+      transparent 65%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.8s;
+  }
+
+  .book:hover .book-spine::after {
+    transform: translateX(100%);
+  }
+
+  /* Book colors */
+  .book-1 .book-spine { 
+    background: linear-gradient(135deg, #e8a5b8 0%, #d88ca2 40%, #c7748d 100%); 
+  }
+  .book-2 .book-spine { 
+    background: linear-gradient(135deg, #6b98ba 0%, #5780a0 40%, #456888 100%); 
+  }
+  .book-3 .book-spine { 
+    background: linear-gradient(135deg, #d4b078 0%, #bf9858 40%, #a8813e 100%); 
+  }
+  .book-4 .book-spine { 
+    background: linear-gradient(135deg, #d5a8b5 0%, #c190a0 40%, #ac7888 100%); 
+  }
+  .book-5 .book-spine { 
+    background: linear-gradient(135deg, #a0b290 0%, #8a9d78 40%, #748860 100%); 
+  }
+  .book-6 .book-spine { 
+    background: linear-gradient(135deg, #c25858 0%, #ae4040 40%, #992828 100%); 
+  }
+
+  /* Book content */
+  .book-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    color: white;
+  }
+
+  .book-title-top {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 0;
+    text-shadow: 
+      2px 2px 4px rgba(0,0,0,0.6),
+      0 0 10px rgba(255,255,255,0.2);
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+
+  .book-icon {
+    font-size: 44px;
+    margin: 20px 0;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+    animation: iconBob 3s ease-in-out infinite;
+  }
+
+  @keyframes iconBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .book:hover .book-icon {
+    animation: iconSpin 0.6s ease;
+  }
+
+  @keyframes iconSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  .book-title-bottom {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.3;
+    text-shadow: 
+      1px 1px 3px rgba(0,0,0,0.6),
+      0 0 8px rgba(255,255,255,0.15);
+    letter-spacing: 0.3px;
+  }
+
+  /* Shelf */
+  .shelf {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    right: 50px;
+    height: 28px;
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        #8b7355 0px,
+        #8b7355 3px,
+        #7d6548 3px,
+        #7d6548 6px
+      ),
+      linear-gradient(to bottom, 
+        #9a8268 0%, 
+        #8b7355 15%, 
+        #7d6548 50%, 
+        #6b5742 85%, 
+        #5a4935 100%);
+    border-radius: 8px;
+    box-shadow: 
+      0 10px 20px rgba(0,0,0,0.6),
+      inset 0 3px 6px rgba(255,255,255,0.15),
+      inset 0 -3px 6px rgba(0,0,0,0.4);
+    z-index: 1;
+  }
+
+  .shelf::before {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 60px;
+    right: 60px;
+    height: 12px;
+    background: linear-gradient(to bottom, rgba(60,48,35,0.8), rgba(40,30,20,0.6));
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+  }
+
+  .shelf::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.1) 10%, 
+      transparent 20%,
+      rgba(255, 255, 255, 0.05) 40%,
+      transparent 60%,
+      rgba(255, 255, 255, 0.1) 80%,
+      transparent 100%
+    );
+  }
+
+  /* Timeline */
+  .timeline-section {
+    max-width: 900px;
+    width: 100%;
+    margin: 40px auto 0;
+    padding: 0 40px;
+    animation: fadeIn 2s ease-out 1.2s both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .timeline-header {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: #2d2417;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    position: relative;
+  }
+
+  .timeline-header::before,
+  .timeline-header::after {
+    content: '•••';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #7d6548;
     letter-spacing: 3px;
   }
-  
-  .quote {
-    font-size: 17px;
+
+  .timeline-header::before {
+    left: 20%;
   }
-  
-  .books-row {
-    flex-wrap: wrap;
-    gap: 10px;
+
+  .timeline-header::after {
+    right: 20%;
+  }
+
+  .timeline {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    right: 60px;
+    height: 3px;
+    background: 
+      repeating-linear-gradient(
+        to right,
+        #7d6548 0px,
+        #7d6548 12px,
+        transparent 12px,
+        transparent 20px
+      );
+    transform: translateY(-50%);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  .timeline-point {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: 
+      radial-gradient(circle at 30% 30%, 
+        rgba(255,250,240,1) 0%, 
+        rgba(240,230,215,0.98) 100%);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+      0 4px 12px rgba(0,0,0,0.4),
+      inset 0 2px 4px rgba(255,255,255,0.8);
+    border: 3px solid #7d6548;
+    z-index: 2;
+    animation: pointPulse 2.5s ease-in-out infinite, eventPop 0.9s ease-out backwards;
   }
-  
-  .book {
-    width: 100px;
-    height: 165px;
+
+  .timeline-point:nth-child(1) { animation-delay: 0s, 1.3s; }
+  .timeline-point:nth-child(2) { animation-delay: 0.4s, 1.4s; }
+  .timeline-point:nth-child(3) { animation-delay: 0.8s, 1.5s; }
+  .timeline-point:nth-child(4) { animation-delay: 1.2s, 1.6s; }
+  .timeline-point:nth-child(5) { animation-delay: 1.6s, 1.7s; }
+  .timeline-point:nth-child(6) { animation-delay: 2.0s, 1.8s; }
+
+  @keyframes pointPulse {
+    0%, 100% {
+      box-shadow: 
+        0 4px 12px rgba(0,0,0,0.4),
+        inset 0 2px 4px rgba(255,255,255,0.8),
+        0 0 0 0 rgba(125,101,72,0.5);
+    }
+    50% {
+      box-shadow: 
+        0 4px 12px rgba(0,0,0,0.4),
+        inset 0 2px 4px rgba(255,255,255,0.8),
+        0 0 0 10px rgba(125,101,72,0);
+    }
   }
-  
-  .book-icon {
-    font-size: 32px;
+
+  @keyframes eventPop {
+    0% {
+      opacity: 0;
+      transform: scale(0) rotate(-180deg);
+    }
+    70% {
+      transform: scale(1.15) rotate(10deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0);
+    }
   }
-  
-  .book-title {
-    font-size: 14px;
+
+  .timeline-point::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 28px;
+    background: linear-gradient(to bottom, #7d6548, transparent);
+    top: -28px;
   }
-  
-  .timeline-line {
-    flex-wrap: wrap;
-    gap: 22px 15px;
-    justify-content: center;
-    padding: 0 15px;
+
+  .timeline-point:hover {
+    transform: scale(1.2) translateY(-4px);
+    box-shadow: 
+      0 0 30px rgba(255, 255, 255, 0.7),
+      0 10px 25px rgba(0,0,0,0.5),
+      inset 0 2px 6px rgba(255,255,255,1);
+    border-color: #5a4935;
+    animation: dotPulse 0.8s ease-in-out;
   }
-  
-  .timeline-line::before {
+
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1.2) translateY(-4px); }
+    50% { transform: scale(1.35) translateY(-4px); }
+  }
+
+  .timeline-icon {
+    font-size: 22px;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
+  }
+
+  .timeline-label {
+    position: absolute;
+    bottom: -30px;
+    font-size: 11px;
+    color: #3d2f23;
+    white-space: nowrap;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+  }
+
+  /* Modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(12px);
     display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: modalFadeIn 0.4s ease;
   }
-  
-  .event-dot {
-    width: 50px;
-    height: 50px;
+
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: white;
+    max-width: 900px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    animation: modalSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.5) rotateY(-30deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotateY(0deg);
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.7);
+    border: none;
+    border-radius: 50%;
+    color: white;
     font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
-  
-  .event-label {
-    font-size: 12px;
+
+  .modal-close:hover {
+    background: rgba(0,0,0,0.9);
+    transform: rotate(90deg) scale(1.1);
   }
-  
-  .book-modal {
-    width: 95%;
-    padding: 35px;
-  }
-  
-  .book-modal h2 {
-    font-size: 30px;
-  }
-  
-  .book-modal p {
-    font-size: 18px;
-  }
-  
-  .big-star {
-    font-size: 45px;
-    bottom: 30px;
-    right: 30px;
-  }
-}
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(160,140,120,0.2);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(125,101,72,0.7);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(90,73,53,0.85);
-}
-</style>
-</head>
-<body>
-
-<!-- Corner leaves -->
-<div class="corner-leaves top-left"></div>
-<div class="corner-leaves top-right"></div>
-
-<!-- Warm glow -->
-<div class="glow-overlay"></div>
-
-<!-- Particles -->
-<div class="particles-container" id="particlesContainer"></div>
-
-<!-- Sparkles -->
-<div class="sparkles-container" id="sparklesContainer"></div>
-
-<!-- Big star -->
-<div class="big-star">✦</div>
-
-<!-- Side Navigation - Left -->
-<nav class="side-nav left">
-  <div class="nav-card" data-event="2010">
-    <span>20<br>/10</span>
-  </div>
-  <div class="nav-card" data-event="1911">
-    <span>19<br>/11</span>
-  </div>
-  <div class="nav-card" data-event="2011">
-    <span>20<br>/11</span>
-  </div>
-</nav>
-
-<!-- Side Navigation - Right -->
-<nav class="side-nav right">
-  <div class="nav-card" data-event="giaidieu">
-    <span>Giai<br>Điệu</span>
-  </div>
-  <div class="nav-card" data-event="dalat">
-    <span>Đà<br>Lạt</span>
-  </div>
-  <div class="nav-card" data-event="gioto">
-    <span>Giỗ<br>Tổ</span>
-  </div>
-</nav>
-
-<div class="main-container">
-  <!-- Header -->
-  <header class="header-section">
-    <div class="class-label">— Lớp 11L · Năm Học 2024—2025 —</div>
-    <h1 class="main-title">Thực Viện Nhật Ký Tuổi 16</h1>
-    <div class="subtitle">— Hành Trình Thanh Xuân —</div>
-    <p class="quote">
-      Có những trọng kỷ ức, khi mở ra là thấy cả một khoảng trời.<br>
-      Sâu cuối nhật ký – sâu mốc không thể nào quên.
-    </p>
-  </header>
-
-  <!-- Bookshelf -->
-  <section class="bookshelf-container">
-    <div class="bookshelf">
-      <div class="books-row">
-        <div class="book book-pink" data-event="2010">
-          <div class="book-spine">
-            <div class="book-content">
-              <div class="book-icon">❤️</div>
-              <div class="book-title">20/10</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book book-blue" data-event="1911">
-          <div class="book-spine">
-            <div class="book-content">
-              <div class="book-icon">☕</div>
-              <div class="book-title">19/11</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book book-gold" data-event="2011">
-          <div class="book-spine">
-            <div class="book-content">
-              <div class="book-icon">✉️</div>
-              <div class="book-title">20/11</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book book-rose" data-event="giaidieu">
-          <div class="book-spine">
-            <div class="book-content">
-              <div class="book-icon">🎭</div>
-              <div class="book-title">Giai<br>Điệu</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book book-sage" data-event="dalat">
-          <div class="book-spine">
-            <div class="book-content">
-              <div class="book-icon">⛰️</div>
-              <div class="book-title">Đà Lạt</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book book-burgundy" data-event="gioto">
-          <div class="book-spine">
-            <div class="book-content">
-              <div class="book-icon">🎋</div>
-              <div class="book-title">Giỗ Tổ</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="shelf-wood"></div>
-    </div>
-  </section>
-
-  <!-- Timeline -->
-  <section class="timeline-container">
-    <div class="timeline-label">+ Dòng Thời Gian +</div>
-    <div class="timeline-line">
-      <div class="timeline-event" data-event="2010">
-        <div class="event-dot">❤️</div>
-        <div class="event-label">20/10</div>
-      </div>
-      
-      <div class="timeline-event" data-event="1911">
-        <div class="event-dot">☕</div>
-        <div class="event-label">19/11</div>
-      </div>
-      
-      <div class="timeline-event" data-event="2011">
-        <div class="event-dot">✉️</div>
-        <div class="event-label">20/11</div>
-      </div>
-      
-      <div class="timeline-event" data-event="giaidieu">
-        <div class="event-dot">🎭</div>
-        <div class="event-label">Giai Điệu</div>
-      </div>
-      
-      <div class="timeline-event" data-event="dalat">
-        <div class="event-dot">⛰️</div>
-        <div class="event-label">Đà Lạt</div>
-      </div>
-      
-      <div class="timeline-event" data-event="gioto">
-        <div class="event-dot">🎋</div>
-        <div class="event-label">Giỗ Tổ</div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- Modal -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="book-modal" id="bookModal">
-    <button class="close-modal" id="closeModal">×</button>
-    <div id="modalContent"></div>
-  </div>
-</div>
-
-<script>
-// Event data
-const eventData = {
-  '2010': {
-    title: '20/10 – Ngày Phụ nữ Việt Nam',
-    content: 'Những năm tháng cuối cấp trôi qua rất nhanh, nhưng có những kỉ niệm vẫn ở lại nguyên vẹn trong tim mỗi người. Ngày Phụ nữ Việt Nam 20/10 năm lớp 11 là một trong những khoảnh khắc như thế – giản dị thôi nhưng đầy ắp yêu thương, tiếng cười và sự gắn kết của cả tập thể lớp chúng mình.',
-    link: '2010.html'
-  },
-  '1911': {
-    title: '19/11 – Ngày Quốc tế Đàn Ông',
-    content: 'Có những ngày đến rất nhẹ, nhưng khi đi qua rồi mới nhận ra mình đã lưu giữ được thêm một kỷ niệm đẹp.',
-    link: '1911.html'
-  },
-  '2011': {
-    title: '20/11 – Ngày Nhà giáo Việt Nam',
-    content: 'Đối với đời học sinh, ngày 20/11 không chỉ là một dịp lễ quen thuộc mà còn là ngày để mỗi chúng em lắng lòng, nhớ về công ơn to lớn của thầy cô giáo. Thầy cô là những người đã âm thầm gieo từng con chữ, nâng đỡ từng ước mơ và kiên nhẫn dìu dắt chúng em trên con đường tri thức.',
-    link: '2011.html'
-  },
-  'giaidieu': {
-    title: 'Giai điệu tuổi hồng & Thanh lịch',
-    content: 'Một năm học với thật nhiều cung bậc cảm xúc và những trải nghiệm khó quên! Lớp chúng mình đã cùng nhau tạo nên dấu ấn riêng qua sân chơi lớn đầy ý nghĩa: "Giai Điệu Tuổi Hồng" và "Hùng Vương Những Mùa Nhớ". Đó là hành trình của sự đoàn kết, sáng tạo và những nỗ lực không ngừng để mang đến những phần thi tuyệt vời nhất.',
-    link: 'giaidieu.html'
-  },
-  'dalat': {
-    title: 'Chuyến tham quan Đà Lạt',
-    content: 'Không chỉ là một chuyến đi, hành trình Đà Lạt của tập thể lớp 11L là sự kết hợp giữa học tập, trải nghiệm và gắn kết – nơi những ký ức thanh xuân được lưu giữ trọn vẹn.',
-    link: 'dalat.html'
-  },
-  'gioto': {
-    title: 'Giỗ Tổ Hùng Vương',
-    content: 'Giỗ Tổ hôm ấy là ngày của sự biết ơn công lao dựng nước của Vua Hùng, là ngày của những đứa trẻ vẫn quen nghịch ngợm 11L nháo nhào chuẩn bị cho cuộc thi gói bánh chưng, là ngày đã giữ cho chúng mình những kỉ niệm đẹp đẽ chẳng thể quên.',
-    link: 'banhchung.html'
-  }
-};
-
-// Create particles
-function createParticles() {
-  const container = document.getElementById('particlesContainer');
-  const particleCount = 50;
-  
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.animationDuration = (Math.random() * 12 + 12) + 's';
-    particle.style.animationDelay = Math.random() * 6 + 's';
-    particle.style.width = particle.style.height = (Math.random() * 4 + 2) + 'px';
-    container.appendChild(particle);
-  }
-}
-
-// Create sparkles
-function createSparkles() {
-  const container = document.getElementById('sparklesContainer');
-  const sparklePositions = [
-    { top: '8%', left: '12%', delay: 0 },
-    { top: '15%', left: '85%', delay: 0.5 },
-    { top: '25%', left: '18%', delay: 1 },
-    { top: '32%', left: '78%', delay: 1.5 },
-    { top: '45%', left: '8%', delay: 2 },
-    { top: '52%', left: '92%', delay: 2.5 },
-    { top: '65%', left: '15%', delay: 0.8 },
-    { top: '72%', left: '88%', delay: 1.3 },
-    { top: '82%', left: '10%', delay: 1.8 },
-    { top: '88%', left: '82%', delay: 2.2 }
-  ];
-  
-  sparklePositions.forEach(pos => {
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-    sparkle.textContent = '✨';
-    sparkle.style.top = pos.top;
-    sparkle.style.left = pos.left;
-    sparkle.style.animationDelay = pos.delay + 's';
-    container.appendChild(sparkle);
-  });
-}
-
-createParticles();
-createSparkles();
-
-// Modal functionality
-const modalOverlay = document.getElementById('modalOverlay');
-const bookModal = document.getElementById('bookModal');
-const closeModalBtn = document.getElementById('closeModal');
-const modalContent = document.getElementById('modalContent');
-
-function openModal(eventId) {
-  const data = eventData[eventId];
-  if (data) {
-    modalContent.innerHTML = `
-      <h2>${data.title}</h2>
-      <p>${data.content}</p>
-      <a href="${data.link}">Xem chi tiết →</a>
-    `;
-    modalOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-}
-
-function closeModal() {
-  modalOverlay.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-closeModalBtn.addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', (e) => {
-  if (e.target === modalOverlay) {
-    closeModal();
-  }
-});
-
-// Click events
-document.querySelectorAll('[data-event]').forEach(element => {
-  element.addEventListener('click', () => {
-    const eventId = element.getAttribute('data-event');
-    openModal(eventId);
-  });
-});
-
-// Keyboard shortcut
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeModal();
-  }
-});
-
-// Book hover sparkles
-document.querySelectorAll('.book').forEach(book => {
-  book.addEventListener('mouseenter', (e) => {
-    createHoverSparkles(e.target);
-  });
-});
-
-function createHoverSparkles(element) {
-  const rect = element.getBoundingClientRect();
-  const sparkles = ['✨', '⭐', '💫', '🌟'];
-  
-  for (let i = 0; i < 6; i++) {
-    setTimeout(() => {
-      const sparkle = document.createElement('div');
-      sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
-      sparkle.style.position = 'fixed';
-      sparkle.style.left = rect.left + rect.width / 2 + (Math.random() - 0.5) * 70 + 'px';
-      sparkle.style.top = rect.top + rect.height / 2 + (Math.random() - 0.5) * 70 + 'px';
-      sparkle.style.fontSize = '22px';
-      sparkle.style.pointerEvents = 'none';
-      sparkle.style.zIndex = '1000';
-      sparkle.style.animation = 'sparkleRise 1.5s ease-out forwards';
-      
-      document.body.appendChild(sparkle);
-      
-      setTimeout(() => sparkle.remove(), 1500);
-    }, i * 80);
-  }
-}
-
-// Sparkle rise animation
-const sparkleStyle = document.createElement('style');
-sparkleStyle.textContent = `
+  /* Sparkle rise animation */
   @keyframes sparkleRise {
     0% {
       opacity: 0;
@@ -1422,17 +945,397 @@ sparkleStyle.textContent = `
       transform: translateY(-90px) scale(1.5) rotate(180deg);
     }
   }
-`;
-document.head.appendChild(sparkleStyle);
 
-// Parallax scroll
-window.addEventListener('scroll', function() {
-  const scrolled = window.pageYOffset;
-  const glow = document.querySelector('.glow-overlay');
-  if (glow) {
-    glow.style.transform = `translateY(${scrolled * 0.25}px)`;
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .side-nav { display: none; }
   }
-});
+
+  @media (max-width: 768px) {
+    .corner-leaves {
+      width: 150px;
+      height: 150px;
+    }
+    
+    .header-title { font-size: 42px; }
+    .header-subtitle { font-size: 11px; }
+    
+    .bookshelf {
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 50px 20px 30px;
+    }
+    
+    .book {
+      width: 100px;
+      height: 240px;
+    }
+    
+    .book-title-top { font-size: 20px; }
+    .book-icon { font-size: 36px; }
+    .book-title-bottom { font-size: 11px; }
+    
+    .shelf {
+      left: 30px;
+      right: 30px;
+      height: 22px;
+    }
+    
+    .timeline {
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 0 20px;
+    }
+    
+    .timeline::before {
+      display: none;
+    }
+    
+    .timeline-point {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .timeline-icon {
+      font-size: 18px;
+    }
+    
+    .big-star {
+      font-size: 45px;
+      bottom: 30px;
+      right: 30px;
+    }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(140,120,100,0.2);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(125,101,72,0.7);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(90,73,53,0.85);
+  }
+</style>
+</head>
+<body>
+
+<!-- Corner leaves -->
+<div class="corner-leaves top-left"></div>
+<div class="corner-leaves top-right"></div>
+
+<!-- Glow effect -->
+<div class="glow"></div>
+
+<!-- Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Sparkles -->
+<div class="sparkles" id="sparkles"></div>
+
+<!-- Big star -->
+<div class="big-star">✦</div>
+
+<!-- Side Navigation - Left -->
+<nav class="side-nav left">
+  <div class="nav-card" onclick="scrollToBook(0)">
+    <span>20<br>/10</span>
+  </div>
+  <div class="nav-card" onclick="scrollToBook(1)">
+    <span>19<br>/11</span>
+  </div>
+  <div class="nav-card" onclick="scrollToBook(2)">
+    <span>20<br>/11</span>
+  </div>
+</nav>
+
+<!-- Side Navigation - Right -->
+<nav class="side-nav right">
+  <div class="nav-card" onclick="scrollToBook(3)">
+    <span>Giai<br>Điệu</span>
+  </div>
+  <div class="nav-card" onclick="scrollToBook(4)">
+    <span>Đà<br>Lạt</span>
+  </div>
+  <div class="nav-card" onclick="scrollToBook(5)">
+    <span>Giỗ<br>Tổ</span>
+  </div>
+</nav>
+
+<!-- Main page -->
+<div class="page">
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="header-subtitle">— Lớp 11L · Năm Học 2024–2025 —</div>
+    <h1 class="header-title">Thư Viện Nhật Ký Tuổi 16</h1>
+    <p class="header-description">— HÀNH TRÌNH THANH XUÂN —</p>
+    <p class="header-quote">
+      Có những trọng ký ức, khi mở ra là thấy cả một khoảng trời.<br>
+      Sau cuối nhật ký - sau mốc không thể nào quên.
+    </p>
+  </header>
+
+  <!-- Bookshelf -->
+  <section class="bookshelf-section">
+    <div class="bookshelf">
+      
+      <div class="book book-1" data-book="2010">
+        <div class="book-spine">
+          <div class="book-content">
+            <div class="book-title-top">20/10</div>
+            <div class="book-icon">❤️</div>
+            <div class="book-title-bottom">20/10</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="book book-2" data-book="1911">
+        <div class="book-spine">
+          <div class="book-content">
+            <div class="book-title-top">19/11</div>
+            <div class="book-icon">☕</div>
+            <div class="book-title-bottom">19/11</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="book book-3" data-book="2011">
+        <div class="book-spine">
+          <div class="book-content">
+            <div class="book-title-top">20/11</div>
+            <div class="book-icon">✉️</div>
+            <div class="book-title-bottom">20/11</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="book book-4" data-book="giaidieu">
+        <div class="book-spine">
+          <div class="book-content">
+            <div class="book-title-top">Giai Điệu</div>
+            <div class="book-icon">🎭</div>
+            <div class="book-title-bottom">Giai Điệu</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="book book-5" data-book="dalat">
+        <div class="book-spine">
+          <div class="book-content">
+            <div class="book-title-top">Đà Lạt</div>
+            <div class="book-icon">⛰️</div>
+            <div class="book-title-bottom">Đà Lạt</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="book book-6" data-book="gioto">
+        <div class="book-spine">
+          <div class="book-content">
+            <div class="book-title-top">Giỗ Tổ</div>
+            <div class="book-icon">🎋</div>
+            <div class="book-title-bottom">Giỗ Tổ</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="shelf"></div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline-section">
+    <h3 class="timeline-header">+ Dòng Thời Gian +</h3>
+    <div class="timeline">
+      <div class="timeline-point" onclick="openBook('2010')">
+        <span class="timeline-icon">❤️</span>
+        <span class="timeline-label">20/10</span>
+      </div>
+      <div class="timeline-point" onclick="openBook('1911')">
+        <span class="timeline-icon">☕</span>
+        <span class="timeline-label">19/11</span>
+      </div>
+      <div class="timeline-point" onclick="openBook('2011')">
+        <span class="timeline-icon">✉️</span>
+        <span class="timeline-label">20/11</span>
+      </div>
+      <div class="timeline-point" onclick="openBook('giaidieu')">
+        <span class="timeline-icon">🎭</span>
+        <span class="timeline-label">Giai Điệu</span>
+      </div>
+      <div class="timeline-point" onclick="openBook('dalat')">
+        <span class="timeline-icon">⛰️</span>
+        <span class="timeline-label">Đà Lạt</span>
+      </div>
+      <div class="timeline-point" onclick="openBook('gioto')">
+        <span class="timeline-icon">🎋</span>
+        <span class="timeline-label">Giỗ Tổ</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <iframe id="modalFrame" style="width: 100%; height: 80vh; border: none;"></iframe>
+  </div>
+</div>
+
+<script>
+  // Create particles
+  function createParticles() {
+    const container = document.getElementById('particles');
+    const count = 60;
+    
+    for (let i = 0; i < count; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+      particle.style.animationDelay = Math.random() * 8 + 's';
+      const size = Math.random() * 4 + 2;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      container.appendChild(particle);
+    }
+  }
+
+  // Create sparkles
+  function createSparkles() {
+    const container = document.getElementById('sparkles');
+    const positions = [
+      { top: '8%', left: '12%', delay: 0 },
+      { top: '15%', left: '85%', delay: 0.5 },
+      { top: '25%', left: '18%', delay: 1 },
+      { top: '32%', left: '78%', delay: 1.5 },
+      { top: '45%', left: '8%', delay: 2 },
+      { top: '52%', left: '92%', delay: 2.5 },
+      { top: '65%', left: '15%', delay: 0.8 },
+      { top: '72%', left: '88%', delay: 1.3 },
+      { top: '82%', left: '10%', delay: 1.8 },
+      { top: '88%', left: '82%', delay: 2.2 }
+    ];
+    
+    positions.forEach(pos => {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.textContent = '✨';
+      sparkle.style.top = pos.top;
+      sparkle.style.left = pos.left;
+      sparkle.style.animationDelay = pos.delay + 's';
+      container.appendChild(sparkle);
+    });
+  }
+
+  createParticles();
+  createSparkles();
+
+  // Book hover sparkles
+  document.querySelectorAll('.book').forEach(book => {
+    book.addEventListener('mouseenter', (e) => {
+      createHoverSparkles(e.target);
+    });
+  });
+
+  function createHoverSparkles(element) {
+    const rect = element.getBoundingClientRect();
+    const sparkles = ['✨', '⭐', '💫', '🌟'];
+    
+    for (let i = 0; i < 6; i++) {
+      setTimeout(() => {
+        const sparkle = document.createElement('div');
+        sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+        sparkle.style.position = 'fixed';
+        sparkle.style.left = rect.left + rect.width / 2 + (Math.random() - 0.5) * 70 + 'px';
+        sparkle.style.top = rect.top + rect.height / 2 + (Math.random() - 0.5) * 70 + 'px';
+        sparkle.style.fontSize = '22px';
+        sparkle.style.pointerEvents = 'none';
+        sparkle.style.zIndex = '1000';
+        sparkle.style.animation = 'sparkleRise 1.5s ease-out forwards';
+        
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 1500);
+      }, i * 80);
+    }
+  }
+
+  // Book click handlers
+  const books = document.querySelectorAll('.book');
+  books.forEach(book => {
+    book.addEventListener('click', function() {
+      const bookId = this.dataset.book;
+      openBook(bookId);
+    });
+  });
+
+  function openBook(bookId) {
+    const modal = document.getElementById('modal');
+    const frame = document.getElementById('modalFrame');
+    
+    const pages = {
+      '2010': '2010.html',
+      '1911': '1911.html',
+      '2011': '2011.html',
+      'giaidieu': 'giaidieu.html',
+      'dalat': 'dalat.html',
+      'gioto': 'banhchung.html'
+    };
+    
+    frame.src = pages[bookId] || '';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeModal();
+    }
+  });
+
+  function scrollToBook(index) {
+    const books = document.querySelectorAll('.book');
+    if (books[index]) {
+      books[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => {
+        books[index].click();
+      }, 800);
+    }
+  }
+
+  // Parallax effect
+  window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    const glow = document.querySelector('.glow');
+    if (glow) {
+      glow.style.transform = `translateX(-50%) translateY(${scrolled * 0.2}px)`;
+    }
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
 </script>
 
 </body>
