@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-html, body { width:100%; height:100%; overflow-x:hidden; overflow-y: auto; }
+html, body { width:100%; height:100%; overflow:hidden; }
 
 /* ─── BACKGROUND: warm sandy parchment like in photo ─── */
 body {
@@ -19,7 +19,6 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
 }
 
 /* Multi-layer background matching the photo exactly */
@@ -92,12 +91,12 @@ canvas#sparkle {
 }
 .foliage.top-right {
   top: -10px; right: -10px;
-  width: 180px;
+  width: 140px;
   transform: rotate(0deg);
 }
 .foliage.top-left {
   top: -10px; left: -10px;
-  width: 160px;
+  width: 120px;
   transform: scaleX(-1);
 }
 
@@ -112,9 +111,7 @@ canvas#sparkle {
   align-items: center;
   justify-content: center;
   gap: 0;
-  padding-top: 40px;
-  padding-bottom: 60px;
-  overflow-y: auto;
+  padding: 20px;
 }
 
 /* ─── SIDE WOOD TAGS - ENHANCED ─── */
@@ -124,7 +121,7 @@ canvas#sparkle {
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   z-index: 20;
 }
 .side-tags.left  { left: 0; }
@@ -132,8 +129,8 @@ canvas#sparkle {
 
 .wood-tag {
   position: relative;
-  width: 80px;
-  padding: 14px 10px 12px;
+  width: 65px;
+  padding: 10px 8px 10px;
   background: linear-gradient(160deg, #b89050 0%, #9a6c30 40%, #7a5020 80%, #604018 100%);
   border-radius: 0 5px 5px 0;
   cursor: pointer;
@@ -160,11 +157,11 @@ canvas#sparkle {
 /* NEW: Hanging rope effect */
 .wood-tag-rope {
   position: absolute;
-  top: -15px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
-  height: 15px;
+  height: 12px;
   background: linear-gradient(180deg, rgba(100,70,40,0.6), rgba(100,70,40,0.3));
   box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
@@ -173,9 +170,9 @@ canvas#sparkle {
 .wood-tag::after {
   content: "";
   position: absolute;
-  top: 6px; left: 50%;
+  top: 5px; left: 50%;
   transform: translateX(-50%);
-  width: 7px; height: 7px;
+  width: 6px; height: 6px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #d0a060, #5a3010);
   box-shadow: 0 1px 3px rgba(0,0,0,0.6);
@@ -184,22 +181,22 @@ canvas#sparkle {
 .wood-tag-text {
   display: block;
   font-family: 'Playfair Display', serif;
-  font-size: 14.5px;
+  font-size: 12px;
   font-weight: 600;
   color: rgba(255,238,200,0.92);
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.2;
   letter-spacing: 0.5px;
   text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-  padding-top: 10px;
+  padding-top: 8px;
   position: relative; z-index: 1;
 }
 
 .wood-tag-dot {
   display: block;
-  width: 11px; height: 11px;
+  width: 9px; height: 9px;
   border-radius: 50%;
-  margin: 6px auto 0;
+  margin: 5px auto 0;
   box-shadow: 0 0 6px currentColor;
   position: relative; z-index: 1;
 }
@@ -210,11 +207,11 @@ canvas#sparkle {
   box-shadow: 5px 4px 20px rgba(0,0,0,0.55), inset 1px 0 2px rgba(255,255,255,0.22), 0 0 12px rgba(220,170,80,0.35);
 }
 
-/* ─── HEADER - ENHANCED ─── */
+/* ─── HEADER - COMPACT ─── */
 .header {
   text-align: center;
   padding: 0 20px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   animation: fadeDown 1s ease 0.1s both;
 }
 
@@ -227,17 +224,17 @@ canvas#sparkle {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 .h-top-line .rule {
-  width: 65px; height: 1px;
+  width: 50px; height: 1px;
   background: linear-gradient(90deg, transparent, rgba(80,50,20,0.5));
 }
 .h-top-line .rule.r { background: linear-gradient(90deg, rgba(80,50,20,0.5), transparent); }
 .h-top-line span {
   font-family: 'Lora', serif;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 2px;
   color: rgba(60,35,12,0.8);
@@ -245,7 +242,7 @@ canvas#sparkle {
 
 .h-title {
   font-family: 'Dancing Script', cursive;
-  font-size: clamp(58px, 9.5vw, 95px);
+  font-size: clamp(42px, 7vw, 68px);
   font-weight: 700;
   color: #2c1a08;
   line-height: 0.95;
@@ -259,19 +256,19 @@ canvas#sparkle {
 .h-divider {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
-  margin: 12px 0;
+  margin: 8px 0;
 }
 .h-divider .d-rule {
-  width: 60px; height: 1px;
+  width: 45px; height: 1px;
   background: rgba(100,65,25,0.45);
 }
 .h-divider span {
   font-family: 'Playfair Display', serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   color: rgba(80,50,18,0.75);
   text-transform: uppercase;
 }
@@ -280,17 +277,17 @@ canvas#sparkle {
 .h-quote {
   font-family: 'Lora', serif;
   font-style: italic;
-  font-size: clamp(15px, 2vw, 18px);
+  font-size: clamp(13px, 1.8vw, 15px);
   font-weight: 500;
   color: rgba(45,25,8,0.85);
-  line-height: 1.7;
-  margin-top: 10px;
-  padding: 12px 24px;
+  line-height: 1.5;
+  margin-top: 8px;
+  padding: 8px 18px;
   background: rgba(255,250,240,0.15);
   backdrop-filter: blur(8px);
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  max-width: 650px;
+  max-width: 550px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -299,7 +296,7 @@ canvas#sparkle {
 .shelf-container {
   position: relative;
   animation: fadeUp 1s ease 0.35s both;
-  width: min(850px, 84vw);
+  width: min(700px, 75vw);
 }
 
 @keyframes fadeUp {
@@ -312,8 +309,8 @@ canvas#sparkle {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 4px;
-  padding: 0 8px;
+  gap: 3px;
+  padding: 0 6px;
   position: relative;
 }
 
@@ -322,7 +319,7 @@ canvas#sparkle {
   position: relative;
   cursor: pointer;
   flex: 1;
-  max-width: 120px;
+  max-width: 100px;
   transform-origin: bottom center;
   transition: transform 0.32s cubic-bezier(.34,1.5,.64,1);
   animation: bookRise 0.8s ease both;
@@ -365,7 +362,7 @@ canvas#sparkle {
   position: relative;
   width: 100%;
   /* heights differ per book for realistic look */
-  height: var(--h, 210px);
+  height: var(--h, 170px);
   background: var(--col);
   border-radius: 2px 5px 5px 2px;
   overflow: hidden;
@@ -432,25 +429,25 @@ canvas#sparkle {
   flex-direction:column;
   align-items:center;
   justify-content:space-between;
-  padding: 20px 8px 16px;
+  padding: 14px 6px 12px;
   z-index:4;
 }
 
 /* Date text at top of spine */
 .spine-date {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(11px, 1.2vw, 14px);
+  font-size: clamp(10px, 1.1vw, 12px);
   font-weight: 600;
   color: rgba(255,240,200,0.92);
-  letter-spacing: 1.2px;
+  letter-spacing: 1px;
   text-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 0 12px rgba(0,0,0,0.3);
   text-align: center;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 /* Center icon / embossed symbol - ENHANCED */
 .spine-icon {
-  font-size: clamp(26px, 3.2vw, 34px);
+  font-size: clamp(20px, 2.8vw, 28px);
   text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
   flex: 1;
@@ -477,13 +474,13 @@ canvas#sparkle {
 /* Bottom embossed stamp text */
 .spine-stamp {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(10px, 1.1vw, 13px);
+  font-size: clamp(9px, 1vw, 11px);
   font-weight: 600;
   color: rgba(255,235,185,0.85);
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-shadow: 0 1px 5px rgba(0,0,0,0.6);
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 /* Horizontal decorative lines on spine */
@@ -494,8 +491,8 @@ canvas#sparkle {
   background: linear-gradient(90deg, rgba(255,220,150,0.35), rgba(255,220,150,0.1));
   z-index: 3;
 }
-.spine-line-top { top: 52px; }
-.spine-line-bot { bottom: 52px; }
+.spine-line-top { top: 42px; }
+.spine-line-bot { bottom: 42px; }
 
 /* Glow ring on hover - ENHANCED */
 .book-glow {
@@ -511,8 +508,8 @@ canvas#sparkle {
 /* Drop shadow under book - ENHANCED */
 .book-shadow {
   position:absolute;
-  bottom:-6px; left:5%; right:5%;
-  height:8px;
+  bottom:-5px; left:5%; right:5%;
+  height:6px;
   background: radial-gradient(ellipse, rgba(0,0,0,0.38) 0%, transparent 70%);
   border-radius:50%;
   pointer-events:none;
@@ -521,7 +518,7 @@ canvas#sparkle {
 .book:hover .book-shadow { 
   transform: scaleX(1.3); 
   opacity:0.6;
-  bottom: -10px;
+  bottom: -8px;
 }
 
 /* ─── WOOD SHELF - ENHANCED 3D EFFECT ─── */
@@ -531,7 +528,7 @@ canvas#sparkle {
 }
 
 .shelf-top {
-  height: 22px;
+  height: 18px;
   background: linear-gradient(180deg,
     #d4a060 0%,
     #b87c3a 20%,
@@ -571,7 +568,7 @@ canvas#sparkle {
 }
 
 .shelf-face {
-  height: 14px;
+  height: 12px;
   background: linear-gradient(180deg, #5a3010 0%, #3a1c08 60%, #2a1006 100%);
   border-radius: 0 0 4px 4px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.55);
@@ -594,8 +591,8 @@ canvas#sparkle {
 /* Shelf cast shadow on wall behind - ENHANCED */
 .shelf-wall-shadow {
   position: absolute;
-  bottom: -20px; left: -5%; right: -5%;
-  height: 28px;
+  bottom: -16px; left: -5%; right: -5%;
+  height: 22px;
   background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,0,0,0.35), transparent);
   border-radius: 0 0 50% 50%;
   pointer-events: none;
@@ -603,7 +600,7 @@ canvas#sparkle {
 
 /* ─── TIMELINE - ENHANCED WITH TOOLTIPS ─── */
 .timeline {
-  margin-top: 40px;
+  margin-top: 20px;
   text-align: center;
   animation: fadeUp 1s ease 0.7s both;
   position: relative;
@@ -613,17 +610,17 @@ canvas#sparkle {
 .tl-title {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
   font-family: 'Lora', serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: rgba(55,30,8,0.75);
-  letter-spacing: 3px;
-  margin-bottom: 14px;
+  letter-spacing: 2.5px;
+  margin-bottom: 12px;
 }
 .tl-title::before, .tl-title::after {
-  content:""; width:65px; height:1px;
+  content:""; width:50px; height:1px;
   background: rgba(55,30,8,0.3);
 }
 
@@ -632,7 +629,7 @@ canvas#sparkle {
   align-items: flex-start;
   justify-content: center;
   gap: 0;
-  width: min(820px, 88vw);
+  width: min(680px, 80vw);
   margin: 0 auto;
   position: relative;
 }
@@ -641,7 +638,7 @@ canvas#sparkle {
 .tl-row::before {
   content:"";
   position:absolute;
-  top:19px; left:calc(100%/12); right:calc(100%/12);
+  top:16px; left:calc(100%/12); right:calc(100%/12);
   height:1.5px;
   background: linear-gradient(90deg,
     #c8989a, #5a7090 20%, #888550 40%, #c0a055 60%, #587060 80%, #904040
@@ -654,7 +651,7 @@ canvas#sparkle {
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:8px;
+  gap:6px;
   flex:1;
   cursor:pointer;
   position:relative; z-index:1;
@@ -662,10 +659,10 @@ canvas#sparkle {
 
 .tl-lbl {
   font-family: 'Playfair Display', serif;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   color: rgba(55,30,8,0.7);
-  letter-spacing: 0.6px;
+  letter-spacing: 0.5px;
   text-align: center;
   white-space: nowrap;
   transition: color 0.2s;
@@ -673,12 +670,12 @@ canvas#sparkle {
 
 /* ENHANCED TIMELINE DOT */
 .tl-dot {
-  width: 38px; height: 38px;
+  width: 32px; height: 32px;
   border-radius:50%;
   background: var(--c);
   display:flex; align-items:center; justify-content:center;
-  font-size: 18px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 0 0 2.5px rgba(210,180,120,0.7);
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 0 0 2px rgba(210,180,120,0.7);
   transition: transform 0.25s cubic-bezier(.34,1.6,.64,1), box-shadow 0.25s;
 }
 .tl-item:hover .tl-dot {
@@ -695,10 +692,10 @@ canvas#sparkle {
   transform: translateX(-50%) translateY(-8px);
   background: rgba(40,25,10,0.95);
   color: rgba(255,245,220,0.95);
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 5px;
   font-family: 'Lora', serif;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
   white-space: nowrap;
   opacity: 0;
@@ -714,20 +711,20 @@ canvas#sparkle {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  border: 6px solid transparent;
+  border: 5px solid transparent;
   border-top-color: rgba(40,25,10,0.95);
 }
 
 .tl-item:hover .tl-tooltip {
   opacity: 1;
-  transform: translateX(-50%) translateY(-12px);
+  transform: translateX(-50%) translateY(-10px);
 }
 
 /* Bottom sparkle diamond */
 .diamond {
   position: fixed;
-  bottom: 24px; right: 30px;
-  font-size: 24px;
+  bottom: 18px; right: 24px;
+  font-size: 20px;
   color: rgba(255,245,200,0.7);
   text-shadow: 0 0 14px rgba(255,240,180,0.8), 0 0 30px rgba(255,200,80,0.4);
   animation: twinkle 2.5s ease-in-out infinite;
@@ -752,9 +749,10 @@ canvas#sparkle {
 .modal-overlay.open { opacity:1; pointer-events:all; }
 
 .modal-book {
-  width: min(88vw, 660px);
+  width: min(88vw, 600px);
+  max-height: 80vh;
   display:grid;
-  grid-template-columns: 75px 1fr;
+  grid-template-columns: 65px 1fr;
   border-radius: 2px 10px 10px 2px;
   overflow:hidden;
   box-shadow: -10px 0 rgba(0,0,0,0.32), 0 36px 100px rgba(0,0,0,0.7);
@@ -770,7 +768,7 @@ canvas#sparkle {
   background: var(--mc, #c8989a);
   display:flex; flex-direction:column;
   align-items:center; justify-content:center;
-  padding: 20px 8px;
+  padding: 18px 6px;
   position: relative;
   overflow:hidden;
 }
@@ -779,26 +777,26 @@ canvas#sparkle {
   position:absolute; inset:0;
   background: linear-gradient(112deg, rgba(255,255,255,0.22) 0%, transparent 45%, rgba(0,0,0,0.14) 100%);
 }
-.ms-icon  { font-size:38px; z-index:1; margin-bottom:14px; }
+.ms-icon  { font-size:32px; z-index:1; margin-bottom:12px; }
 .ms-label {
-  font-family:'Playfair Display',serif; font-size:14px; font-weight:600;
+  font-family:'Playfair Display',serif; font-size:12px; font-weight:600;
   color:rgba(255,242,210,0.95); writing-mode:vertical-rl;
-  transform:rotate(180deg); letter-spacing:2.5px;
+  transform:rotate(180deg); letter-spacing:2px;
   text-shadow:0 1px 5px rgba(0,0,0,0.6); z-index:1; text-align:center;
 }
 
 .modal-page {
   background: linear-gradient(170deg, #f5ead0 0%, #ede0c0 100%);
-  padding: 38px 36px 30px;
-  position:relative; overflow:hidden;
+  padding: 28px 30px 24px;
+  position:relative; overflow:auto;
 }
 /* Ruled lines */
 .modal-page::before {
   content:"";
   position:absolute; inset:0;
   background: repeating-linear-gradient(180deg,
-    transparent 0, transparent 27px,
-    rgba(150,110,50,0.1) 27px, rgba(150,110,50,0.1) 28px
+    transparent 0, transparent 24px,
+    rgba(150,110,50,0.1) 24px, rgba(150,110,50,0.1) 25px
   );
   pointer-events:none;
 }
@@ -806,90 +804,105 @@ canvas#sparkle {
 .modal-page::after {
   content:"";
   position:absolute;
-  top:0; left:60px; bottom:0; width:1px;
+  top:0; left:50px; bottom:0; width:1px;
   background: rgba(160,60,40,0.18);
 }
 .m-close {
-  position:absolute; top:14px; right:16px;
-  width:28px; height:28px;
+  position:absolute; top:12px; right:14px;
+  width:26px; height:26px;
   border:none; border-radius:50%;
   background: rgba(80,50,20,0.12);
-  cursor:pointer; font-size:14px; color:#5a3810;
+  cursor:pointer; font-size:13px; color:#5a3810;
   display:flex; align-items:center; justify-content:center;
   transition: background 0.2s, transform 0.2s; z-index:5;
 }
 .m-close:hover { background:rgba(80,50,20,0.22); transform:rotate(90deg); }
 .m-num  {
   font-family:'Playfair Display',serif; 
-  font-size: 13px; 
+  font-size: 11px; 
   font-weight: 600;
-  letter-spacing:4px;
+  letter-spacing:3px;
   text-transform:uppercase; 
   color:var(--mc); 
-  margin-bottom:10px; 
+  margin-bottom:8px; 
   position:relative; 
   z-index:1;
 }
 .m-title {
   font-family:'Lora',serif; 
-  font-size:clamp(22px, 3.2vw, 29px);
+  font-size:clamp(18px, 2.8vw, 24px);
   font-weight:600; 
   color:#2c1a08; 
   line-height:1.3;
-  margin-bottom:16px; 
+  margin-bottom:12px; 
   position:relative; 
   z-index:1;
 }
 .m-body  {
   font-family:'Lora',serif; 
   font-style:normal;
-  font-size: 18px; 
-  line-height:1.85; 
+  font-size: 15px; 
+  line-height:1.7; 
   color:#5a3810;
-  margin-bottom:26px; 
+  margin-bottom:20px; 
   position:relative; 
   z-index:1;
 }
 .m-link {
   display:inline-flex; 
   align-items:center; 
-  gap:8px;
+  gap:7px;
   font-family:'Playfair Display',serif; 
-  font-size:13px; 
+  font-size:11px; 
   font-weight: 600;
-  letter-spacing:2px;
+  letter-spacing:1.8px;
   text-transform:uppercase; 
   color:var(--mc);
   text-decoration:none; 
   border-bottom:1.5px solid currentColor;
-  padding-bottom:3px; 
+  padding-bottom:2px; 
   position:relative; 
   z-index:1;
   transition: gap 0.3s, opacity 0.3s; 
   opacity:0.85;
 }
-.m-link:hover { gap:14px; opacity:1; }
+.m-link:hover { gap:12px; opacity:1; }
 .m-fold {
   position:absolute; bottom:0; right:0;
   width:0; height:0;
-  border:32px solid transparent;
-  border-bottom:32px solid rgba(150,115,60,0.2);
-  border-right:32px solid rgba(150,115,60,0.2);
+  border:28px solid transparent;
+  border-bottom:28px solid rgba(150,115,60,0.2);
+  border-right:28px solid rgba(150,115,60,0.2);
 }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width:860px) {
   .side-tags { display:none; }
-  .shelf-container { width: 96vw; }
+  .shelf-container { width: 90vw; }
 }
 @media (max-width:520px) {
-  .book-spine { min-height:150px !important; }
-  .h-title    { font-size:48px; }
-  .h-top-line span { font-size: 13px; }
-  .h-quote { font-size: 14px; padding: 10px 16px; }
-  .modal-book { grid-template-columns:55px 1fr; }
-  .modal-page { padding:28px 20px 24px; }
-  .m-body { font-size: 16px; line-height: 1.75; }
+  .book-spine { min-height:130px !important; }
+  .h-title    { font-size:38px; }
+  .h-top-line span { font-size: 11px; }
+  .h-quote { font-size: 12px; padding: 7px 14px; }
+  .modal-book { grid-template-columns:50px 1fr; }
+  .modal-page { padding:22px 18px 20px; }
+  .m-body { font-size: 14px; line-height: 1.65; }
+  .tl-lbl { font-size: 11px; }
+  .tl-dot { width: 28px; height: 28px; font-size: 14px; }
+  .foliage.top-right { width: 100px; }
+  .foliage.top-left { width: 90px; }
+}
+
+@media (max-height: 700px) {
+  .h-title { font-size: clamp(36px, 6vw, 56px); }
+  .h-quote { font-size: 12px; padding: 6px 14px; margin-top: 6px; }
+  .header { margin-bottom: 10px; }
+  .shelf-container { width: min(600px, 70vw); }
+  .book-spine { height: calc(var(--h, 170px) * 0.85) !important; }
+  .timeline { margin-top: 15px; }
+  .tl-title { font-size: 12px; margin-bottom: 10px; }
+  .scene { padding: 15px; }
 }
 </style>
 </head>
@@ -981,7 +994,7 @@ canvas#sparkle {
       <!-- BOOK 1: 20/10 – DUSTY PINK -->
       <div class="book" onclick="openModal(0)"
            style="--glow:rgba(200,150,152,0.7)">
-        <div class="book-spine" style="--col:#bf8e90; --h:var(--bh1,205px)">
+        <div class="book-spine" style="--col:#bf8e90; --h:var(--bh1,165px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -999,7 +1012,7 @@ canvas#sparkle {
       <!-- BOOK 2: 19/11 – DEEP NAVY BLUE -->
       <div class="book" onclick="openModal(1)"
            style="--glow:rgba(80,105,140,0.7)">
-        <div class="book-spine" style="--col:#4a607e; --h:var(--bh2,232px)">
+        <div class="book-spine" style="--col:#4a607e; --h:var(--bh2,188px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -1017,7 +1030,7 @@ canvas#sparkle {
       <!-- BOOK 3: 20/11 – BROWN-YELLOW -->
       <div class="book" onclick="openModal(2)"
            style="--glow:rgba(160,130,70,0.7)">
-        <div class="book-spine" style="--col:#a68250; --h:var(--bh3,246px)">
+        <div class="book-spine" style="--col:#a68250; --h:var(--bh3,200px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -1035,7 +1048,7 @@ canvas#sparkle {
       <!-- BOOK 4: Giai Điệu – PASTEL PURPLE -->
       <div class="book" onclick="openModal(3)"
            style="--glow:rgba(160,140,180,0.7)">
-        <div class="book-spine" style="--col:#9d8ab5; --h:var(--bh4,235px)">
+        <div class="book-spine" style="--col:#9d8ab5; --h:var(--bh4,190px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -1053,7 +1066,7 @@ canvas#sparkle {
       <!-- BOOK 5: Đà Lạt – FOREST GREEN -->
       <div class="book" onclick="openModal(4)"
            style="--glow:rgba(80,108,85,0.7)">
-        <div class="book-spine" style="--col:#4e6855; --h:var(--bh5,224px)">
+        <div class="book-spine" style="--col:#4e6855; --h:var(--bh5,182px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -1071,7 +1084,7 @@ canvas#sparkle {
       <!-- BOOK 6: Giỗ Tổ – DEEP BURGUNDY RED -->
       <div class="book" onclick="openModal(5)"
            style="--glow:rgba(140,55,55,0.7)">
-        <div class="book-spine" style="--col:#823838; --h:var(--bh6,216px)">
+        <div class="book-spine" style="--col:#823838; --h:var(--bh6,175px)">
           <div class="spine-top-light"></div>
           <div class="spine-wear"></div>
           <div class="spine-line-top"></div>
@@ -1166,14 +1179,14 @@ canvas#sparkle {
   const resize = () => { W = cv.width = innerWidth; H = cv.height = innerHeight; };
   addEventListener('resize', resize); resize();
 
-  const N = 80; // Increased particle count
+  const N = 80;
   const pts = Array.from({length:N}, () => ({
     x: Math.random()*1000, y: Math.random()*700,
     vx:(Math.random()-.5)*.15, vy:-(Math.random()*.28+.07),
     r: Math.random()*1.8+.3,
     a: Math.random()*.45+.08,
     life:Math.random()*500, max:Math.random()*460+180,
-    bright: Math.random()>.55   /* More bright sparkles */
+    bright: Math.random()>.55
   }));
 
   function frame(){
@@ -1185,7 +1198,6 @@ canvas#sparkle {
       const f = p.life<60 ? p.life/60 : p.life>p.max-60 ? (p.max-p.life)/60 : 1;
       const alpha = p.a*f;
       if(p.bright && f>.5){
-        /* star cross sparkle */
         cx.save();
         cx.globalAlpha = alpha*.8;
         cx.strokeStyle = `rgba(255,240,180,${alpha})`;
@@ -1211,7 +1223,7 @@ canvas#sparkle {
 })();
 
 /* ── BOOK HEIGHTS (varied, matching photo) ── */
-const bh = [205,232,246,235,224,216];
+const bh = [165,188,200,190,182,175];
 document.querySelectorAll('.book-spine').forEach((s,i)=>{
   s.style.height = bh[i]+'px';
 });
