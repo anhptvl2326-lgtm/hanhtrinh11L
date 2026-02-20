@@ -9,32 +9,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* ── DESIGN TOKENS ── */
 :root {
   --forest-dark:#1e4430; --forest-green:#1a3c28; --leaf-green:#204e34;
   --mint-light:#2d5a40; --cream:#f9f7f0; --page-white:#fffef9;
   --ink-dark:#2c3e2c; --gold-accent:#c9a961; --beige:#d4b896;
   --g9:#162c1e; --g8:#1c3826; --g7:#24482e; --g6:#305c3a;
   --g5:#3e7249; --g4:#568c62; --g3:#7aaa88; --g2:#aeceba;
-  /* spacing system */
-  --sp-xs: 8px; --sp-sm: 16px; --sp-md: 28px; --sp-lg: 48px; --sp-xl: 70px;
-  /* radius */
-  --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-pill: 50px;
-  /* transition */
-  --ease-out: cubic-bezier(.4,0,.2,1);
-  --ease-spring: cubic-bezier(.16,.84,.44,1);
 }
-
-/* ── RESET ── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;overflow-x:hidden;}
 
-/* ── CURSOR (desktop only) ── */
-@media (pointer: fine) {
-  body { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="8" fill="%233e7249" opacity="0.3"/></svg>') 10 10, auto; }
-}
+body{cursor:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="8" fill="%233e7249" opacity="0.3"/></svg>') 10 10, auto;}
 
-/* ── BODY & BACKGROUND ── */
 body{
   font-family:'Lora',serif;
   background:
@@ -47,8 +33,6 @@ body{
   padding:40px 20px;
   position:relative;overflow-x:hidden;
 }
-
-/* paper texture */
 body::before{
   content:'';position:fixed;inset:0;
   background-image:
@@ -60,8 +44,6 @@ body::before{
   animation:paperGrain 12s ease-in-out infinite;
 }
 @keyframes paperGrain{0%,100%{opacity:.85;}50%{opacity:.65;}}
-
-/* floating particles */
 body::after{
   content:'';position:fixed;inset:0;
   background-image:
@@ -79,104 +61,92 @@ body::after{
 @keyframes particlesDrift{from{transform:translateY(0) translateX(0);}to{transform:translateY(-90px) translateX(50px);}}
 @keyframes particlesTwinkle{0%,100%{opacity:.5;}50%{opacity:.7;}}
 
-/* ── CURSOR TRAIL (desktop only) ── */
+/* ── CURSOR TRAIL – nhạy hơn, mượt hơn ── */
 .cursor-trail {
   position: fixed;
-  width: 8px;height: 8px;border-radius: 50%;
-  background: radial-gradient(circle, rgba(62,114,73,0.6), rgba(122,170,136,0.3));
-  pointer-events: none;z-index: 9999;
-  animation: trailFade 0.8s ease-out forwards;
-  box-shadow: 0 0 10px rgba(62,114,73,0.4);
+  width: 7px; height: 7px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(62,114,73,0.65), rgba(122,170,136,0.25));
+  pointer-events: none; z-index: 9999;
+  animation: trailFade 0.55s ease-out forwards;
+  box-shadow: 0 0 8px rgba(62,114,73,0.4);
+  will-change: transform, opacity;
 }
-@keyframes trailFade { to { opacity: 0; transform: scale(0.3); } }
+@keyframes trailFade { to { opacity: 0; transform: scale(0.2); } }
 
-/* ── PROGRESS BAR ── */
 .progress-bar-container {
-  position: fixed; top: 0; left: 0; right: 0; height: 4px;
-  background: rgba(30,68,48,.1); z-index: 10000; opacity: 0; transition: opacity .3s;
+  position: fixed; top: 0; left: 0; right: 0; height: 3px;
+  background: rgba(30,68,48,.1); z-index: 10000; opacity: 0;
+  transition: opacity .15s;
 }
 .progress-bar-container.active { opacity: 1; }
 .progress-bar {
   height: 100%;
   background: linear-gradient(90deg, #2d5a40, #3e7249, #568c62);
-  width: 0%; transition: width .4s var(--ease-out);
-  box-shadow: 0 0 10px rgba(62,114,73,.6);
+  width: 0%; transition: width .18s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 0 8px rgba(62,114,73,.5);
 }
 
-/* ── BREADCRUMB ── */
 .breadcrumb {
   position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-  background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
-  padding: 7px 22px; border-radius: var(--r-pill);
+  background: rgba(255,255,255,.9); backdrop-filter: blur(10px);
+  padding: 7px 22px; border-radius: 30px;
   border: 2px solid rgba(62,114,73,.25);
   font-family: 'Playfair Display', serif; font-size: 0.8rem;
-  color: var(--forest-dark); z-index: 9999; opacity: 0; pointer-events: none;
-  transition: all .35s var(--ease-out);
-  box-shadow: 0 4px 15px rgba(30,68,48,.15);
-  white-space: nowrap; /* FIX: prevent wrap on small screens */
+  color: var(--forest-dark); z-index: 9998; opacity: 0; pointer-events: none;
+  transition: all .2s; box-shadow: 0 4px 15px rgba(30,68,48,.15);
+  white-space: nowrap; max-width: calc(100vw - 180px);
+  overflow: hidden; text-overflow: ellipsis;
 }
 .breadcrumb.visible { opacity: 1; pointer-events: auto; }
 
-/* ── HOME BUTTON ── */
 .home-btn {
   position: fixed; top: 20px; left: 20px;
   display: flex; align-items: center; gap: 6px;
   padding: 8px 16px;
-  background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
-  border: 2px solid rgba(62,114,73,.3); border-radius: var(--r-pill);
+  background: rgba(255,255,255,.92); backdrop-filter: blur(10px);
+  border: 2px solid rgba(62,114,73,.3); border-radius: 30px;
   font-family: 'Playfair Display', serif; font-size: 0.82rem;
   color: var(--forest-dark); cursor: pointer; z-index: 9999;
   text-decoration: none;
   box-shadow: 0 4px 15px rgba(30,68,48,.15);
-  transition: all .3s var(--ease-out);
+  transition: all .18s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
 }
 .home-btn:hover {
   background: rgba(62,114,73,.15); border-color: rgba(62,114,73,.6);
   transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30,68,48,.2);
 }
-.home-btn:focus-visible { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
 
-/* ── LOADING SPINNER ── */
-.loading-spinner{
-  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:80px;height:80px;border:5px solid rgba(62,114,73,.2);border-top-color:#2d5a40;
-  border-radius:50%;animation:spinnerRotate 1.2s linear infinite;z-index:10000;display:none;
+.sr-announce {
+  position: absolute; left: -9999px; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0);
 }
-.loading-spinner.active{display:block;}
-.loading-spinner::after{
-  content:'🌿';position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);font-size:1.8rem;
-}
-@keyframes spinnerRotate{to{transform:translate(-50%,-50%) rotate(360deg);}}
 
-/* ── BOOK CONTAINER ── */
 .book-container{
   position:relative;max-width:1100px;width:100%;
   perspective:2000px;z-index:10;
-  animation:containerFadeIn 1.5s var(--ease-out);
+  animation:containerFadeIn 1.2s cubic-bezier(.4,0,.2,1);
 }
 @keyframes containerFadeIn{
-  from{opacity:0;transform:translateY(60px) scale(.95);}
+  from{opacity:0;transform:translateY(50px) scale(.96);}
   to{opacity:1;transform:translateY(0) scale(1);}
 }
 
-/* ══════════════════════════════
-   BOOK COVER
-══════════════════════════════ */
+/* ── BOOK COVER ── */
 .book-cover{
   position:relative;
   background:
     repeating-linear-gradient(45deg,rgba(30,68,48,.08),rgba(30,68,48,.08) 3px,transparent 3px,transparent 6px),
     linear-gradient(135deg,#1e4430 0%,#1a3c28 30%,#204e34 60%,#172e1e 85%,#112218 100%);
-  border-radius:var(--r-sm);
+  border-radius:8px;
   padding:60px 55px;
   box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 150px rgba(0,0,0,.4),inset 2px 2px 8px rgba(255,255,255,.1),inset -2px -2px 8px rgba(0,0,0,.4);
   border:8px ridge rgba(30,68,48,.5);
   margin-bottom:40px;
   transform-style:preserve-3d;
-  animation:bookEntrance 1.8s var(--ease-out);
+  animation:bookEntrance 1.6s cubic-bezier(.4,0,.2,1);
   overflow:visible;
-  transition: box-shadow .3s ease;
+  transition: box-shadow .2s ease;
 }
 .book-cover:hover{
   box-shadow:0 35px 90px rgba(0,0,0,.65),inset 0 0 160px rgba(0,0,0,.45),inset 2px 2px 10px rgba(255,255,255,.15),inset -2px -2px 10px rgba(0,0,0,.45);
@@ -186,15 +156,11 @@ body::after{
   60% {opacity:1;transform:rotateX(10deg)  translateY(20px)   scale(1.05);}
   100%{opacity:1;transform:rotateX(0)      translateY(0)      scale(1);}
 }
-
-/* spine */
 .book-cover::before{
   content:'';position:absolute;left:-15px;top:5%;bottom:5%;width:25px;
   background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(30,68,48,.4) 30%,transparent);
   border-radius:4px 0 0 4px;box-shadow:inset 2px 0 5px rgba(0,0,0,.5);
 }
-
-/* gold inner border */
 .book-cover::after{
   content:'';position:absolute;inset:22px;
   border:3px double rgba(201,169,97,.6);border-radius:4px;opacity:.8;
@@ -206,8 +172,7 @@ body::after{
   50%    {opacity:1; box-shadow:inset 0 0 60px rgba(201,169,97,.3),0 0 40px rgba(201,169,97,.5);}
 }
 
-/* fireflies */
-.ff-wrap{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden;border-radius:var(--r-sm);}
+.ff-wrap{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
 .ff{position:absolute;border-radius:50%;pointer-events:none;
   animation:ffRise var(--dur) var(--del) ease-in-out infinite;opacity:0;}
 @keyframes ffRise{
@@ -216,7 +181,6 @@ body::after{
   100%{opacity:0;transform:translateY(-120px) translateX(var(--dx)) scale(.3);}
 }
 
-/* bookmark */
 .bookmark{
   position:absolute;top:0;right:12%;width:52px;height:160px;
   background:linear-gradient(135deg,#2d5a40,#3e7249);
@@ -228,13 +192,12 @@ body::after{
 @keyframes bookmarkSway{0%,100%{transform:rotate(0);}50%{transform:rotate(4deg);}}
 @keyframes leafSpin{from{transform:translateX(-50%) rotate(0);}to{transform:translateX(-50%) rotate(360deg);}}
 
-/* ── COVER CONTENT ── */
 .cover-content{position:relative;z-index:2;text-align:center;color:var(--cream);}
 
 .cover-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(62,114,73,.14);border:1px solid rgba(62,114,73,.34);
-  color:var(--g2);padding:8px 26px;border-radius:var(--r-pill);
+  color:var(--g2);padding:8px 26px;border-radius:50px;
   font-size:.82rem;font-family:'Playfair Display',serif;letter-spacing:.18em;
   margin-bottom:22px;animation:fU 1.2s ease .12s both, badgeShimmer 3s ease-in-out infinite;
 }
@@ -279,71 +242,50 @@ body::after{
   animation:fU 1.2s ease .82s both;
 }
 
-/* ── OPEN BOOK BUTTON ── */
+/* ── OPEN BOOK BUTTON – nhạy hơn ── */
 .open-book-btn{
   display:inline-block;padding:15px 45px;
-  background:linear-gradient(135deg,#2d5a40,#3e7249);
-  color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;border-radius:var(--r-pill);
+  background: linear-gradient(135deg,#2d5a40,#3e7249);
+  color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;border-radius:50px;
   box-shadow:0 12px 35px rgba(30,68,48,.6),inset 0 2px 0 rgba(255,255,255,.5),0 0 40px rgba(62,114,73,.4);
-  transition:all .35s var(--ease-out);
-  animation:fU 1.2s ease 1s both,btnPulse 3s ease-in-out infinite;
+  /* ★ CHANGED: 0.35s → 0.2s, cảm giác nhạy ngay lập tức */
+  transition: transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s ease, border-color .18s ease, letter-spacing .18s ease;
+  animation:fU 1.2s ease 1s both, btnPulse 3s ease-in-out infinite;
   font-family:'Playfair Display',serif;letter-spacing:.06em;
   border:3px solid rgba(201,169,97,.5);
   position:relative;overflow:hidden;cursor:pointer;
-  transform-style:preserve-3d;
+  will-change: transform;
 }
 .open-book-btn:hover{
-  transform:translateY(-6px) scale(1.08);
+  transform:translateY(-7px) scale(1.06);
   border-color:rgba(201,169,97,1);
-  box-shadow:
-    0 20px 60px rgba(30,68,48,.8),
-    0 0 0 4px rgba(201,169,97,.55),
-    0 0 40px rgba(201,169,97,.7),
-    0 0 80px rgba(201,169,97,.35),
-    0 0 60px rgba(62,114,73,.5);
+  box-shadow:0 20px 55px rgba(30,68,48,.75),0 0 0 4px rgba(201,169,97,.55),0 0 36px rgba(201,169,97,.65),0 0 60px rgba(62,114,73,.45);
   letter-spacing:.08em;
 }
-.open-book-btn:focus-visible { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
+.open-book-btn:active { transform: translateY(-2px) scale(1.02); }
+.open-book-btn:focus { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
+.open-book-btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;
+  background:radial-gradient(circle,rgba(255,255,255,.55),transparent 70%);
+  border-radius:50%;transform:translate(-50%,-50%);transition:width .5s,height .5s;}
+.open-book-btn:hover::before{width:380px;height:380px;}
 @keyframes btnPulse{
   0%,100%{box-shadow:0 12px 35px rgba(30,68,48,.6),inset 0 2px 0 rgba(255,255,255,.5),0 0 40px rgba(62,114,73,.4);}
   50%    {box-shadow:0 15px 45px rgba(30,68,48,.8),inset 0 2px 0 rgba(255,255,255,.7),0 0 60px rgba(62,114,73,.7);}
 }
 @keyframes fU{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-
-/* ripple */
-.open-book-btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;
-  background:radial-gradient(circle,rgba(255,255,255,.6),transparent 70%);
-  border-radius:50%;transform:translate(-50%,-50%);transition:width .7s,height .7s;}
-.open-book-btn:hover::before{width:400px;height:400px;}
-
-/* border shine */
-.open-book-btn::after{
-  content:'';position:absolute;inset:-3px;
-  background:linear-gradient(45deg,transparent 20%,rgba(201,169,97,.7) 50%,transparent 80%);
-  border-radius:var(--r-pill);opacity:0;
-  animation:borderShine 3s linear infinite;pointer-events:none;
-}
-.open-book-btn:hover::after{ opacity:1; }
-@keyframes borderShine{
-  0%  {transform:translateX(-150%) rotate(45deg);opacity:0;}
-  40% {opacity:1;}60%{opacity:1;}
-  100%{transform:translateX(150%) rotate(45deg);opacity:0;}
-}
 .open-book-btn span{position:relative;z-index:1;}
 
-/* ══════════════════════════════
-   BOOK PAGES
-══════════════════════════════ */
+/* ── BOOK PAGES ── */
 .book-pages{
   position:relative;
   background:linear-gradient(135deg,#f9f7f0 0%,#f5f2ea 50%,#ede8dc 100%);
   border-radius:12px;
   box-shadow:0 25px 70px rgba(30,68,48,.35),inset 0 0 120px rgba(249,247,240,.6);
   overflow:hidden;
-  animation:bookPagesOpen 1s var(--ease-out);
+  animation:bookPagesOpen .7s cubic-bezier(.4,0,.2,1);
 }
 @keyframes bookPagesOpen{
-  from{opacity:0;transform:perspective(1000px) rotateY(-15deg) scale(.95);}
+  from{opacity:0;transform:perspective(1000px) rotateY(-8deg) scale(.97);}
   to{opacity:1;transform:perspective(1000px) rotateY(0) scale(1);}
 }
 
@@ -352,21 +294,20 @@ body::after{
   background:
     repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(201,169,97,.06) 27px,rgba(201,169,97,.06) 28px),
     linear-gradient(135deg,#f9f7f0 0%,#f5ebe0 50%,#ede8dc 100%);
-  padding:var(--sp-xl) 90px 100px;
+  padding:70px 90px 100px;
   min-height:600px;
   position:relative;
   border-left:60px solid rgba(30,68,48,.08);
-  animation:pageTurn 1s var(--ease-out);
+  /* ★ CHANGED: snappier page turn */
+  animation:pageTurn .55s cubic-bezier(.22,1,.36,1);
   transform-origin:left center;
   box-shadow:inset 0 0 100px rgba(30,68,48,.05);
 }
 @keyframes pageTurn{
-  0%  {transform:perspective(2000px) rotateY(-100deg);opacity:0;filter:blur(10px);}
-  60% {transform:perspective(2000px) rotateY(10deg);  opacity:1;filter:blur(0);}
-  100%{transform:perspective(2000px) rotateY(0);      opacity:1;filter:blur(0);}
+  0%  {opacity:0;transform:translateX(-14px) translateY(10px);filter:blur(1px);}
+  60% {filter:blur(0);}
+  100%{opacity:1;transform:translateX(0) translateY(0);filter:blur(0);}
 }
-
-/* aging overlay */
 .page::before{
   content:'';position:absolute;inset:0;
   background-image:
@@ -377,8 +318,6 @@ body::after{
   pointer-events:none;animation:agingSpots 15s ease-in-out infinite;
 }
 @keyframes agingSpots{0%,100%{opacity:.6;}50%{opacity:.8;}}
-
-/* binding holes */
 .page::after{
   content:'';position:absolute;left:24px;top:50%;transform:translateY(-50%);
   width:10px;height:85%;
@@ -386,15 +325,16 @@ body::after{
     radial-gradient(circle,rgba(30,68,48,.25) 40%,rgba(0,0,0,.08) 40%,transparent 45%),
     radial-gradient(circle,rgba(30,68,48,.25) 40%,rgba(0,0,0,.08) 40%,transparent 45%),
     radial-gradient(circle,rgba(30,68,48,.25) 40%,rgba(0,0,0,.08) 40%,transparent 45%);
-  background-size:10px 10px;background-position:0 0,0 50%,0 100%;background-repeat:no-repeat;
+  background-size:10px 10px;
+  background-position:0 0,0 50%,0 100%;
+  background-repeat:no-repeat;
   filter:drop-shadow(1px 1px 2px rgba(0,0,0,.2));
 }
 
-/* leaf layer */
 .leaf-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
 .lf{position:absolute;font-size:var(--lsz);pointer-events:none;
   animation:lfDrift var(--ldur) var(--ldel) ease-in-out infinite;opacity:0;
-  will-change:transform,opacity;}
+  will-change: transform, opacity;}
 @keyframes lfDrift{
   0%  {opacity:0;transform:translateY(20px) translateX(0) rotate(0deg) scale(1);}
   18% {opacity:.52;}82%{opacity:.25;}
@@ -403,13 +343,12 @@ body::after{
 
 .page-content{position:relative;z-index:1;}
 
-/* page number */
 .page-number{
   position:absolute;bottom:28px;right:45px;
   font-family:'Dancing Script',cursive;font-size:1.35rem;
   color:var(--g5);
-  background:rgba(249,247,240,.75);backdrop-filter:blur(4px);
-  padding:6px 16px;border-radius:var(--r-pill);
+  background:rgba(249,247,240,.6);
+  padding:6px 16px;border-radius:50px;
   border:2px solid rgba(62,114,73,.25);
   box-shadow:0 4px 12px rgba(30,68,48,.15);
   animation:pageNumPulse 3s ease-in-out infinite;
@@ -424,10 +363,11 @@ body::after{
 .page-selector {
   display: flex; align-items: center; justify-content: center;
   gap: 8px; padding: 12px 16px;
-  background: rgba(249,247,240,.9); backdrop-filter: blur(10px);
+  background: rgba(249,247,240,.85); backdrop-filter: blur(8px);
   border-bottom: 2px solid rgba(62,114,73,.12);
   flex-wrap: wrap; position: sticky; top: 0; z-index: 50;
 }
+/* ★ CHANGED: transition 0.3s → 0.15s, cảm giác click ngay */
 .page-select-btn {
   display: flex; flex-direction: column; align-items: center; gap: 3px;
   padding: 8px 14px;
@@ -435,13 +375,15 @@ body::after{
   border-radius: 10px;
   font-family: 'Playfair Display', serif; font-size: 0.78rem;
   color: var(--forest-dark); cursor: pointer;
-  transition: all .3s var(--ease-out);
+  transition: all .15s cubic-bezier(.4,0,.2,1);
   min-width: 88px; text-align: center; line-height: 1.3;
+  will-change: transform;
 }
 .page-select-btn:hover {
   background: rgba(62,114,73,.12); border-color: rgba(62,114,73,.5);
   transform: translateY(-2px); box-shadow: 0 5px 14px rgba(30,68,48,.12);
 }
+.page-select-btn:active { transform: translateY(0) scale(.97); }
 .page-select-btn.active {
   background: linear-gradient(135deg, #2d5a40, #3e7249);
   color: #fff; border-color: transparent;
@@ -454,8 +396,6 @@ body::after{
   max-width: 82px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .page-select-btn.active .ps-title { opacity: 1; }
-/* focus style for keyboard nav */
-.page-select-btn:focus-visible { outline: 3px solid rgba(201,169,97,.8); outline-offset: 3px; }
 .selector-divider { color: rgba(62,114,73,.3); font-size: 1rem; margin: 0 1px; }
 
 /* ── SECTION TITLE ── */
@@ -464,9 +404,8 @@ body::after{
   font-size:3.4rem; font-weight:700;
   text-align:center; margin-bottom:36px;
   position:relative; display:inline-block; width:100%;
-  animation:writeIn 1.4s var(--ease-out), titleFloat 6s ease-in-out infinite;
+  animation:writeIn 1.2s cubic-bezier(.4,0,.2,1), titleFloat 6s ease-in-out infinite;
   filter:drop-shadow(0 5px 15px rgba(30,68,48,.25));
-  transform-style:preserve-3d;
 }
 .section-title .title-text{
   background:linear-gradient(118deg,var(--g7) 0%,var(--g5) 45%,var(--forest-dark) 100%);
@@ -479,20 +418,20 @@ body::after{
   50%{filter:drop-shadow(0 8px 25px rgba(62,114,73,.5)) brightness(1.15);}
 }
 @keyframes writeIn{
-  from{opacity:0;transform:translateX(-80px) rotateY(-15deg);}
+  from{opacity:0;transform:translateX(-60px) rotateY(-12deg);}
   to{opacity:1;transform:translateX(0) rotateY(0);}
 }
 .section-title::after{
   content:''; position:absolute; bottom:-14px; left:50%; transform:translateX(-50%);
   width:0; height:4px;
   background:linear-gradient(90deg,transparent,#2d5a40 20%,#3e7249 40%,#568c62 60%,#7aaa88 80%,transparent);
-  animation:lineDraw 2.2s var(--ease-out) forwards, lineGlow 3.5s ease-in-out infinite;
+  animation:lineDraw 1.8s cubic-bezier(.4,0,.2,1) forwards, lineGlow 3.5s ease-in-out infinite;
   box-shadow:0 3px 20px rgba(30,68,48,.4); border-radius:3px;
 }
 @keyframes lineDraw{ from{width:0;opacity:0;} to{width:240px;opacity:1;} }
 @keyframes lineGlow{
-  0%,100%{box-shadow:0 3px 20px rgba(30,68,48,.4);filter:brightness(1);}
-  50%{box-shadow:0 5px 35px rgba(62,114,73,.8), 0 0 15px rgba(122,170,136,.6);filter:brightness(1.3);}
+  0%,100%{box-shadow:0 3px 20px rgba(30,68,48,.4);}
+  50%{box-shadow:0 5px 35px rgba(62,114,73,.8), 0 0 15px rgba(122,170,136,.6);}
 }
 
 .section-intro{
@@ -501,7 +440,7 @@ body::after{
   font-family:'Lora',serif;animation:fU 1s ease .5s both;font-weight:400;
 }
 
-/* ── STORY CARDS ── */
+/* ── STORY CARDS – hover mượt, không giật ── */
 .story-grid{display:grid;gap:36px;margin-top:48px;}
 .story-card{
   display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
@@ -509,36 +448,36 @@ body::after{
   background:
     repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(30,68,48,.04) 2px,rgba(30,68,48,.04) 4px),
     linear-gradient(135deg,rgba(249,247,240,.8),rgba(255,254,249,.6));
-  border-radius:var(--r-md);transition:all .6s var(--ease-spring);
+  border-radius:14px;
+  /* ★ CHANGED: 0.6s → 0.22s, will-change để GPU xử lý */
+  transition: transform .22s cubic-bezier(.34,1.2,.64,1), box-shadow .22s ease, border-color .22s ease;
   border:2px solid rgba(30,68,48,.3);position:relative;overflow:hidden;
   box-shadow:0 6px 24px rgba(30,68,48,.1);
-  transform-style:preserve-3d; will-change:transform;
+  will-change: transform;
 }
-/* interactive spotlight */
 .story-card::after{
   content:'';position:absolute;inset:0;
   background:radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(122,170,136,.1), transparent 50%);
-  opacity:0;transition:opacity .4s ease;pointer-events:none;
+  opacity:0;transition:opacity .25s ease;pointer-events:none;
 }
 .story-card:hover::after{opacity:1;}
 .story-card:nth-child(even) .story-image{order:2;}
 .story-card:nth-child(even) .story-text{order:1;}
+/* ★ CHANGED: scale 1.015 → 1.012, translateY -8 → -7 để mượt hơn */
 .story-card:hover{
-  transform:translateY(-10px) rotate(.3deg) scale(1.02);
-  box-shadow:0 20px 60px rgba(30,68,48,.18),0 8px 24px rgba(62,114,73,.12);
+  transform:translateY(-7px) scale(1.012);
+  box-shadow:0 18px 50px rgba(30,68,48,.16),0 6px 20px rgba(62,114,73,.1);
   border-color:rgba(62,114,73,.5);
 }
-
 .story-image{
-  position:relative;border-radius:var(--r-sm);overflow:hidden;aspect-ratio:4/3;
+  position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/3;
   box-shadow:0 6px 24px rgba(30,68,48,.22),inset 0 0 0 7px rgba(250,246,240,.8),inset 0 0 0 9px rgba(30,68,48,.3);
-  border:3px solid var(--beige); transition:all .5s ease;
+  border:3px solid var(--beige);
+  transition: box-shadow .22s ease;
 }
 .story-card:hover .story-image {
   box-shadow:0 10px 36px rgba(30,68,48,.32),inset 0 0 0 7px rgba(250,246,240,.9),inset 0 0 0 9px rgba(62,114,73,.4);
 }
-
-/* stamp decoration */
 .story-image .stamp {
   position: absolute; top: 22px; right: 22px;
   width: 58px; height: 58px;
@@ -547,9 +486,8 @@ body::after{
   display: flex; align-items: center; justify-content: center;
   font-size: 1.8rem; transform: rotate(18deg);
   box-shadow: 0 4px 12px rgba(196,69,54,0.5); z-index: 5;
-  animation: stampBounce 6s ease-in-out infinite; transition: all .4s ease;
-  /* FIX: prevent stamp from blocking image click */
-  pointer-events: none;
+  animation: stampBounce 6s ease-in-out infinite;
+  transition: transform .18s cubic-bezier(.34,1.56,.64,1);
 }
 .story-card:nth-child(2) .stamp {
   background: linear-gradient(142deg, #2d5a40, #3e7249, #305c3a);
@@ -562,42 +500,52 @@ body::after{
   50% { transform: rotate(16deg) scale(1.08); }
 }
 
-/* images */
+/* ★ Image loading shimmer + loaded state */
 .story-image img, .ci img, .pola img {
   width:100%;height:100%;object-fit:cover;
-  transition:all .8s var(--ease-out);
+  /* ★ CHANGED: 0.8s → 0.4s cho image hover */
+  transition: transform .4s cubic-bezier(.4,0,.2,1), filter .4s ease;
   filter:sepia(.05) contrast(1.05) brightness(1);
   cursor:pointer;
-  background: linear-gradient(135deg, #e8dcc8 0%, #d4c4b0 100%);
-  display: block; /* FIX: remove bottom gap */
+  background: linear-gradient(110deg, #e8dcc8 25%, #f0e8d8 50%, #e8dcc8 75%);
+  background-size: 200% 100%;
+  animation: shimmerLoad 1.5s ease-in-out infinite;
 }
-.story-image img.img-loading { filter: blur(20px) sepia(.1); }
-.story-image img.img-loaded { filter:sepia(.05) contrast(1.05) brightness(1); }
+.story-image img.loaded, .ci img.loaded, .pola img.loaded {
+  animation: none; background: none;
+}
+@keyframes shimmerLoad {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
 .story-card:hover .story-image img{
-  transform:scale(1.1) rotate(-1deg);
-  filter:sepia(.12) contrast(1.1) brightness(1.05);
+  transform:scale(1.07) rotate(-.4deg);
+  filter:sepia(.1) contrast(1.08) brightness(1.04);
 }
-
 .story-text{font-size:1.28rem;line-height:1.95;color:var(--ink-dark);font-family:'Lora',serif;font-weight:400;}
-.story-text p{margin-bottom:14px;font-family:'Lora',serif;transition:transform .3s ease;}
-.story-card:hover .story-text p{transform:translateX(4px);}
+.story-text p{margin-bottom:14px;font-family:'Lora',serif;transition:transform .2s ease;}
+.story-card:hover .story-text p{transform:translateX(3px);}
 .story-text p:last-child{margin-bottom:0;}
-.story-text .lead{font-size:1.18rem;font-style:italic;color:var(--ink-dark);margin-bottom:18px;line-height:1.95;font-weight:400;}
+.story-text .lead{font-size:1.18rem;font-style:italic;font-family:'Lora',serif;color:var(--ink-dark);margin-bottom:18px;line-height:1.95;font-weight:400;}
 
-/* ── POLAROID PHOTOS (standalone grid) ── */
+/* ── POLAROID PHOTOS ── */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px;margin:50px 0;}
 .polaroid{
   background:#fff;padding:15px 15px 60px;
   box-shadow:0 10px 30px rgba(30,68,48,.28);
-  transform:rotate(-3deg); transition:all .6s var(--ease-spring);
-  cursor:pointer; animation:photoAppear 1s ease-out; position:relative;
-  transform-style:preserve-3d;
+  transform:rotate(-3deg);
+  /* ★ CHANGED: 0.6s → 0.25s */
+  transition: transform .25s cubic-bezier(.34,1.2,.64,1), box-shadow .25s ease;
+  cursor:pointer; animation:photoAppear .8s ease-out; position:relative;
+  will-change: transform;
 }
 @keyframes photoAppear{from{opacity:0;transform:rotate(-15deg) scale(.7);}to{opacity:1;transform:rotate(-3deg) scale(1);}}
 .polaroid:nth-child(even){transform:rotate(3deg);}
-.polaroid:hover{transform:rotate(0) scale(1.08) translateY(-15px)!important;
-  box-shadow:0 26px 60px rgba(30,68,48,.42),0 0 36px rgba(122,170,136,.18); z-index:10;}
-.polaroid img{width:100%;height:240px;object-fit:cover;display:block;filter:sepia(.05) contrast(1.05);transition:filter .6s;cursor:pointer;}
+.polaroid:hover{
+  transform:rotate(0) scale(1.07) translateY(-14px)!important;
+  box-shadow:0 24px 55px rgba(30,68,48,.4),0 0 30px rgba(122,170,136,.15); z-index:10;
+}
+.polaroid img{width:100%;height:240px;object-fit:cover;display:block;filter:sepia(.05) contrast(1.05);transition:filter .3s;}
 .polaroid:hover img{filter:sepia(.12) contrast(1.1);}
 .polaroid-caption{
   margin-top:15px;text-align:center;font-family:'Dancing Script',cursive;
@@ -614,39 +562,42 @@ body::after{
   position:absolute;top:0;left:0;right:0;bottom:60px;
   background:linear-gradient(to bottom,rgba(30,68,48,.88),rgba(30,68,48,.75));
   opacity:0;display:flex;align-items:center;justify-content:center;padding:18px;
-  transition:opacity .5s ease;pointer-events:none;
+  /* ★ CHANGED: 0.5s → 0.25s */
+  transition:opacity .25s ease;pointer-events:none;
 }
 .polaroid:hover .img-text-overlay{opacity:1;}
 .img-text-content{
   color:#fff;text-align:center;font-family:'Lora',serif;font-size:1rem;
-  line-height:1.65;font-style:italic;transform:translateY(20px);transition:transform .5s ease;
+  line-height:1.65;font-style:italic;transform:translateY(14px);transition:transform .25s ease;
   text-shadow:0 2px 8px rgba(0,0,0,.3);
 }
 .polaroid:hover .img-text-content{transform:translateY(0);}
 
-/* ── JOURNEY TABS ── */
+/* ── JOURNEY TABS – nhạy hơn rõ rệt ── */
 .journey-tabs{display:flex;gap:10px;justify-content:center;margin-bottom:28px;flex-wrap:wrap;}
 .journey-tab{
   padding:12px 32px;background:rgba(255,255,255,.65);color:var(--ink-dark);
-  border:2px solid rgba(62,114,73,.25);border-radius:var(--r-pill);
+  border:2px solid rgba(62,114,73,.25);border-radius:50px;
   font-family:'Playfair Display',serif;font-weight:600;font-size:1rem;
   cursor:pointer;position:relative;overflow:hidden;
   backdrop-filter:blur(10px);
   box-shadow:0 2px 8px rgba(14,30,20,.06);
-  transition:all .4s var(--ease-out);
-  transform-style:preserve-3d;
+  /* ★ CHANGED: 0.4s → 0.16s, cảm giác click tức thì */
+  transition: all .16s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
 }
-.journey-tab:focus-visible { outline: 3px solid rgba(62,114,73,.6); outline-offset: 2px; }
+.journey-tab:focus { outline: 3px solid rgba(62,114,73,.6); outline-offset: 2px; }
 .journey-tab::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(45deg,transparent,rgba(122,170,136,.20),transparent);
-  transform:translateX(-100%);transition:transform .55s;
+  transform:translateX(-100%);transition:transform .3s;
 }
 .journey-tab:hover::after{transform:translateX(100%);}
 .journey-tab:hover{
-  border-color:var(--g5); transform:translateY(-4px) scale(1.04);
-  box-shadow:0 6px 16px rgba(14,30,20,.1);
+  border-color:var(--g5); transform:translateY(-3px) scale(1.03);
+  box-shadow:0 5px 14px rgba(14,30,20,.1);
 }
+.journey-tab:active { transform:translateY(0) scale(.98); transition-duration:.08s; }
 .journey-tab.active{
   background:linear-gradient(130deg,var(--g7),var(--g5));color:#fff;border-color:transparent;
   box-shadow:0 10px 28px rgba(30,68,48,.38),0 0 24px rgba(62,114,73,.2);
@@ -657,25 +608,49 @@ body::after{
   50%    {box-shadow:0 12px 36px rgba(30,68,48,.58),0 0 38px rgba(62,114,73,.38);}
 }
 .day-content{display:none;}
-.day-content.active{display:block;animation:pageFade .8s ease;}
-@keyframes pageFade{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.day-content.active{display:block;animation:pageFade .45s ease;}
+@keyframes pageFade{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 
-/* ── ALBUM (polaroid strip) ── */
+/* ── ALBUM – scroll fade & gradient ── */
 .awrap{position:relative;margin-bottom:28px;}
+.awrap::before, .awrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 34px; width: 48px;
+  z-index: 20; pointer-events: none;
+}
+.awrap::before {
+  left: 44px;
+  background: linear-gradient(to right, rgba(249,247,240,.85), transparent);
+}
+.awrap::after {
+  right: 44px;
+  background: linear-gradient(to left, rgba(249,247,240,.85), transparent);
+}
 .atrack{
   display:flex;gap:22px;overflow-x:auto;
   padding:20px 56px 34px;
   scroll-snap-type:x mandatory;scrollbar-width:thin;
-  scrollbar-color:rgba(62,114,73,.36) transparent;
-  cursor:grab;
-  scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
-  /* FIX: prevent text selection while dragging */
-  user-select: none;
+  scrollbar-color:rgba(62,114,73,.36) transparent;cursor:grab;
+  scroll-behavior:smooth; -webkit-overflow-scrolling: touch;
 }
 .atrack:active{cursor:grabbing;}
 .atrack::-webkit-scrollbar{height:5px;}
 .atrack::-webkit-scrollbar-thumb{background:rgba(62,114,73,.34);border-radius:3px;}
 
+.scroll-hint {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 0.85rem;
+  color: rgba(62,114,73,.55);
+  margin-top: -22px;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+  animation: hintFade 2.5s ease-in-out infinite;
+}
+@keyframes hintFade { 0%,100%{opacity:.4;} 50%{opacity:.85;} }
+
+/* ★ CHANGED: .aarr transition 0.25s → 0.14s */
 .aarr{
   position:absolute;top:50%;transform:translateY(-58%);
   width:44px;height:44px;background:rgba(255,255,255,.95);
@@ -684,24 +659,28 @@ body::after{
   font-size:1.2rem;color:var(--g7);cursor:pointer;
   z-index:30;
   box-shadow:0 4px 14px rgba(14,30,20,.18);
-  backdrop-filter:blur(10px);user-select:none;transition:all .25s;
+  backdrop-filter:blur(10px);user-select:none;
+  transition: all .14s cubic-bezier(.4,0,.2,1);
   pointer-events:all;
-  /* FIX: add tap highlight prevention on mobile */
-  -webkit-tap-highlight-color: transparent;
+  will-change: transform;
 }
-.aarr:focus-visible { outline: 3px solid rgba(62,114,73,.6); outline-offset: 2px; }
+.aarr:focus { outline: 3px solid rgba(62,114,73,.6); outline-offset: 2px; }
 .aarr:hover{
   background:rgba(62,114,73,.18);border-color:rgba(62,114,73,.7);
-  transform:translateY(-58%) scale(1.12);
+  transform:translateY(-58%) scale(1.14);
   box-shadow:0 6px 20px rgba(14,30,20,.25);
 }
+.aarr:active { transform:translateY(-58%) scale(1.02); }
 .aarr.ap{left:4px;}.aarr.an{right:4px;}
 
+/* ★ CHANGED: .pola transition 0.50s → 0.25s */
 .pola{
   flex:0 0 auto;background:#fff;padding:15px 15px 62px;
   box-shadow:0 8px 26px rgba(14,30,20,.13),0 0 0 .5px rgba(0,0,0,.05);
   border-radius:3px;cursor:pointer;position:relative;
-  transition:all .50s var(--ease-spring);scroll-snap-align:start;
+  transition: transform .25s cubic-bezier(.16,.84,.44,1), box-shadow .25s ease;
+  scroll-snap-align:start;
+  will-change: transform;
 }
 .pola::before{content:'';position:absolute;top:-9px;left:50%;
   transform:translateX(-50%) rotate(-1.5deg);
@@ -711,27 +690,28 @@ body::after{
 .pola:nth-child(2){transform:rotate( 1.9deg);}
 .pola:nth-child(3){transform:rotate(-1.6deg);}
 .pola:nth-child(4){transform:rotate( 2.4deg);}
-.pola:hover{transform:rotate(0) scale(1.07) translateY(-12px)!important;
-  box-shadow:0 20px 50px rgba(14,30,20,.24),0 0 0 3px rgba(62,114,73,.28);z-index:15;}
+.pola:hover{transform:rotate(0) scale(1.06) translateY(-10px)!important;
+  box-shadow:0 18px 45px rgba(14,30,20,.22),0 0 0 3px rgba(62,114,73,.28);z-index:15;}
 .pola img{width:320px;height:260px;object-fit:cover;display:block;border-radius:2px;
-  filter:saturate(1.05) contrast(1.03);transition:filter .5s;}
+  filter:saturate(1.05) contrast(1.03);transition:filter .3s;}
 .pola.wide img{width:320px;height:260px;}
 .pola:hover img{filter:saturate(1.18) contrast(1.06);}
 .pcap{position:absolute;bottom:14px;left:0;right:0;text-align:center;
   font-family:'Dancing Script',cursive;font-size:1.05rem;color:var(--g7);padding:0 10px;font-weight:600;}
 
-/* ── DIARY NOTES ── */
+/* ★ CHANGED: .dnote transition 0.42s → 0.2s */
 .dnote{
   padding:26px 34px;
   background:linear-gradient(135deg,rgba(174,206,186,.28),rgba(178,222,192,.20));
-  border-left:4px solid var(--g5);border-radius:0 var(--r-md) var(--r-md) 0;
-  margin-bottom:16px;position:relative;overflow:hidden;transition:all .42s ease;
+  border-left:4px solid var(--g5);border-radius:0 14px 14px 0;
+  margin-bottom:16px;position:relative;overflow:hidden;
+  transition: transform .2s ease, border-left-color .2s ease, box-shadow .2s ease;
 }
 .dnote::before{content:'✦';position:absolute;left:-10px;top:14px;
   font-size:1.1rem;color:var(--g5);animation:stTw 3.2s ease-in-out infinite;}
 @keyframes stTw{0%,100%{opacity:.40;transform:scale(1) rotate(0);}50%{opacity:1;transform:scale(1.6) rotate(28deg);}}
-.dnote:hover{transform:translateX(8px);border-left-color:var(--g6);
-  box-shadow:0 6px 20px rgba(30,68,48,.12);}
+.dnote:hover{transform:translateX(7px);border-left-color:var(--g6);
+  box-shadow:0 5px 18px rgba(30,68,48,.1);}
 .nlbl{font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--g6);margin-bottom:10px;display:block;font-weight:600;}
 .ntxt{font-size:1.28rem;line-height:1.95;color:var(--ink-dark);font-family:'Lora',serif;font-weight:400;}
 
@@ -740,34 +720,31 @@ body::after{
   display:flex; justify-content:center; align-items:center;
   gap:36px; margin:48px 0; flex-wrap:wrap;
 }
+/* ★ CHANGED: transition 0.5s → 0.22s */
 .meaning-card{
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(174,206,186,.3), transparent 55%),
-    radial-gradient(ellipse at 70% 80%, rgba(122,170,136,.25), transparent 55%),
-    linear-gradient(160deg, rgba(235,245,238,.98) 0%, rgba(220,238,228,.96) 50%, rgba(208,232,218,.94) 100%);
+    radial-gradient(ellipse at 30% 20%, rgba(205,230,212,.45), transparent 55%),
+    radial-gradient(ellipse at 70% 80%, rgba(174,206,186,.35), transparent 55%),
+    linear-gradient(160deg, #eef6f0 0%, #e2f0e8 50%, #d8ecdf 100%);
   padding:52px 44px;
   border-radius:50%;
   text-align:center;
   border:4px solid rgba(62,114,73,.45);
-  box-shadow:
-    0 14px 42px rgba(30,68,48,.18),
-    0 6px 18px rgba(62,114,73,.12),
-    inset 0 2px 14px rgba(255,255,255,.7),
-    inset 0 -2px 14px rgba(122,170,136,.18);
-  transition:all .5s var(--ease-out);
-  animation:cardFlip 1s ease;
+  box-shadow:0 14px 42px rgba(30,68,48,.18),0 6px 18px rgba(62,114,73,.12),inset 0 2px 14px rgba(255,255,255,.85),inset 0 -2px 14px rgba(122,170,136,.22);
+  transition: transform .22s cubic-bezier(.34,1.2,.64,1), box-shadow .22s ease, background .22s ease, border-color .22s ease;
+  animation:cardFlip .8s ease;
   width:330px;min-height:330px;height:auto;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   position:relative;overflow:hidden;
+  will-change: transform;
 }
-/* spinning border ring */
 .meaning-card::before{
   content:'';position:absolute;top:50%;left:50%;width:200%;height:200%;
   transform:translate(-50%, -50%);
   background:conic-gradient(from 0deg at 50% 50%,#568c62 0deg,#7aaa88 40deg,#aeceba 80deg,#568c62 120deg,#7aaa88 160deg,#aeceba 200deg,#568c62 240deg,#7aaa88 280deg,#aeceba 320deg,#568c62 360deg);
   border-radius:50%;z-index:0;opacity:0;
   animation:rotateBorder 8s linear infinite;
-  transition:opacity .45s ease;filter:blur(8px);
+  transition:opacity .25s ease;filter:blur(8px);
 }
 .meaning-card:hover::before{ opacity:.55; }
 @keyframes rotateBorder{
@@ -775,12 +752,13 @@ body::after{
   to{transform:translate(-50%, -50%) rotate(360deg);}
 }
 .meaning-card:hover{
-  transform:translateY(-16px) scale(1.05);
+  transform:translateY(-14px) scale(1.04);
+  background:radial-gradient(ellipse at 30% 20%, rgba(62,114,73,.28), transparent 55%),radial-gradient(ellipse at 70% 80%, rgba(45,90,64,.22), transparent 55%),linear-gradient(160deg, #ddefdf 0%, #cce5d4 50%, #c0ddc8 100%);
   border-color:rgba(62,114,73,.75);
-  box-shadow:0 32px 75px rgba(30,68,48,.26),0 14px 40px rgba(62,114,73,.2),0 0 55px rgba(122,170,136,.22),inset 0 2px 20px rgba(255,255,255,.6),inset 0 -2px 20px rgba(62,114,73,.2);
+  box-shadow:0 30px 70px rgba(30,68,48,.24),0 12px 36px rgba(62,114,73,.18),0 0 50px rgba(122,170,136,.2),inset 0 2px 20px rgba(255,255,255,.6);
 }
 @keyframes cardFlip{
-  from{opacity:0;transform:rotateY(-100deg) scale(.8);}
+  from{opacity:0;transform:rotateY(-90deg) scale(.85);}
   to{opacity:1;transform:rotateY(0) scale(1);}
 }
 .meaning-icon{
@@ -789,10 +767,13 @@ body::after{
   filter:drop-shadow(0 5px 12px rgba(30,68,48,.3));
   position:relative;z-index:2;flex-shrink:0;
 }
-.meaning-card:hover .meaning-icon{ animation:iconSpinFloat 1.5s ease-in-out infinite; filter:drop-shadow(0 8px 20px rgba(30,68,48,.5)); }
+.meaning-card:hover .meaning-icon{ animation:iconSpinFloat 1.5s ease-in-out infinite; }
 .meaning-card:nth-child(2) .meaning-icon{ animation-delay:.5s; }
 .meaning-card:nth-child(3) .meaning-icon{ animation-delay:1s; }
-@keyframes iconBounce{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-12px) scale(1.04);}}
+@keyframes iconBounce{
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-12px) scale(1.04);}
+}
 @keyframes iconSpinFloat{
   0%,100%{transform:rotate(0deg) scale(1) translateY(0);}
   25%{transform:rotate(10deg) scale(1.08) translateY(-6px);}
@@ -801,36 +782,46 @@ body::after{
 }
 .meaning-card h4{
   font-family:'Playfair Display',serif;font-size:1.45rem;
-  color:#162c1e;
+  color:#0f2018;
   margin-bottom:12px;font-weight:800;position:relative;z-index:2;
   line-height:1.3;
-  text-shadow:0 1px 4px rgba(255,255,255,.5);
-  transition:all .3s ease;
+  text-shadow:0 1px 3px rgba(255,255,255,.6);
+  transition: all .2s ease;
 }
-.meaning-card:hover h4{ color:#0e1f14; transform:scale(1.03); }
+.meaning-card:hover h4{ color:#0a170f; transform:scale(1.03); }
 .meaning-card p{
   font-size:1.05rem;line-height:1.82;
-  color:#1e3a28;
+  color:#1a3424;
   position:relative;z-index:2;font-family:'Lora',serif;font-weight:500;
-  max-width:242px;transition:all .3s ease;
+  max-width:242px;transition: all .2s ease;
 }
-.meaning-card:hover p{ color:#0f2018; transform:scale(1.01); }
+.meaning-card:hover p{ color:#0d1f12; }
 
 /* ── QUOTE BOX ── */
 .quote-box{
   background:linear-gradient(135deg,rgba(249,247,240,.9),rgba(249,247,240,.7));
   border-left:5px solid #2d5a40;border-right:5px solid #3e7249;
-  padding:36px 50px;margin:48px 0;position:relative;
-  animation:quoteReveal 1.2s ease;
-  border-radius:var(--r-sm); box-shadow:0 6px 20px rgba(30,68,48,.12);
-  transition:all .5s var(--ease-out);
+  padding:36px 50px;
+  margin:48px 0;
+  position:relative;
+  animation:quoteReveal .9s ease;
+  border-radius:8px; box-shadow:0 6px 20px rgba(30,68,48,.12);
+  transition: box-shadow .2s ease, transform .2s ease;
+  overflow: visible;
 }
-.quote-box:hover{ box-shadow:0 10px 30px rgba(30,68,48,.18); transform:translateY(-3px); }
+.quote-box:hover{ box-shadow:0 10px 28px rgba(30,68,48,.18); transform:translateY(-3px); }
 @keyframes quoteReveal{
-  from{opacity:0;transform:scale(.92) translateY(30px);}
+  from{opacity:0;transform:scale(.94) translateY(24px);}
   to{opacity:1;transform:scale(1) translateY(0);}
 }
-.quote-box::before{content:'"';position:absolute;top:-24px;left:24px;font-size:8rem;line-height:1;font-family:'Playfair Display',serif;color:#3e7249;opacity:.28;}
+.quote-box::before{
+  content:'"';
+  position:absolute;top:-18px;left:18px;
+  font-size:6rem;line-height:1;
+  font-family:'Playfair Display',serif;
+  color:#3e7249;opacity:.22;
+  pointer-events:none;
+}
 .quote-text{font-family:'Lora',serif;font-size:1.55rem;color:var(--forest-dark);line-height:1.85;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:400;}
 
 .callout{
@@ -838,162 +829,159 @@ body::after{
   background:rgba(62,114,73,.16);border-left:5px solid #2d5a40;border-radius:0 12px 12px 0;
   font-family:'Lora',serif;font-size:1.3rem;line-height:1.9;
   color:var(--forest-dark);font-style:italic;font-weight:400;
-  transition:all .4s ease;
+  transition: transform .18s ease, box-shadow .18s ease, border-left-color .18s ease;
 }
 .callout:hover{ transform:translateX(7px); box-shadow:0 5px 18px rgba(30,68,48,.12); border-left-color:#3e7249; }
 
-/* ── FINAL PAGE ── */
+/* ── FINAL PAGE LAYOUT ── */
 .cgrid{ display:flex;flex-direction:column;gap:60px;margin:42px 0; }
+/* ★ CHANGED: .ccard transition 0.6s → 0.25s */
 .ccard{
   display:flex;flex-direction:column;gap:32px;padding:40px 38px;
-  background:
-    radial-gradient(ellipse at 20% 30%, rgba(174,206,186,.15), transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(122,170,186,.12), transparent 50%),
-    linear-gradient(135deg,rgba(255,255,255,.65),rgba(249,247,240,.55));
-  backdrop-filter:blur(12px);border-radius:var(--r-lg);
+  background:radial-gradient(ellipse at 20% 30%, rgba(174,206,186,.15), transparent 50%),radial-gradient(ellipse at 80% 70%, rgba(122,170,136,.12), transparent 50%),linear-gradient(135deg,rgba(255,255,255,.65),rgba(249,247,240,.55));
+  backdrop-filter:blur(12px);border-radius:20px;
   border:3px solid rgba(62,114,73,.2);
   box-shadow:0 10px 35px rgba(30,68,48,.13),inset 0 2px 8px rgba(255,255,255,.5);
-  transition:all .6s var(--ease-spring);
-  position:relative;overflow:hidden;align-items:center;transform-style:preserve-3d;
+  transition: transform .25s cubic-bezier(.34,1.2,.64,1), box-shadow .25s ease, border-color .25s ease;
+  position:relative;overflow:hidden;align-items:center;
+  will-change: transform;
 }
 .ccard::before{
   content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
   background:radial-gradient(circle, rgba(122,170,136,.15), transparent 70%);
-  opacity:0;transition:all .6s ease;pointer-events:none;
+  opacity:0;transition:opacity .3s ease;pointer-events:none;
 }
-.ccard:hover::before{ opacity:1; animation:cardShimmer 2s ease-in-out infinite; }
-@keyframes cardShimmer{
-  0%, 100%{transform:translate(-50%, -50%) scale(1);}
-  50%{transform:translate(-45%, -45%) scale(1.1);}
-}
-/* corner fold */
+.ccard:hover::before{ opacity:1; }
 .ccard::after{
   content:'';position:absolute;top:0;right:0;width:0;height:0;border-style:solid;
   border-width:0;border-color:transparent rgba(62,114,73,.3) transparent transparent;
-  transition:border-width .5s ease, opacity .5s ease;opacity:0;
+  transition:border-width .25s ease, opacity .25s ease;opacity:0;
 }
 .ccard:hover::after{ border-width:0 70px 70px 0; opacity:1; }
 .ccard:hover{
-  transform:translateY(-12px) scale(1.015) rotateX(2deg);
-  box-shadow:0 30px 80px rgba(30,68,48,.22),0 12px 40px rgba(62,114,73,.18),inset 0 2px 12px rgba(255,255,255,.7);
+  transform:translateY(-9px) scale(1.01);
+  box-shadow:0 28px 70px rgba(30,68,48,.2),0 10px 36px rgba(62,114,73,.16),inset 0 2px 12px rgba(255,255,255,.7);
   border-color:rgba(62,114,73,.38);
 }
-
 .ci{
-  border-radius:var(--r-md);overflow:hidden;aspect-ratio:3/2;
+  border-radius:14px;overflow:hidden;aspect-ratio:3/2;
   box-shadow:0 10px 30px rgba(30,68,48,.14),0 0 0 9px rgba(255,255,255,.8),0 0 0 11px rgba(62,114,73,.22);
   border:3px solid rgba(62,114,73,.38);background:var(--beige);
-  max-height:400px;width:80%;transition:all .6s ease;position:relative;
-}
-/* image shine overlay */
-.ci::before{
-  content:'';position:absolute;inset:-3px;
-  background:linear-gradient(45deg, transparent 30%, rgba(122,170,136,.2) 50%, transparent 70%);
-  opacity:0;transition:opacity .6s ease;pointer-events:none;
-}
-.ci:hover::before{ opacity:1; animation:imageShine 2s ease-in-out infinite; }
-@keyframes imageShine{
-  0%{transform:translateX(-100%) rotate(45deg);}
-  100%{transform:translateX(100%) rotate(45deg);}
-}
-.ci img{
-  width:100%;height:100%;object-fit:cover;cursor:pointer;
-  transition:all .8s var(--ease-out);filter:saturate(1.05) contrast(1.05);
+  max-height:400px;width:80%;transition: box-shadow .25s ease, transform .25s ease;
 }
 .ccard:hover .ci{
   box-shadow:0 15px 45px rgba(30,68,48,.22),0 0 0 9px rgba(255,255,255,.9),0 0 0 11px rgba(62,114,73,.3),0 0 26px rgba(122,170,136,.25);
   transform:scale(1.02);
 }
-.ccard:hover .ci img{ transform:scale(1.08) rotate(-1deg); filter:saturate(1.18) contrast(1.07); }
-
+.ccard:hover .ci img{ transform:scale(1.05) rotate(-.3deg); filter:saturate(1.15) contrast(1.06); }
 .ct{ width:100%;max-width:820px; }
 .ct p{
   font-size:1.28rem;line-height:2.1;color:var(--ink-dark);
   margin-bottom:18px;font-family:'Lora',serif;font-weight:400;
-  width:100%;text-align:left;transition:all .4s ease;
+  width:100%;text-align:left;transition: transform .18s ease, color .18s ease;
 }
 .ct p:last-child{ margin-bottom:0; }
-.ccard:hover .ct p{ transform:translateX(6px); color:var(--forest-dark); }
+.ccard:hover .ct p{ transform:translateX(4px); color:var(--forest-dark); }
 
 /* ── PAGE NAV ── */
 .page-nav{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:36px;border-top:2px solid rgba(30,68,48,.28);position:relative;z-index:100;}
+/* ★ CHANGED: nav-btn transition 0.4s → 0.16s, nhạy nhất có thể */
 .nav-btn{
   padding:11px 28px;background:linear-gradient(135deg,#2d5a40,#3e7249);
-  color:#fff;font-weight:700;border-radius:var(--r-pill);
-  box-shadow:0 5px 16px rgba(30,68,48,.45);transition:all .4s ease;
+  color:#fff;font-weight:700;border-radius:50px;
+  box-shadow:0 5px 16px rgba(30,68,48,.45);
+  transition: transform .16s cubic-bezier(.34,1.56,.64,1), box-shadow .16s ease;
   font-family:'Playfair Display',serif;font-size:0.9rem;
   border:2px solid rgba(62,114,73,.6);cursor:pointer;
   position:relative;overflow:hidden;z-index:100;
-  -webkit-tap-highlight-color: transparent;
+  will-change: transform;
 }
-.nav-btn:focus-visible { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
+.nav-btn:focus { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
 .nav-btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;
-  background:radial-gradient(circle,rgba(255,255,255,.6),transparent 70%);
-  border-radius:50%;transform:translate(-50%,-50%);transition:width .7s,height .7s;}
-.nav-btn:hover::before{width:400px;height:400px;}
-.nav-btn:hover{transform:translateY(-3px);box-shadow:0 9px 22px rgba(30,68,48,.6);}
+  background:radial-gradient(circle,rgba(255,255,255,.55),transparent 70%);
+  border-radius:50%;transform:translate(-50%,-50%);transition:width .45s,height .45s;}
+.nav-btn:hover::before{width:380px;height:380px;}
+.nav-btn:hover{transform:translateY(-4px);box-shadow:0 9px 22px rgba(30,68,48,.6);}
+.nav-btn:active{transform:translateY(-1px);transition-duration:.08s;}
 .nav-btn.disabled{opacity:.3;pointer-events:none;}
 .nav-btn.cover-btn { background: linear-gradient(135deg, #2d5a40, #1a3c28); border-color: rgba(201,169,97,.4); }
 
-/* ── PROGRESS DOTS ── */
 .prog{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px;}
-.pdot{
-  width:8px;height:8px;border-radius:50%;cursor:pointer;
-  background:rgba(30,68,48,.22);border:1.5px solid rgba(30,68,48,.30);
-  transition:all .32s var(--ease-out);
-  /* FIX: make dots easier to tap */
-  padding: 0; outline: none;
-  -webkit-tap-highlight-color: transparent;
-}
-.pdot:focus-visible { outline: 2px solid rgba(62,114,73,.6); outline-offset: 4px; }
+/* ★ CHANGED: pdot transition 0.32s → 0.14s */
+.pdot{width:8px;height:8px;border-radius:50%;cursor:pointer;background:rgba(30,68,48,.22);border:1.5px solid rgba(30,68,48,.30);transition:all .14s cubic-bezier(.34,1.56,.64,1);}
+.pdot:focus { outline: 2px solid rgba(62,114,73,.6); outline-offset: 3px; }
 .pdot.on{width:26px;border-radius:5px;background:linear-gradient(90deg,#2d5a40,#3e7249);border-color:transparent;box-shadow:0 2px 8px rgba(30,68,48,.28);}
 .pdot:hover:not(.on){background:rgba(30,68,48,.40);transform:scale(1.3);}
 
-/* decorative elements */
 .rdiv{display:flex;align-items:center;gap:15px;margin:36px 0;opacity:.28;}
 .rdiv::before,.rdiv::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,transparent,#2d5a40,transparent);}
 .sig{text-align:center;font-family:'Dancing Script',cursive;font-size:2.4rem;color:var(--forest-green);opacity:.7;margin:6px 0 36px;}
 .dclouds{text-align:center;font-size:1.3rem;letter-spacing:18px;opacity:.26;margin:12px 0;animation:dcWv 8s ease-in-out infinite;}
 @keyframes dcWv{0%,100%{transform:translateY(0);opacity:.24;}50%{transform:translateY(-6px);opacity:.44;}}
 
-/* ── IMAGE MODAL ── */
+/* ── MODAL – mượt & nhanh hơn ── */
 .image-modal{
   position:fixed;inset:0;background:rgba(30,68,48,.96);backdrop-filter:blur(15px);
   display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity .5s;z-index:1000;
+  /* ★ CHANGED: 0.5s → 0.22s */
+  opacity:0;pointer-events:none;transition:opacity .22s cubic-bezier(.4,0,.2,1);z-index:1000;
 }
 .image-modal.active{opacity:1;pointer-events:auto;}
 .image-modal img{
   max-width:92%;max-height:92%;
   box-shadow:0 35px 90px rgba(0,0,0,.8),0 0 0 16px #fff,0 0 0 18px rgba(62,114,73,.6);
-  animation:modalZoom .6s var(--ease-out);border-radius:var(--r-sm);
+  /* ★ CHANGED: snappier zoom */
+  animation:modalZoom .35s cubic-bezier(.34,1.2,.64,1);border-radius:8px;
 }
-@keyframes modalZoom{from{opacity:0;transform:scale(.6) rotate(-8deg);}to{opacity:1;transform:scale(1) rotate(0);}}
+@keyframes modalZoom{from{opacity:0;transform:scale(.72) rotate(-5deg);}to{opacity:1;transform:scale(1) rotate(0);}}
+/* ★ CHANGED: modal-close transition 0.4s → 0.16s */
 .modal-close{
   position:absolute;top:30px;right:30px;width:48px;height:48px;
   background:rgba(255,255,255,.22);border:2px solid rgba(62,114,73,.7);
   border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:1.7rem;color:#fff;cursor:pointer;transition:all .4s;backdrop-filter:blur(10px);z-index:1001;
+  font-size:1.7rem;color:#fff;cursor:pointer;
+  transition: all .16s cubic-bezier(.4,0,.2,1);
+  backdrop-filter:blur(10px);z-index:1001;
 }
-.modal-close:focus-visible { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
-.modal-close:hover{background:rgba(62,114,73,.6);transform:rotate(90deg) scale(1.12);}
+.modal-close:focus { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
+.modal-close:hover{background:rgba(62,114,73,.6);transform:rotate(90deg) scale(1.1);}
+.modal-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,.18); border: 2px solid rgba(122,170,136,.5);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: #fff; cursor: pointer;
+  transition: all .14s; backdrop-filter: blur(8px); z-index: 1001;
+}
+.modal-nav:hover { background: rgba(62,114,73,.5); }
+.modal-nav.prev { left: 20px; }
+.modal-nav.next { right: 80px; }
+.modal-caption {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  font-family: 'Dancing Script', cursive; font-size: 1.1rem;
+  color: rgba(255,255,255,.8); text-align: center;
+  background: rgba(0,0,0,.3); padding: 6px 20px; border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
 
-/* ── SCROLL TO TOP ── */
 .scroll-top{
   position:fixed;bottom:38px;right:38px;width:55px;height:55px;
   background:linear-gradient(135deg,#2d5a40,#3e7249);
   border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-size:1.7rem;cursor:pointer;box-shadow:0 10px 30px rgba(30,68,48,.55);
-  transition:all .4s;z-index:100;opacity:0;pointer-events:none;color:#fff;
+  transition: opacity .2s, transform .18s cubic-bezier(.34,1.56,.64,1);
+  z-index:100;opacity:0;pointer-events:none;color:#fff;
+  will-change: transform;
 }
-.scroll-top:focus-visible { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
+.scroll-top:focus { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
 .scroll-top.visible{opacity:1;pointer-events:auto;animation:scrollTopBounce 2s ease-in-out infinite;}
-@keyframes scrollTopBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+@keyframes scrollTopBounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-7px);}
+}
 .scroll-top:hover{transform:translateY(-7px) scale(1.1);box-shadow:0 16px 44px rgba(30,68,48,.75);}
 
-/* ══════════════════════════════
-   RESPONSIVE
-══════════════════════════════ */
+/* ── RESPONSIVE ── */
 @media(max-width:1100px){
   .meaning-card{width:295px;min-height:295px;padding:40px 35px;}
   .meaning-card p{max-width:220px;}
@@ -1006,7 +994,7 @@ body::after{
   .story-text{font-size:1rem;}
   .meaning-grid{gap:24px;}
   .meaning-card{width:280px;min-height:280px;padding:36px 30px;}
-  .meaning-card p{font-size:.95rem;max-width:210px;}
+  .meaning-card p{font-size:0.95rem;max-width:210px;}
   .ntxt{font-size:1rem;}
   .cgrid{gap:44px;}
   .ct p{font-size:1.1rem;}
@@ -1017,12 +1005,13 @@ body::after{
   .book-cover{padding:44px 30px;border:5px solid rgba(30,68,48,.4);}
   .cover-title{font-size:3.2rem;}
   .cover-subtitle{font-size:1.6rem;}
-  .cover-quote{font-size:.95rem;}
-  .page{padding:50px 28px 90px;border-left:36px solid rgba(30,68,48,.08);}
-  .section-title{font-size:2.2rem;}
+  .cover-quote{font-size:0.95rem;}
+  .page{padding:50px 24px 90px;border-left:30px solid rgba(30,68,48,.08);}
+  .section-title{font-size:2rem;}
   .section-intro{font-size:1rem;}
   .story-card{grid-template-columns:1fr!important;gap:26px;}
   .story-card:nth-child(even) .story-image{order:0;}
+  .story-card:hover{transform:translateY(-4px) scale(1.005);}
   .story-text{font-size:1rem;}
   .journey-tabs{flex-direction:column;}
   .journey-tab{width:100%;}
@@ -1034,51 +1023,57 @@ body::after{
   .ct p{font-size:1.05rem;}
   .ntxt{font-size:1rem;}
   .quote-text{font-size:1.3rem;}
-  /* FIX: breadcrumb overflow on mobile */
-  .breadcrumb{font-size:.7rem;padding:6px 12px;max-width: calc(100vw - 160px);overflow: hidden;text-overflow: ellipsis;}
-  /* hide arrows on touch – swipe works */
+  .breadcrumb{
+    top:auto; bottom:20px; left:50%; right:auto;
+    transform:translateX(-50%);
+    font-size:0.72rem; padding:5px 14px;
+    max-width:calc(100vw - 40px);
+  }
   .aarr{display:none;}
   .page-select-btn .ps-title { display: none; }
   .page-selector { gap: 5px; padding: 10px 8px; }
   .page-select-btn { min-width: 55px; padding: 7px 10px; }
-  .home-btn { font-size: .76rem; padding: 7px 12px; }
-  /* bigger tap target for dots */
-  .pdot { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-  .pdot.on { width: 36px; border-radius: 10px; }
+  .home-btn { font-size: 0.76rem; padding: 7px 12px; }
+  .awrap::before, .awrap::after { display: none; }
+  .scroll-hint { display: block; }
 }
 @media(max-width:480px){
-  .page{padding:38px 18px 80px;}
-  .section-title{font-size:1.9rem;}
-  .section-intro{font-size:.92rem;}
-  .story-text{font-size:.95rem;}
-  .quote-box{padding:28px 20px;}
-  .quote-text{font-size:1.2rem;line-height:1.7;}
-  .callout{font-size:1rem;}
+  .page{padding:38px 14px 80px;}
+  .section-title{font-size:1.75rem;}
+  .section-intro{font-size:0.92rem;}
+  .story-text{font-size:0.92rem;}
+  .ntxt{font-size:0.92rem;}
+  .ct p{font-size:0.94rem;line-height:1.9;}
+  .quote-box{padding:28px 18px;}
+  .quote-text{font-size:1.15rem;line-height:1.7;}
+  .callout{font-size:0.98rem; padding:18px 20px;}
   .sig{font-size:2rem;}
   .cgrid{gap:28px;}
-  .ct p{font-size:.98rem;line-height:1.95;}
-  .ntxt{font-size:.95rem;}
-  .cover-title{font-size:2.6rem;}
+  .cover-title{font-size:2.4rem;}
   .cover-subtitle{font-size:1.4rem;}
-  .cover-quote{font-size:.88rem;}
+  .cover-quote{font-size:0.88rem;}
   .selector-divider { display: none; }
-  .open-book-btn{font-size:.92rem;padding:12px 32px;}
-  .scroll-top{bottom:20px;right:20px;width:46px;height:46px;font-size:1.4rem;}
+  .open-book-btn{font-size:0.92rem;padding:12px 32px;}
+  .page-number{font-size:1.1rem;bottom:18px;right:20px;}
+  .quote-box::before{font-size:4rem;top:-12px;left:10px;}
 }
 
-/* ── REDUCED MOTION ── */
+/* ★ prefers-reduced-motion – giữ interaction nhẹ */
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .book-cover { transform: none; }
-  .pageTurn { animation: none; }
+  .nav-btn, .open-book-btn, .meaning-card, .story-card, .page-select-btn, .journey-tab {
+    transition: opacity .15s, box-shadow .15s !important;
+  }
 }
 </style>
 </head>
 <body>
+
+<div class="sr-announce" aria-live="polite" aria-atomic="true" id="srAnnounce"></div>
 
 <div class="progress-bar-container" id="progressBarContainer">
   <div class="progress-bar" id="progressBar"></div>
@@ -1088,12 +1083,10 @@ body::after{
   🏠 <span>Trang Chủ</span>
 </a>
 
-<div class="breadcrumb" id="breadcrumb" aria-live="polite">
-  <span aria-hidden="true">📖 </span>
+<div class="breadcrumb" id="breadcrumb" role="navigation" aria-label="Vị trí hiện tại">
+  <span class="breadcrumb-icon" aria-hidden="true">📖</span>
   <span id="breadcrumbText">Bìa sách</span>
 </div>
-
-<div class="loading-spinner" id="loadingSpinner" role="status" aria-label="Đang tải..."></div>
 
 <div class="book-container" id="bookContainer">
 
@@ -1102,7 +1095,7 @@ body::after{
     <div class="bookmark" aria-hidden="true"></div>
     <div class="ff-wrap" id="ffWrap" aria-hidden="true"></div>
     <div class="cover-content">
-      <div class="cover-badge" aria-hidden="true">✦ &nbsp;Mốc Kỷ Niệm Thứ 5 / 6&nbsp; ✦</div>
+      <div class="cover-badge" aria-label="Mốc kỷ niệm thứ 5 trên 6">✦ &nbsp;Mốc Kỷ Niệm Thứ 5 / 6&nbsp; ✦</div>
       <div class="cover-icon" aria-hidden="true">🌲</div>
       <h1 class="cover-title">NHẬT KÝ ĐÀ LẠT</h1>
       <h2 class="cover-subtitle">Dấu ấn không phai trong miền ký ức lớp 11L</h2>
@@ -1111,7 +1104,7 @@ body::after{
         nhưng lại ở lại rất lâu trong ký ức...<br>
         Đà Lạt của lớp 11L là một miền như thế.
       </p>
-      <button class="open-book-btn" id="openBookBtn" aria-label="Mở nhật ký Đà Lạt" type="button">
+      <button class="open-book-btn" id="openBookBtn" aria-label="Mở nhật ký Đà Lạt">
         <span>🍃 &nbsp;Mở Nhật Ký&nbsp; 🍃</span>
       </button>
     </div>
@@ -1121,25 +1114,25 @@ body::after{
   <div class="book-pages" id="bookPages" style="display:none;">
 
     <nav class="page-selector" role="navigation" aria-label="Chọn trang">
-      <button class="page-select-btn active" data-page="1" type="button" aria-label="Trang 1: Ký Ức Mở Ra">
+      <button class="page-select-btn active" data-page="1" aria-label="Trang 1: Miền Ký Ức Mở Ra" aria-current="page">
         <span class="ps-icon" aria-hidden="true">🌿</span>
         <span class="ps-num">01</span>
         <span class="ps-title">Ký Ức Mở Ra</span>
       </button>
       <span class="selector-divider" aria-hidden="true">›</span>
-      <button class="page-select-btn" data-page="2" type="button" aria-label="Trang 2: Ý Nghĩa">
+      <button class="page-select-btn" data-page="2" aria-label="Trang 2: Ý Nghĩa Chuyến Đi">
         <span class="ps-icon" aria-hidden="true">📚</span>
         <span class="ps-num">02</span>
         <span class="ps-title">Ý Nghĩa</span>
       </button>
       <span class="selector-divider" aria-hidden="true">›</span>
-      <button class="page-select-btn" data-page="3" type="button" aria-label="Trang 3: Hành Trình">
+      <button class="page-select-btn" data-page="3" aria-label="Trang 3: Hành Trình Ba Ngày">
         <span class="ps-icon" aria-hidden="true">📍</span>
         <span class="ps-num">03</span>
         <span class="ps-title">Hành Trình</span>
       </button>
       <span class="selector-divider" aria-hidden="true">›</span>
-      <button class="page-select-btn" data-page="4" type="button" aria-label="Trang 4: Miền Ký Ức">
+      <button class="page-select-btn" data-page="4" aria-label="Trang 4: Miền Ký Ức">
         <span class="ps-icon" aria-hidden="true">🌸</span>
         <span class="ps-num">04</span>
         <span class="ps-title">Miền Ký Ức</span>
@@ -1147,10 +1140,10 @@ body::after{
     </nav>
 
     <div class="prog" style="padding-top:20px;" role="navigation" aria-label="Điều hướng trang">
-      <button class="pdot on" data-p="1" aria-label="Trang 1" aria-current="true" type="button"></button>
-      <button class="pdot" data-p="2" aria-label="Trang 2" type="button"></button>
-      <button class="pdot" data-p="3" aria-label="Trang 3" type="button"></button>
-      <button class="pdot" data-p="4" aria-label="Trang 4" type="button"></button>
+      <button class="pdot on" data-p="1" aria-label="Trang 1" aria-current="true"></button>
+      <button class="pdot" data-p="2" aria-label="Trang 2"></button>
+      <button class="pdot" data-p="3" aria-label="Trang 3"></button>
+      <button class="pdot" data-p="4" aria-label="Trang 4"></button>
     </div>
 
     <!-- ══ PAGE 1 ══ -->
@@ -1192,8 +1185,8 @@ body::after{
       </div>
       <div class="page-number" aria-label="Trang 1 trên 4">~ Trang 1 ~</div>
       <nav class="page-nav" aria-label="Điều hướng giữa các trang">
-        <button class="nav-btn cover-btn" onclick="closePage()" type="button" aria-label="Quay về bìa sách">🌲 Về Bìa Sách</button>
-        <button class="nav-btn" onclick="turnPage(2)" type="button" aria-label="Chuyển sang trang 2">Trang sau →</button>
+        <button class="nav-btn cover-btn" onclick="closePage()" aria-label="Quay về bìa sách">🌲 Về Bìa Sách</button>
+        <button class="nav-btn" onclick="turnPage(2)" aria-label="Đến trang 2">Trang sau →</button>
       </nav>
     </div>
 
@@ -1237,8 +1230,8 @@ body::after{
       </div>
       <div class="page-number" aria-label="Trang 2 trên 4">~ Trang 2 ~</div>
       <nav class="page-nav" aria-label="Điều hướng giữa các trang">
-        <button class="nav-btn" onclick="turnPage(1)" type="button" aria-label="Quay về trang 1">← Trang trước</button>
-        <button class="nav-btn" onclick="turnPage(3)" type="button" aria-label="Chuyển sang trang 3">Trang sau →</button>
+        <button class="nav-btn" onclick="turnPage(1)" aria-label="Về trang 1">← Trang trước</button>
+        <button class="nav-btn" onclick="turnPage(3)" aria-label="Đến trang 3">Trang sau →</button>
       </nav>
     </div>
 
@@ -1252,30 +1245,31 @@ body::after{
         </h3>
         
         <div class="journey-tabs" role="tablist" aria-label="Chọn ngày trong hành trình">
-          <button class="journey-tab active" data-day="day1" id="tab-day1" role="tab" aria-selected="true" aria-controls="day1" type="button">🗓️ Ngày 01</button>
-          <button class="journey-tab" data-day="day2" id="tab-day2" role="tab" aria-selected="false" aria-controls="day2" type="button">🗓️ Ngày 02</button>
-          <button class="journey-tab" data-day="day3" id="tab-day3" role="tab" aria-selected="false" aria-controls="day3" type="button">🗓️ Ngày 03</button>
+          <button class="journey-tab active" data-day="day1" id="tab-day1" role="tab" aria-selected="true" aria-controls="day1">🗓️ Ngày 01</button>
+          <button class="journey-tab" data-day="day2" id="tab-day2" role="tab" aria-selected="false" aria-controls="day2">🗓️ Ngày 02</button>
+          <button class="journey-tab" data-day="day3" id="tab-day3" role="tab" aria-selected="false" aria-controls="day3">🗓️ Ngày 03</button>
         </div>
         
         <div id="day1" class="day-content active" role="tabpanel" aria-labelledby="tab-day1">
           <div class="awrap">
-            <button class="aarr ap" data-album="album1" aria-label="Cuộn sang trái" type="button">‹</button>
+            <button class="aarr ap" data-album="album1" aria-label="Cuộn sang trái">‹</button>
             <div class="atrack" id="album1" role="region" aria-label="Album ảnh ngày 1">
               <figure class="pola wide">
-                <img src="images/lenxe.jpg" alt="Học sinh lớp 11L lên xe khởi hành từ Bình Dương">
+                <img src="images/lenxe.jpg" alt="Học sinh lớp 11L lên xe khởi hành từ Bình Dương" loading="lazy">
                 <figcaption class="pcap">🚌 Khởi hành từ Bình Dương</figcaption>
               </figure>
               <figure class="pola">
-                <img src="images/truongdh.jpg" alt="Trường Đại học Đà Lạt">
+                <img src="images/truongdh.jpg" alt="Trường Đại học Đà Lạt" loading="lazy">
                 <figcaption class="pcap">🏛️ ĐH Đà Lạt</figcaption>
               </figure>
               <figure class="pola">
-                <img src="images/khachsan.jpg" alt="Khách sạn nơi lưu trú">
+                <img src="images/khachsan.jpg" alt="Khách sạn nơi lưu trú" loading="lazy">
                 <figcaption class="pcap">🏨 Nhận phòng</figcaption>
               </figure>
             </div>
-            <button class="aarr an" data-album="album1" aria-label="Cuộn sang phải" type="button">›</button>
+            <button class="aarr an" data-album="album1" aria-label="Cuộn sang phải">›</button>
           </div>
+          <p class="scroll-hint" aria-hidden="true">← vuốt để xem thêm ảnh →</p>
           <aside class="dnote">
             <span class="nlbl">☀️ Ngày đầu tiên — Khởi hành</span>
             <p class="ntxt">Sau chặng đường dài từ Bình Dương, lớp 11L bắt đầu hành trình trong sự háo hức và mong chờ. Điểm dừng chân đầu tiên là Trường Đại học Đà Lạt – nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng đối với con đường học vấn.</p>
@@ -1284,23 +1278,24 @@ body::after{
         
         <div id="day2" class="day-content" role="tabpanel" aria-labelledby="tab-day2">
           <div class="awrap">
-            <button class="aarr ap" data-album="album2" aria-label="Cuộn sang trái" type="button">‹</button>
+            <button class="aarr ap" data-album="album2" aria-label="Cuộn sang trái">‹</button>
             <div class="atrack" id="album2" role="region" aria-label="Album ảnh ngày 2">
               <figure class="pola wide">
-                <img src="images/caugo.jpg" alt="Cầu Gỗ với biển mây trắng xóa">
+                <img src="images/caugo.jpg" alt="Cầu Gỗ với biển mây trắng xóa" loading="lazy">
                 <figcaption class="pcap">☁️ Biển mây Cầu Gỗ</figcaption>
               </figure>
               <figure class="pola">
-                <img src="images/puppy.jpg" alt="Puppy Farm Đà Lạt">
+                <img src="images/puppy.jpg" alt="Puppy Farm Đà Lạt" loading="lazy">
                 <figcaption class="pcap">🐕 Puppy Farm</figcaption>
               </figure>
               <figure class="pola">
-                <img src="images/quangtruong.jpg" alt="Quảng trường Lâm Viên">
+                <img src="images/quangtruong.jpg" alt="Quảng trường Lâm Viên" loading="lazy">
                 <figcaption class="pcap">🏙️ Lâm Viên</figcaption>
               </figure>
             </div>
-            <button class="aarr an" data-album="album2" aria-label="Cuộn sang phải" type="button">›</button>
+            <button class="aarr an" data-album="album2" aria-label="Cuộn sang phải">›</button>
           </div>
+          <p class="scroll-hint" aria-hidden="true">← vuốt để xem thêm ảnh →</p>
           <aside class="dnote">
             <span class="nlbl">☁️ Ngày thứ hai — Trải nghiệm</span>
             <p class="ntxt">Buổi sáng, Cầu Gỗ đón chúng tôi bằng biển mây trắng xóa, mang đến cảm giác như chạm tay vào bầu trời. Tại Puppy Farm, tiếng cười hòa cùng ánh nắng và những chú cún nhỏ, đưa chúng tôi trở về với sự hồn nhiên thuần khiết.</p>
@@ -1309,23 +1304,24 @@ body::after{
         
         <div id="day3" class="day-content" role="tabpanel" aria-labelledby="tab-day3">
           <div class="awrap">
-            <button class="aarr ap" data-album="album3" aria-label="Cuộn sang trái" type="button">‹</button>
+            <button class="aarr ap" data-album="album3" aria-label="Cuộn sang trái">‹</button>
             <div class="atrack" id="album3" role="region" aria-label="Album ảnh ngày 3">
               <figure class="pola">
-                <img src="images/ansang.jpg" alt="Bữa ăn sáng cuối cùng tại Đà Lạt">
+                <img src="images/ansang.jpg" alt="Bữa ăn sáng cuối cùng tại Đà Lạt" loading="lazy">
                 <figcaption class="pcap">☕ Bữa sáng cuối</figcaption>
               </figure>
               <figure class="pola wide">
-                <img src="images/dinh3.jpg" alt="Dinh III Bảo Đại">
+                <img src="images/dinh3.jpg" alt="Dinh III Bảo Đại" loading="lazy">
                 <figcaption class="pcap">🏯 Dinh III</figcaption>
               </figure>
               <figure class="pola">
-                <img src="images/roidal.jpg" alt="Chia tay Đà Lạt">
+                <img src="images/roidal.jpg" alt="Chia tay Đà Lạt" loading="lazy">
                 <figcaption class="pcap">👋 Tạm biệt!</figcaption>
               </figure>
             </div>
-            <button class="aarr an" data-album="album3" aria-label="Cuộn sang phải" type="button">›</button>
+            <button class="aarr an" data-album="album3" aria-label="Cuộn sang phải">›</button>
           </div>
+          <p class="scroll-hint" aria-hidden="true">← vuốt để xem thêm ảnh →</p>
           <aside class="dnote">
             <span class="nlbl">🌅 Ngày cuối — Tạm biệt</span>
             <p class="ntxt">Buổi sáng cuối cùng trôi qua chậm rãi trong sự lưu luyến khó gọi tên. Dinh III – Dinh Bảo Đại khép lại hành trình bằng vẻ đẹp trầm mặc, cổ kính giữa rừng thông xanh mát. Khi bánh xe lăn bánh, thành phố dần lùi xa, nhưng ký ức thì ở lại.</p>
@@ -1338,8 +1334,8 @@ body::after{
       </div>
       <div class="page-number" aria-label="Trang 3 trên 4">~ Trang 3 ~</div>
       <nav class="page-nav" aria-label="Điều hướng giữa các trang">
-        <button class="nav-btn" onclick="turnPage(2)" type="button" aria-label="Quay về trang 2">← Trang trước</button>
-        <button class="nav-btn" onclick="turnPage(4)" type="button" aria-label="Chuyển sang trang 4">Trang sau →</button>
+        <button class="nav-btn" onclick="turnPage(2)" aria-label="Về trang 2">← Trang trước</button>
+        <button class="nav-btn" onclick="turnPage(4)" aria-label="Đến trang 4">Trang sau →</button>
       </nav>
     </div>
 
@@ -1381,441 +1377,368 @@ body::after{
         </blockquote>
         
         <div class="rdiv" aria-hidden="true"><span>🌲</span><span>☁️</span><span>🌿</span></div>
-        <div class="sig">🌲 ~ Hết ~ 🌲</div>
+        <div class="sig" aria-label="Kết thúc nhật ký">🌲 ~ Hết ~ 🌲</div>
       </div>
       <div class="page-number" aria-label="Trang 4 trên 4">~ Trang 4 ~</div>
       <nav class="page-nav" aria-label="Điều hướng giữa các trang">
-        <button class="nav-btn" onclick="turnPage(3)" type="button" aria-label="Quay về trang 3">← Trang trước</button>
-        <button class="nav-btn cover-btn" onclick="closePage()" type="button" aria-label="Đóng sách">🍃 Đóng sách</button>
+        <button class="nav-btn" onclick="turnPage(3)" aria-label="Về trang 3">← Trang trước</button>
+        <button class="nav-btn cover-btn" onclick="closePage()" aria-label="Đóng sách">🍃 Đóng sách</button>
       </nav>
     </div>
 
-  </div><!-- /book-pages -->
-</div><!-- /book-container -->
-
-<div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Xem ảnh phóng to">
-  <button class="modal-close" id="modalClose" type="button" aria-label="Đóng ảnh">×</button>
-  <img id="modalImg" alt="" src="">
+  </div>
 </div>
 
-<button class="scroll-top" id="scrollTop" onclick="scrollToTop()" type="button" aria-label="Cuộn lên đầu trang">↑</button>
+<div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Xem ảnh phóng to">
+  <button class="modal-close" onclick="closeModal()" aria-label="Đóng ảnh">×</button>
+  <img id="modalImg" alt="">
+  <div class="modal-caption" id="modalCaption"></div>
+</div>
+<button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Cuộn lên đầu trang">↑</button>
 
 <script>
-/* ─────────────────────────────────────────────
-   STATE
-───────────────────────────────────────────── */
 let currentPage = 1;
-let isAnimating = false; // FIX: prevent rapid page flipping
+let touchStartX = 0, touchEndX = 0;
 
-/* ─────────────────────────────────────────────
-   BREADCRUMB
-───────────────────────────────────────────── */
-const PAGE_TITLES = ['Miền Ký Ức Mở Ra','Ý Nghĩa Của Một Chuyến Đi','Hành Trình Ba Ngày','Đà Lạt – Miền Ký Ức'];
+// ── Screen reader announce ──
+function announce(msg) {
+  const el = document.getElementById('srAnnounce');
+  el.textContent = '';
+  requestAnimationFrame(() => { el.textContent = msg; });
+}
 
 function updateBreadcrumb(pageNum) {
   const bc = document.getElementById('breadcrumb');
-  const txt = document.getElementById('breadcrumbText');
+  const bt = document.getElementById('breadcrumbText');
   if (pageNum === 0) {
-    txt.textContent = 'Bìa sách';
+    bt.textContent = 'Bìa sách';
     bc.classList.remove('visible');
   } else {
-    txt.textContent = `Trang ${pageNum}: ${PAGE_TITLES[pageNum - 1]}`;
+    const titles = ['Miền Ký Ức Mở Ra','Ý Nghĩa Của Một Chuyến Đi','Hành Trình Ba Ngày','Đà Lạt – Miền Ký Ức'];
+    bt.textContent = `Trang ${pageNum}: ${titles[pageNum - 1]}`;
     bc.classList.add('visible');
   }
 }
 
 function updatePageSelector(pageNum) {
   document.querySelectorAll('.page-select-btn').forEach(btn => {
-    const active = +btn.dataset.page === pageNum;
-    btn.classList.toggle('active', active);
-    btn.setAttribute('aria-current', active ? 'page' : 'false');
+    const isActive = +btn.dataset.page === pageNum;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-current', isActive ? 'page' : 'false');
   });
 }
 
-/* ─────────────────────────────────────────────
-   PROGRESS BAR
-───────────────────────────────────────────── */
-function animateProgressBar(ms) {
+// ★ CHANGED: animateProgressBar nhanh hơn (180ms), thanh progress mượt hơn
+function animateProgressBar() {
   const container = document.getElementById('progressBarContainer');
   const bar = document.getElementById('progressBar');
   container.classList.add('active');
   bar.style.width = '0%';
-  let p = 0;
-  const iv = setInterval(() => {
-    p += 2; bar.style.width = p + '%';
-    if (p >= 100) {
-      clearInterval(iv);
-      setTimeout(() => { container.classList.remove('active'); bar.style.width = '0%'; }, 200);
-    }
-  }, ms / 50);
-}
-
-/* ─────────────────────────────────────────────
-   CURSOR TRAIL (desktop only)
-───────────────────────────────────────────── */
-if (window.matchMedia('(pointer: fine)').matches) {
-  let lastTrail = 0;
-  document.addEventListener('mousemove', (e) => {
-    const now = Date.now();
-    if (now - lastTrail > 50 && Math.random() > 0.7) {
-      lastTrail = now;
-      const t = document.createElement('div');
-      t.className = 'cursor-trail';
-      t.style.left = e.pageX + 'px';
-      t.style.top  = e.pageY + 'px';
-      document.body.appendChild(t);
-      setTimeout(() => t.remove(), 800);
-    }
+  // Dùng CSS transition thay vì setInterval – mượt hơn nhiều
+  requestAnimationFrame(() => {
+    bar.style.transition = 'width .16s cubic-bezier(.4,0,.2,1)';
+    bar.style.width = '100%';
   });
+  setTimeout(() => {
+    container.classList.remove('active');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+  }, 220);
 }
 
-/* ─────────────────────────────────────────────
-   FIREFLIES
-───────────────────────────────────────────── */
-function buildFireflies() {
+// ★ CHANGED: cursor trail – 35ms throttle, nhiều hơn 0.55 để không lag
+let lastTrailTime = 0;
+document.addEventListener('mousemove', (e) => {
+  const now = Date.now();
+  if (now - lastTrailTime > 35 && Math.random() > 0.55) {
+    lastTrailTime = now;
+    const trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    // ★ dùng clientX/Y + scroll để tính vị trí chính xác
+    trail.style.cssText = `left:${e.pageX}px;top:${e.pageY}px;`;
+    document.body.appendChild(trail);
+    setTimeout(() => trail.remove(), 600);
+  }
+}, { passive: true });
+
+function buildFireflies(){
   const w = document.getElementById('ffWrap');
-  for (let i = 0; i < 24; i++) {
+  for(let i = 0; i < 22; i++){
     const f = document.createElement('div'); f.className = 'ff';
     const sz = 2 + Math.random() * 4;
     const col = Math.random() < .55
-      ? `rgba(62,114,73,${.55 + Math.random() * .3})`
-      : `rgba(142,200,230,${.45 + Math.random() * .3})`;
-    f.style.cssText = `width:${sz}px;height:${sz}px;left:${8 + Math.random() * 84}%;bottom:${5 + Math.random() * 42}%;background:${col};box-shadow:0 0 ${sz * 2.4}px ${col};--dx:${(Math.random() - .5) * 75}px;--dur:${3.5 + Math.random() * 4.5}s;--del:${Math.random() * 7}s;`;
+      ? `rgba(62,114,73,${.55+Math.random()*.3})`
+      : `rgba(142,200,230,${.45+Math.random()*.3})`;
+    f.style.cssText = `width:${sz}px;height:${sz}px;left:${8+Math.random()*84}%;bottom:${5+Math.random()*42}%;background:${col};box-shadow:0 0 ${sz*2.4}px ${col};--dx:${(Math.random()-.5)*75}px;--dur:${3.5+Math.random()*4.5}s;--del:${Math.random()*7}s;`;
     w.appendChild(f);
   }
 }
 
-/* ─────────────────────────────────────────────
-   FALLING LEAVES
-───────────────────────────────────────────── */
 const LEAVES = ['🍃','🌿','🍂','🌱','🍀'];
-function buildLeaves(id) {
-  const el = document.getElementById(id); if (!el) return;
-  for (let i = 0; i < 10; i++) {
+function buildLeaves(id){
+  const el = document.getElementById(id); if(!el) return;
+  for(let i = 0; i < 10; i++){
     const l = document.createElement('div'); l.className = 'lf';
-    const sz = 10 + Math.random() * 8;
+    const sz = 10+Math.random()*8, dur = 5+Math.random()*6, del = Math.random()*9;
     l.textContent = LEAVES[i % LEAVES.length];
-    l.setAttribute('aria-hidden', 'true');
-    l.style.cssText = `left:${Math.random() * 95}%;bottom:${Math.random() * 18}%;--lsz:${sz}px;--ldur:${5 + Math.random() * 6}s;--ldel:${Math.random() * 9}s;--lx:${(Math.random() - .5) * 90}px;`;
+    l.style.cssText = `left:${Math.random()*95}%;bottom:${Math.random()*18}%;--lsz:${sz}px;--ldur:${dur}s;--ldel:${del}s;--lx:${(Math.random()-.5)*90}px;`;
     el.appendChild(l);
   }
 }
 
-/* ─────────────────────────────────────────────
-   PROGRESS DOTS SYNC
-───────────────────────────────────────────── */
-function syncDots(n) {
+function syncDots(n){
   document.querySelectorAll('.pdot').forEach(d => {
-    const active = +d.dataset.p === n;
-    d.classList.toggle('on', active);
-    d.setAttribute('aria-current', active ? 'true' : 'false');
+    const isActive = +d.dataset.p === n;
+    d.classList.toggle('on', isActive);
+    d.setAttribute('aria-current', isActive ? 'true' : 'false');
   });
 }
 
-/* ─────────────────────────────────────────────
-   DOT & PAGE-SELECTOR EVENTS
-───────────────────────────────────────────── */
 document.querySelectorAll('.pdot').forEach(d => {
   d.addEventListener('click', () => turnPage(+d.dataset.p));
-  d.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); turnPage(+d.dataset.p); } });
-});
-document.querySelectorAll('.page-select-btn').forEach(btn => {
-  btn.addEventListener('click', () => turnPage(+btn.dataset.page));
-  btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); turnPage(+btn.dataset.page); } });
+  d.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();turnPage(+d.dataset.p);} });
 });
 
-/* ─────────────────────────────────────────────
-   OPEN BOOK (no jank, no double-fire)
-───────────────────────────────────────────── */
-document.getElementById('openBookBtn').addEventListener('click', function () {
-  if (isAnimating) return;
-  isAnimating = true;
+document.querySelectorAll('.page-select-btn').forEach(btn => {
+  btn.addEventListener('click', () => turnPage(+btn.dataset.page));
+  btn.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();turnPage(+btn.dataset.page);} });
+});
+
+// ★ CHANGED: openBookBtn – delay 320ms → 180ms
+document.getElementById('openBookBtn').addEventListener('click', function(e) {
+  e.preventDefault(); e.stopPropagation();
+  if (this.dataset.processing === 'true') return;
+  this.dataset.processing = 'true';
 
   const cover = document.getElementById('bookCover');
   const pages = document.getElementById('bookPages');
-  const page1 = document.getElementById('page1');
 
-  cover.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-  cover.style.opacity = '0';
-  cover.style.transform = 'scale(0.97)';
+  cover.style.cssText = 'transition:opacity .18s ease,transform .18s ease;opacity:0;transform:scale(0.97);';
 
   setTimeout(() => {
     cover.style.display = 'none';
-    cover.style.cssText = ''; // reset inline styles for re-open
-
+    cover.style.cssText = '';
     pages.style.display = 'block';
-    page1.style.display = 'block';
-    pages.style.opacity = '0';
-    pages.style.transform = 'translateY(16px)';
-    pages.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      pages.style.opacity = '1';
-      pages.style.transform = 'translateY(0)';
-    }));
-
+    // instant render, no jank
+    pages.style.cssText = 'opacity:0;transform:translateY(12px);transition:opacity .25s ease,transform .25s ease;';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        pages.style.opacity = '1';
+        pages.style.transform = 'translateY(0)';
+      });
+    });
+    document.getElementById('page1').style.display = 'block';
     currentPage = 1;
     syncDots(1);
     updateBreadcrumb(1);
     updatePageSelector(1);
+    announce('Đã mở nhật ký. Đang ở trang 1: Miền Ký Ức Mở Ra');
+    this.dataset.processing = 'false';
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    setTimeout(() => {
-      pages.style.transition = '';
-      pages.style.opacity = '';
-      pages.style.transform = '';
-      isAnimating = false;
-    }, 450);
-  }, 320);
+    setTimeout(() => { pages.style.cssText = ''; }, 280);
+  }, 180);
 });
 
-/* ─────────────────────────────────────────────
-   TURN PAGE (debounced)
-───────────────────────────────────────────── */
+// ★ CHANGED: turnPage – delay 350ms → 160ms, bỏ loading spinner, dùng progress bar nhẹ
 function turnPage(n) {
-  if (n < 1 || n > 4 || currentPage === n || isAnimating) return;
-  isAnimating = true;
-  animateProgressBar(400);
-  document.getElementById('loadingSpinner').classList.add('active');
+  if(n < 1 || n > 4 || currentPage === n) return;
+
+  animateProgressBar();
+
+  // ★ instant UI feedback: update dots/selector ngay lập tức
+  syncDots(n);
+  updatePageSelector(n);
+
+  // Fade out current page nhanh
+  const curPage = document.getElementById('page' + currentPage);
+  curPage.style.transition = 'opacity .12s ease';
+  curPage.style.opacity = '0';
 
   setTimeout(() => {
-    document.getElementById('page' + currentPage).style.display = 'none';
+    curPage.style.display = 'none';
+    curPage.style.transition = '';
+    curPage.style.opacity = '';
+
     const nextPage = document.getElementById('page' + n);
     nextPage.style.display = 'block';
     currentPage = n;
-    syncDots(n);
     updateBreadcrumb(n);
-    updatePageSelector(n);
-    document.getElementById('loadingSpinner').classList.remove('active');
+
+    const titles = ['Miền Ký Ức Mở Ra','Ý Nghĩa Của Một Chuyến Đi','Hành Trình Ba Ngày','Đà Lạt – Miền Ký Ức'];
+    announce(`Trang ${n}: ${titles[n-1]}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    // re-trigger intersection observer for new page elements
-    observeElements();
-    isAnimating = false;
-  }, 400);
+  }, 130);
 }
 
-/* ─────────────────────────────────────────────
-   CLOSE PAGES → BACK TO COVER
-───────────────────────────────────────────── */
+// ★ CHANGED: closePage nhanh hơn
 function closePage() {
-  if (isAnimating) return;
-  isAnimating = true;
-  animateProgressBar(400);
-  document.getElementById('loadingSpinner').classList.add('active');
+  animateProgressBar();
+
+  const curPage = document.getElementById('page' + currentPage);
+  curPage.style.transition = 'opacity .12s ease';
+  curPage.style.opacity = '0';
 
   setTimeout(() => {
     document.getElementById('bookPages').style.display = 'none';
-    document.getElementById('page' + currentPage).style.display = 'none';
-    const cover = document.getElementById('bookCover');
-    cover.style.display = 'block';
-    document.getElementById('loadingSpinner').classList.remove('active');
+    curPage.style.display = 'none';
+    curPage.style.transition = '';
+    curPage.style.opacity = '';
+    document.getElementById('bookCover').style.display = 'block';
     updateBreadcrumb(0);
+    announce('Đã đóng nhật ký, quay về bìa sách');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    isAnimating = false;
-  }, 400);
+  }, 130);
 }
 
-/* ─────────────────────────────────────────────
-   JOURNEY TABS
-───────────────────────────────────────────── */
+// ★ CHANGED: journey tabs – tức thì hơn, không delay
 document.querySelectorAll('.journey-tab').forEach(tab => {
-  const activate = () => {
-    document.querySelectorAll('.journey-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+  const clickHandler = () => {
+    document.querySelectorAll('.journey-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
     document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
     tab.classList.add('active');
     tab.setAttribute('aria-selected', 'true');
     document.getElementById(tab.dataset.day).classList.add('active');
+    announce(`Đang xem ${tab.textContent.trim()}`);
   };
-  tab.addEventListener('click', activate);
-  tab.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+  tab.addEventListener('click', clickHandler);
+  tab.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();clickHandler();} });
 });
 
-/* ─────────────────────────────────────────────
-   ALBUM ARROWS
-   FIX: only handle click, not drag events
-───────────────────────────────────────────── */
+// ★ Album arrows - scroll nhanh hơn
 document.addEventListener('click', e => {
   const arrow = e.target.closest('.aarr');
   if (!arrow) return;
-  e.stopPropagation();
   const album = document.getElementById(arrow.dataset.album);
-  album.scrollBy({ left: arrow.classList.contains('ap') ? -340 : 340, behavior: 'smooth' });
+  const scrollAmount = arrow.classList.contains('ap') ? -360 : 360;
+  album.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 });
 
-/* ─────────────────────────────────────────────
-   ALBUM DRAG-TO-SCROLL
-   FIX: don't fire click on image after drag
-───────────────────────────────────────────── */
-document.querySelectorAll('.atrack').forEach(album => {
-  let isDown = false, startX, scrollLeft, hasDragged = false;
+// Swipe
+function handleSwipe() {
+  const diff = touchStartX - touchEndX;
+  if (Math.abs(diff) > 45) {
+    if (diff > 0 && currentPage < 4) turnPage(currentPage + 1);
+    else if (diff < 0 && currentPage > 1) turnPage(currentPage - 1);
+  }
+}
+document.getElementById('bookPages').addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+document.getElementById('bookPages').addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleSwipe(); }, { passive: true });
 
-  album.addEventListener('mousedown', e => {
-    if (e.target.closest('.aarr')) return; // ignore arrow clicks
-    isDown = true; hasDragged = false;
-    album.style.cursor = 'grabbing';
-    startX = e.pageX - album.offsetLeft;
-    scrollLeft = album.scrollLeft;
-  });
+// Album drag scroll
+document.querySelectorAll('.atrack').forEach(album => {
+  let isDown = false, startX, scrollLeft;
+  album.addEventListener('mousedown', e => { isDown = true; album.style.cursor = 'grabbing'; startX = e.pageX - album.offsetLeft; scrollLeft = album.scrollLeft; });
   album.addEventListener('mouseleave', () => { isDown = false; album.style.cursor = 'grab'; });
   album.addEventListener('mouseup', () => { isDown = false; album.style.cursor = 'grab'; });
   album.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
+    if (!isDown) return; e.preventDefault();
     const x = e.pageX - album.offsetLeft;
-    const walk = (x - startX) * 2.8;
-    if (Math.abs(walk) > 5) hasDragged = true;
-    album.scrollLeft = scrollLeft - walk;
+    album.scrollLeft = scrollLeft - (x - startX) * 2.5;
   });
-  // FIX: prevent image modal opening after a drag
-  album.addEventListener('click', e => { if (hasDragged) { e.stopPropagation(); hasDragged = false; } });
 });
 
-/* ─────────────────────────────────────────────
-   IMAGE MODAL
-───────────────────────────────────────────── */
+// Mouse parallax for story cards
+document.querySelectorAll('.story-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', x + '%');
+    card.style.setProperty('--mouse-y', y + '%');
+  });
+});
+
+// Modal
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('modalImg');
+let allModalImages = [], currentModalIndex = 0;
 
-function openModal(src, alt) {
-  modalImg.src = src;
-  modalImg.alt = alt;
+function openModal(img, index, images) {
+  allModalImages = images;
+  currentModalIndex = index;
   modal.classList.add('active');
+  modalImg.src = img.src;
+  modalImg.alt = img.alt;
+  document.getElementById('modalCaption').textContent = img.alt || '';
   document.body.style.overflow = 'hidden';
-  document.getElementById('modalClose').focus();
 }
+
 function closeModal() {
   modal.classList.remove('active');
   document.body.style.overflow = '';
-  // FIX: clear src after animation so old image doesn't flash on reopen
-  setTimeout(() => { modalImg.src = ''; }, 300);
+  setTimeout(() => { modalImg.removeAttribute('src'); }, 250);
 }
 
-// Delegate click to avoid re-attaching listeners on page turn
-document.getElementById('bookPages').addEventListener('click', e => {
-  const img = e.target.closest('.pola img, .story-image img, .ci img');
-  if (img && !e.target.closest('.atrack').classList?.contains('dragging')) {
-    openModal(img.src, img.alt);
-  }
+document.querySelectorAll('.pola img, .story-image img, .ci img').forEach((img, i, arr) => {
+  img.addEventListener('click', e => { e.stopPropagation(); openModal(img, i, [...arr]); });
 });
-document.getElementById('modalClose').addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.getElementById('imageModal').addEventListener('click', e => { if(e.target === modal) closeModal(); });
 
-/* ─────────────────────────────────────────────
-   KEYBOARD NAVIGATION
-───────────────────────────────────────────── */
+// Keyboard shortcuts
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeModal(); return; }
+  if (modal.classList.contains('active')) return;
   if (document.getElementById('bookPages').style.display !== 'block') return;
   if (e.key === 'ArrowRight' && currentPage < 4) turnPage(currentPage + 1);
-  if (e.key === 'ArrowLeft'  && currentPage > 1) turnPage(currentPage - 1);
+  if (e.key === 'ArrowLeft' && currentPage > 1) turnPage(currentPage - 1);
 });
 
-/* ─────────────────────────────────────────────
-   SWIPE (mobile) — only on the page, not album
-   FIX: prevent swipe triggering during album scroll
-───────────────────────────────────────────── */
-let touchStartX = 0, touchStartY = 0, isTouchingAlbum = false;
-
-document.getElementById('bookPages').addEventListener('touchstart', e => {
-  isTouchingAlbum = !!e.target.closest('.atrack');
-  touchStartX = e.changedTouches[0].screenX;
-  touchStartY = e.changedTouches[0].screenY;
-}, { passive: true });
-
-document.getElementById('bookPages').addEventListener('touchend', e => {
-  if (isTouchingAlbum) return;
-  const dx = e.changedTouches[0].screenX - touchStartX;
-  const dy = e.changedTouches[0].screenY - touchStartY;
-  // only horizontal swipes
-  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-    if (dx < 0 && currentPage < 4) turnPage(currentPage + 1);
-    else if (dx > 0 && currentPage > 1) turnPage(currentPage - 1);
-  }
-}, { passive: true });
-
-/* ─────────────────────────────────────────────
-   STORY CARD SPOTLIGHT
-───────────────────────────────────────────── */
-document.addEventListener('mousemove', e => {
-  const card = e.target.closest('.story-card');
-  if (!card) return;
-  const rect = card.getBoundingClientRect();
-  card.style.setProperty('--mouse-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
-  card.style.setProperty('--mouse-y', ((e.clientY - rect.top)  / rect.height * 100) + '%');
-});
-
-/* ─────────────────────────────────────────────
-   SCROLL TO TOP
-───────────────────────────────────────────── */
+// Scroll top
 const scrollTopBtn = document.getElementById('scrollTop');
-window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('visible', window.scrollY > 300); });
+window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('visible', window.scrollY > 300); }, { passive: true });
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-/* ─────────────────────────────────────────────
-   INTERSECTION OBSERVER (scroll reveal)
-───────────────────────────────────────────── */
-const rv = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-      rv.unobserve(entry.target);
+// ★ Intersection Observer – threshold thấp hơn để trigger sớm hơn
+const rv = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      rv.unobserve(e.target);
     }
   });
-}, { threshold: .06, rootMargin: '0px 0px -36px 0px' });
+}, { threshold: 0.04, rootMargin: '0px 0px -20px 0px' });
 
-function observeElements() {
-  document.querySelectorAll('.story-card,.meaning-card,.pola,.dnote,.quote-box,.callout,.ccard').forEach((el, i) => {
-    if (el.style.opacity === '1') return; // skip already revealed
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(28px)';
-    el.style.transition = `opacity .72s ease ${i * .054}s, transform .72s ease ${i * .054}s`;
-    rv.observe(el);
-  });
+document.querySelectorAll('.story-card,.meaning-card,.pola,.dnote,.quote-box,.callout,.ccard').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(22px)';
+  // ★ stagger nhanh hơn: 0.054s → 0.04s
+  el.style.transition = `opacity .55s ease ${i * .04}s, transform .55s ease ${i * .04}s`;
+  rv.observe(el);
+});
+
+// Image load shimmer remove
+function handleImageLoad(img) {
+  if (img.complete && img.naturalWidth > 0) {
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', () => img.classList.add('loaded'));
+    img.addEventListener('error', () => { img.style.opacity = '.3'; img.classList.add('loaded'); });
+  }
 }
 
-/* ─────────────────────────────────────────────
-   IMAGE LAZY LOAD (progressive blur-to-sharp)
-───────────────────────────────────────────── */
-function lazyLoad() {
-  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-    if (img.complete) return;
-    img.classList.add('img-loading');
-    img.style.opacity = '0';
-    img.addEventListener('load', () => {
-      img.classList.remove('img-loading');
-      img.classList.add('img-loaded');
-      img.style.transition = 'opacity .6s ease, filter .6s ease';
-      img.style.opacity = '1';
-    }, { once: true });
-    img.addEventListener('error', () => {
-      img.style.opacity = '.25';
-    }, { once: true });
-  });
-}
-
-/* ─────────────────────────────────────────────
-   DOTS PULSE ANIMATION (subtle heartbeat)
-───────────────────────────────────────────── */
-function startDotPulse() {
-  setInterval(() => {
-    const activeDot = document.querySelector('.pdot.on');
-    if (!activeDot) return;
-    activeDot.style.transform = 'scale(1.2)';
-    setTimeout(() => { activeDot.style.transform = ''; }, 300);
-  }, 3000);
-}
-
-/* ─────────────────────────────────────────────
-   INIT
-───────────────────────────────────────────── */
 window.addEventListener('load', () => {
   buildFireflies();
   buildLeaves('lf1');
   buildLeaves('lf3');
-  lazyLoad();
-  observeElements();
-  startDotPulse();
+  document.querySelectorAll('img').forEach(img => handleImageLoad(img));
+
+  // Lazy-load images
+  if ('IntersectionObserver' in window) {
+    const imgObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+          imgObs.unobserve(img);
+        }
+      });
+    }, { rootMargin: '200px' });
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => imgObs.observe(img));
+  }
 });
 </script>
 </body>
