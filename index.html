@@ -61,6 +61,7 @@ body::after{
 @keyframes particlesDrift{from{transform:translateY(0) translateX(0);}to{transform:translateY(-90px) translateX(50px);}}
 @keyframes particlesTwinkle{0%,100%{opacity:.5;}50%{opacity:.7;}}
 
+/* FIX 1: cursor trail z-index cao hơn */
 .cursor-trail {
   position: fixed;
   width: 8px;height: 8px;border-radius: 50%;
@@ -83,14 +84,17 @@ body::after{
   box-shadow: 0 0 10px rgba(62,114,73,.6);
 }
 
+/* FIX 2: breadcrumb + home-btn không chồng nhau ở mobile */
 .breadcrumb {
   position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
   background: rgba(255,255,255,.9); backdrop-filter: blur(10px);
   padding: 7px 22px; border-radius: 30px;
   border: 2px solid rgba(62,114,73,.25);
   font-family: 'Playfair Display', serif; font-size: 0.8rem;
-  color: var(--forest-dark); z-index: 9999; opacity: 0; pointer-events: none;
+  color: var(--forest-dark); z-index: 9998; opacity: 0; pointer-events: none;
   transition: all .3s; box-shadow: 0 4px 15px rgba(30,68,48,.15);
+  white-space: nowrap; max-width: calc(100vw - 180px);
+  overflow: hidden; text-overflow: ellipsis;
 }
 .breadcrumb.visible { opacity: 1; pointer-events: auto; }
 
@@ -109,6 +113,12 @@ body::after{
 .home-btn:hover {
   background: rgba(62,114,73,.15); border-color: rgba(62,114,73,.6);
   transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30,68,48,.2);
+}
+
+/* FIX 3: aria-live region cho thông báo chuyển trang */
+.sr-announce {
+  position: absolute; left: -9999px; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0);
 }
 
 .book-container{
@@ -242,17 +252,17 @@ body::after{
   transition:all .35s cubic-bezier(.4,0,.2,1);
   animation:fU 1.2s ease 1s both,btnPulse 3s ease-in-out infinite,btnShimmer 4s linear infinite;
   font-family:'Playfair Display',serif;letter-spacing:.06em;
-  border:3px solid rgba(201,169,97,.5);   /* gold border baseline */
+  border:3px solid rgba(201,169,97,.5);
   position:relative;overflow:hidden;cursor:pointer;
   transform-style:preserve-3d;
 }
 .open-book-btn:hover{
   transform:translateY(-6px) scale(1.08);
-  border-color:rgba(201,169,97,1);         /* bright gold on hover */
+  border-color:rgba(201,169,97,1);
   box-shadow:
     0 20px 60px rgba(30,68,48,.8),
-    0 0 0 4px rgba(201,169,97,.55),         /* outer gold ring */
-    0 0 40px rgba(201,169,97,.7),           /* gold glow */
+    0 0 0 4px rgba(201,169,97,.55),
+    0 0 40px rgba(201,169,97,.7),
     0 0 80px rgba(201,169,97,.35),
     0 0 60px rgba(62,114,73,.5);
   letter-spacing:.08em;
@@ -311,10 +321,11 @@ body::after{
   transform-origin:left center;
   box-shadow:inset 0 0 100px rgba(30,68,48,.05);
 }
+/* FIX 4: smoother page entry animation */
 @keyframes pageTurn{
-  0%  {transform:perspective(2000px) rotateY(-100deg);opacity:0;filter:blur(10px);}
-  60% {transform:perspective(2000px) rotateY(10deg);  opacity:1;filter:blur(0);}
-  100%{transform:perspective(2000px) rotateY(0);      opacity:1;filter:blur(0);}
+  0%  {opacity:0;transform:perspective(2000px) rotateY(-8deg) translateY(16px);filter:blur(2px);}
+  60% {transform:perspective(2000px) rotateY(2deg) translateY(-4px);filter:blur(0);}
+  100%{opacity:1;transform:perspective(2000px) rotateY(0) translateY(0);filter:blur(0);}
 }
 .page::before{
   content:'';position:absolute;inset:0;
@@ -467,8 +478,10 @@ body::after{
 .story-card:hover::after{opacity:1;}
 .story-card:nth-child(even) .story-image{order:2;}
 .story-card:nth-child(even) .story-text{order:1;}
+
+/* FIX 5: giảm hover effect trên story-card để không giật */
 .story-card:hover{
-  transform:translateY(-10px) rotate(.3deg) scale(1.02);
+  transform:translateY(-8px) scale(1.015);
   box-shadow:0 20px 60px rgba(30,68,48,.18),0 8px 24px rgba(62,114,73,.12);
   border-color:rgba(62,114,73,.5);
 }
@@ -500,22 +513,32 @@ body::after{
   0%, 100% { transform: rotate(18deg) scale(1); }
   50% { transform: rotate(16deg) scale(1.08); }
 }
-.story-image img, .ci img, .pola img {
+
+/* FIX 6: image skeleton placeholder trước khi ảnh load */
+.story-image img, .ci img, .pola img, .pola img {
   width:100%;height:100%;object-fit:cover;
   transition:all .8s cubic-bezier(.4,0,.2,1);
   filter:sepia(.05) contrast(1.05) brightness(1);
   cursor:pointer;
-  background: linear-gradient(135deg, #e8dcc8 0%, #d4c4b0 100%);
+  background: linear-gradient(110deg, #e8dcc8 25%, #f0e8d8 50%, #e8dcc8 75%);
+  background-size: 200% 100%;
+  animation: shimmerLoad 1.5s ease-in-out infinite;
 }
-.story-image img.loading { filter: blur(20px); }
-.story-image img.loaded { filter:sepia(.05) contrast(1.05) brightness(1); }
+.story-image img.loaded, .ci img.loaded, .pola img.loaded {
+  animation: none;
+  background: none;
+}
+@keyframes shimmerLoad {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
 .story-card:hover .story-image img{
-  transform:scale(1.1) rotate(-1deg);
+  transform:scale(1.08) rotate(-.5deg);
   filter:sepia(.12) contrast(1.1) brightness(1.05);
 }
 .story-text{font-size:1.28rem;line-height:1.95;color:var(--ink-dark);font-family:'Lora',serif;font-weight:400;}
 .story-text p{margin-bottom:14px;font-family:'Lora',serif;transition:transform .3s ease;}
-.story-card:hover .story-text p{transform:translateX(4px);}
+.story-card:hover .story-text p{transform:translateX(3px);}
 .story-text p:last-child{margin-bottom:0;}
 .story-text .lead{font-size:1.18rem;font-style:italic;font-family:'Lora',serif;color:var(--ink-dark);margin-bottom:18px;line-height:1.95;font-weight:400;}
 
@@ -599,10 +622,24 @@ body::after{
 
 /* ── ALBUM ── */
 .awrap{position:relative;margin-bottom:28px;}
-/* padding on sides gives arrows room outside the scroll area */
+/* FIX 7: thêm visual cue cuộn ngang + gradient fade hai bên */
+.awrap::before, .awrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 34px; width: 48px;
+  z-index: 20; pointer-events: none;
+}
+.awrap::before {
+  left: 44px;
+  background: linear-gradient(to right, rgba(249,247,240,.85), transparent);
+}
+.awrap::after {
+  right: 44px;
+  background: linear-gradient(to left, rgba(249,247,240,.85), transparent);
+}
 .atrack{
   display:flex;gap:22px;overflow-x:auto;
-  padding:20px 56px 34px; /* horizontal padding so arrows don't overlap photos */
+  padding:20px 56px 34px;
   scroll-snap-type:x mandatory;scrollbar-width:thin;
   scrollbar-color:rgba(62,114,73,.36) transparent;cursor:grab;
   scroll-behavior:smooth; -webkit-overflow-scrolling: touch;
@@ -610,17 +647,29 @@ body::after{
 .atrack:active{cursor:grabbing;}
 .atrack::-webkit-scrollbar{height:5px;}
 .atrack::-webkit-scrollbar-thumb{background:rgba(62,114,73,.34);border-radius:3px;}
+
+/* FIX 8: Scroll hint indicator */
+.scroll-hint {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 0.85rem;
+  color: rgba(62,114,73,.55);
+  margin-top: -22px;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+  animation: hintFade 2.5s ease-in-out infinite;
+}
+@keyframes hintFade { 0%,100%{opacity:.4;} 50%{opacity:.85;} }
+
 .aarr{
   position:absolute;top:50%;transform:translateY(-58%);
   width:44px;height:44px;background:rgba(255,255,255,.95);
   border:2px solid rgba(62,114,73,.4);border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   font-size:1.2rem;color:var(--g7);cursor:pointer;
-  /* arrows always on top — even above pola:hover z-index:20 */
   z-index:30;
   box-shadow:0 4px 14px rgba(14,30,20,.18);
   backdrop-filter:blur(10px);user-select:none;transition:all .25s;
-  /* prevent mouse events from the album track or pola from swallowing the arrow */
   pointer-events:all;
 }
 .aarr:focus { outline: 3px solid rgba(62,114,73,.6); outline-offset: 2px; }
@@ -673,11 +722,12 @@ body::after{
   display:flex; justify-content:center; align-items:center;
   gap:36px; margin:48px 0; flex-wrap:wrap;
 }
+/* FIX 9: meaning-card text contrast cải thiện đáng kể */
 .meaning-card{
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(174,206,186,.3), transparent 55%),
-    radial-gradient(ellipse at 70% 80%, rgba(122,170,136,.25), transparent 55%),
-    linear-gradient(160deg, rgba(235,245,238,.98) 0%, rgba(220,238,228,.96) 50%, rgba(208,232,218,.94) 100%);
+    radial-gradient(ellipse at 30% 20%, rgba(205,230,212,.45), transparent 55%),
+    radial-gradient(ellipse at 70% 80%, rgba(174,206,186,.35), transparent 55%),
+    linear-gradient(160deg, #eef6f0 0%, #e2f0e8 50%, #d8ecdf 100%);
   padding:52px 44px;
   border-radius:50%;
   text-align:center;
@@ -685,15 +735,14 @@ body::after{
   box-shadow:
     0 14px 42px rgba(30,68,48,.18),
     0 6px 18px rgba(62,114,73,.12),
-    inset 0 2px 14px rgba(255,255,255,.7),
-    inset 0 -2px 14px rgba(122,170,136,.18);
+    inset 0 2px 14px rgba(255,255,255,.85),
+    inset 0 -2px 14px rgba(122,170,136,.22);
   transition:all .5s cubic-bezier(.4,0,.2,1);
   animation:cardFlip 1s ease;
   width:330px;min-height:330px;height:auto;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   position:relative;overflow:hidden;
 }
-/* spinning border ring on hover */
 .meaning-card::before{
   content:'';position:absolute;top:50%;left:50%;width:200%;height:200%;
   transform:translate(-50%, -50%);
@@ -711,9 +760,9 @@ body::after{
 .meaning-card:hover{
   transform:translateY(-16px) scale(1.05);
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(62,114,73,.22), transparent 55%),
-    radial-gradient(ellipse at 70% 80%, rgba(45,90,64,.18), transparent 55%),
-    linear-gradient(160deg, rgba(200,230,210,.98) 0%, rgba(180,220,198,.97) 50%, rgba(165,210,186,.96) 100%);
+    radial-gradient(ellipse at 30% 20%, rgba(62,114,73,.28), transparent 55%),
+    radial-gradient(ellipse at 70% 80%, rgba(45,90,64,.22), transparent 55%),
+    linear-gradient(160deg, #ddefdf 0%, #cce5d4 50%, #c0ddc8 100%);
   border-color:rgba(62,114,73,.75);
   box-shadow:0 32px 75px rgba(30,68,48,.26),0 14px 40px rgba(62,114,73,.2),0 0 55px rgba(122,170,136,.22),inset 0 2px 20px rgba(255,255,255,.6),inset 0 -2px 20px rgba(62,114,73,.2);
 }
@@ -740,45 +789,56 @@ body::after{
   50%{transform:rotate(0deg) scale(1.12) translateY(-10px);}
   75%{transform:rotate(-10deg) scale(1.08) translateY(-6px);}
 }
+/* FIX 9b: tăng độ tương phản text trong meaning-card */
 .meaning-card h4{
   font-family:'Playfair Display',serif;font-size:1.45rem;
-  color:#162c1e; /* darker for legibility */
+  color:#0f2018;
   margin-bottom:12px;font-weight:800;position:relative;z-index:2;
   line-height:1.3;
-  text-shadow:0 1px 4px rgba(255,255,255,.5);
+  text-shadow:0 1px 3px rgba(255,255,255,.6);
   transition:all .3s ease;
 }
 .meaning-card:hover h4{
-  color:#0e1f14;
-  text-shadow:0 2px 8px rgba(255,255,255,.4);
+  color:#0a170f;
   transform:scale(1.03);
 }
 .meaning-card p{
   font-size:1.05rem;line-height:1.82;
-  color:#1e3a28; /* darker paragraph text */
-  position:relative;z-index:2;font-family:'Lora',serif;font-weight:500; /* slightly bolder */
+  color:#1a3424;
+  position:relative;z-index:2;font-family:'Lora',serif;font-weight:500;
   max-width:242px;transition:all .3s ease;
 }
 .meaning-card:hover p{
-  color:#0f2018; /* even darker on hover */
+  color:#0d1f12;
   transform:scale(1.01);
 }
 
 /* ── QUOTE BOX ── */
+/* FIX 10: quote box — dấu " không bị che ở mobile */
 .quote-box{
   background:linear-gradient(135deg,rgba(249,247,240,.9),rgba(249,247,240,.7));
   border-left:5px solid #2d5a40;border-right:5px solid #3e7249;
-  padding:36px 50px;margin:48px 0;position:relative;
+  padding:36px 50px;
+  margin:48px 0;
+  position:relative;
   animation:quoteReveal 1.2s ease;
   border-radius:8px; box-shadow:0 6px 20px rgba(30,68,48,.12);
   transition:all .5s cubic-bezier(.4,0,.2,1);
+  overflow: visible;
 }
 .quote-box:hover{ box-shadow:0 10px 30px rgba(30,68,48,.18); transform:translateY(-3px); }
 @keyframes quoteReveal{
   from{opacity:0;transform:scale(.92) translateY(30px);}
   to{opacity:1;transform:scale(1) translateY(0);}
 }
-.quote-box::before{content:'"';position:absolute;top:-24px;left:24px;font-size:8rem;line-height:1;font-family:'Playfair Display',serif;color:#3e7249;opacity:.28;}
+.quote-box::before{
+  content:'"';
+  position:absolute;top:-18px;left:18px;
+  font-size:6rem;line-height:1;
+  font-family:'Playfair Display',serif;
+  color:#3e7249;opacity:.22;
+  pointer-events:none;
+}
 .quote-text{font-family:'Lora',serif;font-size:1.55rem;color:var(--forest-dark);line-height:1.85;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:400;}
 
 .callout{
@@ -821,7 +881,7 @@ body::after{
 }
 .ccard:hover::after{ border-width:0 70px 70px 0; opacity:1; }
 .ccard:hover{
-  transform:translateY(-12px) scale(1.015) rotateX(2deg);
+  transform:translateY(-10px) scale(1.012);
   box-shadow:0 30px 80px rgba(30,68,48,.22),0 12px 40px rgba(62,114,73,.18),inset 0 2px 12px rgba(255,255,255,.7);
   border-color:rgba(62,114,73,.38);
 }
@@ -849,7 +909,7 @@ body::after{
   box-shadow:0 15px 45px rgba(30,68,48,.22),0 0 0 9px rgba(255,255,255,.9),0 0 0 11px rgba(62,114,73,.3),0 0 26px rgba(122,170,136,.25);
   transform:scale(1.02);
 }
-.ccard:hover .ci img{ transform:scale(1.08) rotate(-1deg); filter:saturate(1.18) contrast(1.07); }
+.ccard:hover .ci img{ transform:scale(1.06) rotate(-.5deg); filter:saturate(1.18) contrast(1.07); }
 .ct{ width:100%;max-width:820px; }
 .ct p{
   font-size:1.28rem;line-height:2.1;color:var(--ink-dark);
@@ -857,7 +917,7 @@ body::after{
   width:100%;text-align:left;transition:all .4s ease;
 }
 .ct p:last-child{ margin-bottom:0; }
-.ccard:hover .ct p{ transform:translateX(6px); color:var(--forest-dark); }
+.ccard:hover .ct p{ transform:translateX(5px); color:var(--forest-dark); }
 
 /* ── PAGE NAV ── */
 .page-nav{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:36px;border-top:2px solid rgba(30,68,48,.28);position:relative;z-index:100;}
@@ -912,6 +972,26 @@ body::after{
 .modal-close:focus { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
 .modal-close:hover{background:rgba(62,114,73,.6);transform:rotate(90deg) scale(1.12);}
 
+/* FIX 11: modal navigation arrows */
+.modal-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,.18); border: 2px solid rgba(122,170,136,.5);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: #fff; cursor: pointer;
+  transition: all .3s; backdrop-filter: blur(8px); z-index: 1001;
+}
+.modal-nav:hover { background: rgba(62,114,73,.5); }
+.modal-nav.prev { left: 20px; }
+.modal-nav.next { right: 80px; }
+.modal-caption {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  font-family: 'Dancing Script', cursive; font-size: 1.1rem;
+  color: rgba(255,255,255,.8); text-align: center;
+  background: rgba(0,0,0,.3); padding: 6px 20px; border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
 .scroll-top{
   position:fixed;bottom:38px;right:38px;width:55px;height:55px;
   background:linear-gradient(135deg,#2d5a40,#3e7249);
@@ -961,11 +1041,12 @@ body::after{
   .cover-title{font-size:3.2rem;}
   .cover-subtitle{font-size:1.6rem;}
   .cover-quote{font-size:0.95rem;}
-  .page{padding:50px 28px 90px;border-left:36px solid rgba(30,68,48,.08);}
-  .section-title{font-size:2.2rem;}
+  .page{padding:50px 24px 90px;border-left:30px solid rgba(30,68,48,.08);}
+  .section-title{font-size:2rem;}
   .section-intro{font-size:1rem;}
   .story-card{grid-template-columns:1fr!important;gap:26px;}
   .story-card:nth-child(even) .story-image{order:0;}
+  .story-card:hover{transform:translateY(-5px) scale(1.008);} /* FIX mobile hover */
   .story-text{font-size:1rem;}
   .journey-tabs{flex-direction:column;}
   .journey-tab{width:100%;}
@@ -977,42 +1058,61 @@ body::after{
   .ct p{font-size:1.05rem;}
   .ntxt{font-size:1rem;}
   .quote-text{font-size:1.3rem;}
-  .breadcrumb{font-size:0.74rem;padding:6px 16px;}
+  /* FIX: breadcrumb ở mobile — ẩn bớt để không chồng home-btn */
+  .breadcrumb{
+    top:auto; bottom:20px; left:50%; right:auto;
+    transform:translateX(-50%);
+    font-size:0.72rem; padding:5px 14px;
+    max-width:calc(100vw - 40px);
+  }
   .aarr{display:none;}
   .page-select-btn .ps-title { display: none; }
   .page-selector { gap: 5px; padding: 10px 8px; }
   .page-select-btn { min-width: 55px; padding: 7px 10px; }
   .home-btn { font-size: 0.76rem; padding: 7px 12px; }
+  .awrap::before, .awrap::after { display: none; } /* không cần fade ở mobile */
+  .scroll-hint { display: block; } /* hiện hint kéo ngang ở mobile */
 }
 @media(max-width:480px){
-  .page{padding:38px 18px 80px;}
-  .section-title{font-size:1.9rem;}
+  .page{padding:38px 14px 80px;}
+  .section-title{font-size:1.75rem;}
   .section-intro{font-size:0.92rem;}
-  .story-text{font-size:0.95rem;}
-  .quote-box{padding:28px 20px;}
-  .quote-text{font-size:1.2rem;line-height:1.7;}
-  .callout{font-size:1rem;}
+  /* FIX 12: body text không bị quá lớn gây overflow trên mobile nhỏ */
+  .story-text{font-size:0.92rem;}
+  .ntxt{font-size:0.92rem;}
+  .ct p{font-size:0.94rem;line-height:1.9;}
+  .quote-box{padding:28px 18px;}
+  .quote-text{font-size:1.15rem;line-height:1.7;}
+  .callout{font-size:0.98rem; padding:18px 20px;}
   .sig{font-size:2rem;}
   .cgrid{gap:28px;}
-  .ct p{font-size:0.98rem;line-height:1.95;}
-  .ntxt{font-size:0.95rem;}
-  .cover-title{font-size:2.6rem;}
+  .cover-title{font-size:2.4rem;}
   .cover-subtitle{font-size:1.4rem;}
   .cover-quote{font-size:0.88rem;}
   .selector-divider { display: none; }
   .open-book-btn{font-size:0.92rem;padding:12px 32px;}
+  .page-number{font-size:1.1rem;bottom:18px;right:20px;}
+  .quote-box::before{font-size:4rem;top:-12px;left:10px;}
 }
 
+/* FIX 13: prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  /* vẫn giữ transition cho tương tác */
+  .nav-btn, .open-book-btn, .meaning-card, .story-card {
+    transition: opacity .2s, box-shadow .2s !important;
+  }
 }
 </style>
 </head>
 <body>
+
+<!-- FIX 3: aria-live region để screen reader thông báo chuyển trang -->
+<div class="sr-announce" aria-live="polite" aria-atomic="true" id="srAnnounce"></div>
 
 <div class="progress-bar-container" id="progressBarContainer">
   <div class="progress-bar" id="progressBar"></div>
@@ -1022,22 +1122,23 @@ body::after{
   🏠 <span>Trang Chủ</span>
 </a>
 
-<div class="breadcrumb" id="breadcrumb">
-  <span class="breadcrumb-icon">📖</span>
+<!-- FIX 2: breadcrumb chuyển xuống dưới ở mobile via CSS -->
+<div class="breadcrumb" id="breadcrumb" role="navigation" aria-label="Vị trí hiện tại">
+  <span class="breadcrumb-icon" aria-hidden="true">📖</span>
   <span id="breadcrumbText">Bìa sách</span>
 </div>
 
-<div class="loading-spinner" id="loadingSpinner"></div>
+<div class="loading-spinner" id="loadingSpinner" role="status" aria-label="Đang tải..."></div>
 
 <div class="book-container" id="bookContainer">
 
   <!-- ══ COVER ══ -->
   <div class="book-cover" id="bookCover">
-    <div class="bookmark"></div>
-    <div class="ff-wrap" id="ffWrap"></div>
+    <div class="bookmark" aria-hidden="true"></div>
+    <div class="ff-wrap" id="ffWrap" aria-hidden="true"></div>
     <div class="cover-content">
-      <div class="cover-badge">✦ &nbsp;Mốc Kỷ Niệm Thứ 5 / 6&nbsp; ✦</div>
-      <div class="cover-icon">🌲</div>
+      <div class="cover-badge" aria-label="Mốc kỷ niệm thứ 5 trên 6">✦ &nbsp;Mốc Kỷ Niệm Thứ 5 / 6&nbsp; ✦</div>
+      <div class="cover-icon" aria-hidden="true">🌲</div>
       <h1 class="cover-title">NHẬT KÝ ĐÀ LẠT</h1>
       <h2 class="cover-subtitle">Dấu ấn không phai trong miền ký ức lớp 11L</h2>
       <p class="cover-quote">
@@ -1054,42 +1155,42 @@ body::after{
   <!-- ══ PAGES ══ -->
   <div class="book-pages" id="bookPages" style="display:none;">
 
-    <div class="page-selector" role="navigation" aria-label="Chọn trang">
-      <button class="page-select-btn active" data-page="1" aria-label="Trang 1: Miền Ký Ức Mở Ra">
-        <span class="ps-icon">🌿</span>
+    <nav class="page-selector" role="navigation" aria-label="Chọn trang">
+      <button class="page-select-btn active" data-page="1" aria-label="Trang 1: Miền Ký Ức Mở Ra" aria-current="page">
+        <span class="ps-icon" aria-hidden="true">🌿</span>
         <span class="ps-num">01</span>
         <span class="ps-title">Ký Ức Mở Ra</span>
       </button>
       <span class="selector-divider" aria-hidden="true">›</span>
       <button class="page-select-btn" data-page="2" aria-label="Trang 2: Ý Nghĩa Chuyến Đi">
-        <span class="ps-icon">📚</span>
+        <span class="ps-icon" aria-hidden="true">📚</span>
         <span class="ps-num">02</span>
         <span class="ps-title">Ý Nghĩa</span>
       </button>
       <span class="selector-divider" aria-hidden="true">›</span>
       <button class="page-select-btn" data-page="3" aria-label="Trang 3: Hành Trình Ba Ngày">
-        <span class="ps-icon">📍</span>
+        <span class="ps-icon" aria-hidden="true">📍</span>
         <span class="ps-num">03</span>
         <span class="ps-title">Hành Trình</span>
       </button>
       <span class="selector-divider" aria-hidden="true">›</span>
       <button class="page-select-btn" data-page="4" aria-label="Trang 4: Miền Ký Ức">
-        <span class="ps-icon">🌸</span>
+        <span class="ps-icon" aria-hidden="true">🌸</span>
         <span class="ps-num">04</span>
         <span class="ps-title">Miền Ký Ức</span>
       </button>
-    </div>
+    </nav>
 
     <div class="prog" style="padding-top:20px;" role="navigation" aria-label="Điều hướng trang">
-      <button class="pdot on" data-p="1" aria-label="Trang 1" tabindex="0"></button>
-      <button class="pdot" data-p="2" aria-label="Trang 2" tabindex="0"></button>
-      <button class="pdot" data-p="3" aria-label="Trang 3" tabindex="0"></button>
-      <button class="pdot" data-p="4" aria-label="Trang 4" tabindex="0"></button>
+      <button class="pdot on" data-p="1" aria-label="Trang 1" aria-current="true"></button>
+      <button class="pdot" data-p="2" aria-label="Trang 2"></button>
+      <button class="pdot" data-p="3" aria-label="Trang 3"></button>
+      <button class="pdot" data-p="4" aria-label="Trang 4"></button>
     </div>
 
     <!-- ══ PAGE 1 ══ -->
-    <div class="page" id="page1">
-      <div class="leaf-layer" id="lf1"></div>
+    <div class="page" id="page1" role="main">
+      <div class="leaf-layer" id="lf1" aria-hidden="true"></div>
       <div class="page-content">
         <div class="dclouds" aria-hidden="true">☁️ &nbsp;&nbsp; ☁️ &nbsp;&nbsp;&nbsp;&nbsp; ☁️</div>
         <h3 class="section-title">
@@ -1124,15 +1225,15 @@ body::after{
           </article>
         </div>
       </div>
-      <div class="page-number" aria-label="Trang 1">~ Trang 1 ~</div>
+      <div class="page-number" aria-label="Trang 1 trên 4">~ Trang 1 ~</div>
       <nav class="page-nav" aria-label="Điều hướng giữa các trang">
         <button class="nav-btn cover-btn" onclick="closePage()" aria-label="Quay về bìa sách">🌲 Về Bìa Sách</button>
-        <button class="nav-btn" onclick="turnPage(2)" aria-label="Trang tiếp theo">Trang sau →</button>
+        <button class="nav-btn" onclick="turnPage(2)" aria-label="Đến trang 2">Trang sau →</button>
       </nav>
     </div>
 
     <!-- ══ PAGE 2 ══ -->
-    <div class="page" id="page2" style="display:none;">
+    <div class="page" id="page2" style="display:none;" role="main">
       <div class="page-content">
         <h3 class="section-title">
           <span class="title-icon" aria-hidden="true">🌱</span>
@@ -1169,16 +1270,16 @@ body::after{
           </p>
         </blockquote>
       </div>
-      <div class="page-number" aria-label="Trang 2">~ Trang 2 ~</div>
+      <div class="page-number" aria-label="Trang 2 trên 4">~ Trang 2 ~</div>
       <nav class="page-nav" aria-label="Điều hướng giữa các trang">
-        <button class="nav-btn" onclick="turnPage(1)" aria-label="Trang trước">← Trang trước</button>
-        <button class="nav-btn" onclick="turnPage(3)" aria-label="Trang tiếp theo">Trang sau →</button>
+        <button class="nav-btn" onclick="turnPage(1)" aria-label="Về trang 1">← Trang trước</button>
+        <button class="nav-btn" onclick="turnPage(3)" aria-label="Đến trang 3">Trang sau →</button>
       </nav>
     </div>
 
     <!-- ══ PAGE 3 ══ -->
-    <div class="page" id="page3" style="display:none;">
-      <div class="leaf-layer" id="lf3"></div>
+    <div class="page" id="page3" style="display:none;" role="main">
+      <div class="leaf-layer" id="lf3" aria-hidden="true"></div>
       <div class="page-content">
         <h3 class="section-title">
           <span class="title-icon" aria-hidden="true">📍</span>
@@ -1186,30 +1287,32 @@ body::after{
         </h3>
         
         <div class="journey-tabs" role="tablist" aria-label="Chọn ngày trong hành trình">
-          <button class="journey-tab active" data-day="day1" role="tab" aria-selected="true" aria-controls="day1" tabindex="0">🗓️ Ngày 01</button>
-          <button class="journey-tab" data-day="day2" role="tab" aria-selected="false" aria-controls="day2" tabindex="0">🗓️ Ngày 02</button>
-          <button class="journey-tab" data-day="day3" role="tab" aria-selected="false" aria-controls="day3" tabindex="0">🗓️ Ngày 03</button>
+          <button class="journey-tab active" data-day="day1" id="tab-day1" role="tab" aria-selected="true" aria-controls="day1">🗓️ Ngày 01</button>
+          <button class="journey-tab" data-day="day2" id="tab-day2" role="tab" aria-selected="false" aria-controls="day2">🗓️ Ngày 02</button>
+          <button class="journey-tab" data-day="day3" id="tab-day3" role="tab" aria-selected="false" aria-controls="day3">🗓️ Ngày 03</button>
         </div>
         
         <div id="day1" class="day-content active" role="tabpanel" aria-labelledby="tab-day1">
           <div class="awrap">
-            <button class="aarr ap" data-album="album1" aria-label="Cuộn sang trái" tabindex="0">‹</button>
+            <button class="aarr ap" data-album="album1" aria-label="Cuộn sang trái">‹</button>
             <div class="atrack" id="album1" role="region" aria-label="Album ảnh ngày 1">
               <figure class="pola wide">
-                <img src="images/lenxe.jpg" alt="Học sinh lớp 11L lên xe khởi hành từ Bình Dương">
+                <img src="images/lenxe.jpg" alt="Học sinh lớp 11L lên xe khởi hành từ Bình Dương" loading="lazy">
                 <figcaption class="pcap">🚌 Khởi hành từ Bình Dương</figcaption>
               </figure>
               <figure class="pola">
-                <img src="images/truongdh.jpg" alt="Trường Đại học Đà Lạt">
+                <img src="images/truongdh.jpg" alt="Trường Đại học Đà Lạt" loading="lazy">
                 <figcaption class="pcap">🏛️ ĐH Đà Lạt</figcaption>
               </figure>
               <figure class="pola">
-                <img src="images/khachsan.jpg" alt="Khách sạn nơi lưu trú">
+                <img src="images/khachsan.jpg" alt="Khách sạn nơi lưu trú" loading="lazy">
                 <figcaption class="pcap">🏨 Nhận phòng</figcaption>
               </figure>
             </div>
-            <button class="aarr an" data-album="album1" aria-label="Cuộn sang phải" tabindex="0">›</button>
+            <button class="aarr an" data-album="album1" aria-label="Cuộn sang phải">›</button>
           </div>
+          <!-- FIX 8: scroll hint -->
+          <p class="scroll-hint" aria-hidden="true">← vuốt để xem thêm ảnh →</p>
           <aside class="dnote">
             <span class="nlbl">☀️ Ngày đầu tiên — Khởi hành</span>
             <p class="ntxt">Sau chặng đường dài từ Bình Dương, lớp 11L bắt đầu hành trình trong sự háo hức và mong chờ. Điểm dừng chân đầu tiên là Trường Đại học Đà Lạt – nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng đối với con đường học vấn.</p>
@@ -1218,23 +1321,24 @@ body::after{
         
         <div id="day2" class="day-content" role="tabpanel" aria-labelledby="tab-day2">
           <div class="awrap">
-            <button class="aarr ap" data-album="album2" aria-label="Cuộn sang trái" tabindex="0">‹</button>
+            <button class="aarr ap" data-album="album2" aria-label="Cuộn sang trái">‹</button>
             <div class="atrack" id="album2" role="region" aria-label="Album ảnh ngày 2">
               <figure class="pola wide">
-                <img src="images/caugo.jpg" alt="Cầu Gỗ với biển mây trắng xóa">
+                <img src="images/caugo.jpg" alt="Cầu Gỗ với biển mây trắng xóa" loading="lazy">
                 <figcaption class="pcap">☁️ Biển mây Cầu Gỗ</figcaption>
               </figure>
               <figure class="pola">
-                <img src="images/puppy.jpg" alt="Puppy Farm Đà Lạt">
+                <img src="images/puppy.jpg" alt="Puppy Farm Đà Lạt" loading="lazy">
                 <figcaption class="pcap">🐕 Puppy Farm</figcaption>
               </figure>
               <figure class="pola">
-                <img src="images/quangtruong.jpg" alt="Quảng trường Lâm Viên">
+                <img src="images/quangtruong.jpg" alt="Quảng trường Lâm Viên" loading="lazy">
                 <figcaption class="pcap">🏙️ Lâm Viên</figcaption>
               </figure>
             </div>
-            <button class="aarr an" data-album="album2" aria-label="Cuộn sang phải" tabindex="0">›</button>
+            <button class="aarr an" data-album="album2" aria-label="Cuộn sang phải">›</button>
           </div>
+          <p class="scroll-hint" aria-hidden="true">← vuốt để xem thêm ảnh →</p>
           <aside class="dnote">
             <span class="nlbl">☁️ Ngày thứ hai — Trải nghiệm</span>
             <p class="ntxt">Buổi sáng, Cầu Gỗ đón chúng tôi bằng biển mây trắng xóa, mang đến cảm giác như chạm tay vào bầu trời. Tại Puppy Farm, tiếng cười hòa cùng ánh nắng và những chú cún nhỏ, đưa chúng tôi trở về với sự hồn nhiên thuần khiết.</p>
@@ -1243,23 +1347,24 @@ body::after{
         
         <div id="day3" class="day-content" role="tabpanel" aria-labelledby="tab-day3">
           <div class="awrap">
-            <button class="aarr ap" data-album="album3" aria-label="Cuộn sang trái" tabindex="0">‹</button>
+            <button class="aarr ap" data-album="album3" aria-label="Cuộn sang trái">‹</button>
             <div class="atrack" id="album3" role="region" aria-label="Album ảnh ngày 3">
               <figure class="pola">
-                <img src="images/ansang.jpg" alt="Bữa ăn sáng cuối cùng tại Đà Lạt">
+                <img src="images/ansang.jpg" alt="Bữa ăn sáng cuối cùng tại Đà Lạt" loading="lazy">
                 <figcaption class="pcap">☕ Bữa sáng cuối</figcaption>
               </figure>
               <figure class="pola wide">
-                <img src="images/dinh3.jpg" alt="Dinh III Bảo Đại">
+                <img src="images/dinh3.jpg" alt="Dinh III Bảo Đại" loading="lazy">
                 <figcaption class="pcap">🏯 Dinh III</figcaption>
               </figure>
               <figure class="pola">
-                <img src="images/roidal.jpg" alt="Chia tay Đà Lạt">
+                <img src="images/roidal.jpg" alt="Chia tay Đà Lạt" loading="lazy">
                 <figcaption class="pcap">👋 Tạm biệt!</figcaption>
               </figure>
             </div>
-            <button class="aarr an" data-album="album3" aria-label="Cuộn sang phải" tabindex="0">›</button>
+            <button class="aarr an" data-album="album3" aria-label="Cuộn sang phải">›</button>
           </div>
+          <p class="scroll-hint" aria-hidden="true">← vuốt để xem thêm ảnh →</p>
           <aside class="dnote">
             <span class="nlbl">🌅 Ngày cuối — Tạm biệt</span>
             <p class="ntxt">Buổi sáng cuối cùng trôi qua chậm rãi trong sự lưu luyến khó gọi tên. Dinh III – Dinh Bảo Đại khép lại hành trình bằng vẻ đẹp trầm mặc, cổ kính giữa rừng thông xanh mát. Khi bánh xe lăn bánh, thành phố dần lùi xa, nhưng ký ức thì ở lại.</p>
@@ -1270,15 +1375,15 @@ body::after{
           <p class="quote-text">Đó là một phần thanh xuân mang tên 11L...</p>
         </blockquote>
       </div>
-      <div class="page-number" aria-label="Trang 3">~ Trang 3 ~</div>
+      <div class="page-number" aria-label="Trang 3 trên 4">~ Trang 3 ~</div>
       <nav class="page-nav" aria-label="Điều hướng giữa các trang">
-        <button class="nav-btn" onclick="turnPage(2)" aria-label="Trang trước">← Trang trước</button>
-        <button class="nav-btn" onclick="turnPage(4)" aria-label="Trang tiếp theo">Trang sau →</button>
+        <button class="nav-btn" onclick="turnPage(2)" aria-label="Về trang 2">← Trang trước</button>
+        <button class="nav-btn" onclick="turnPage(4)" aria-label="Đến trang 4">Trang sau →</button>
       </nav>
     </div>
 
     <!-- ══ PAGE 4 ══ -->
-    <div class="page" id="page4" style="display:none;">
+    <div class="page" id="page4" style="display:none;" role="main">
       <div class="page-content">
         <div class="dclouds" aria-hidden="true">☁️ &nbsp;&nbsp; ☁️ &nbsp;&nbsp;&nbsp; ☁️</div>
         <h3 class="section-title">
@@ -1317,9 +1422,9 @@ body::after{
         <div class="rdiv" aria-hidden="true"><span>🌲</span><span>☁️</span><span>🌿</span></div>
         <div class="sig" aria-label="Kết thúc nhật ký">🌲 ~ Hết ~ 🌲</div>
       </div>
-      <div class="page-number" aria-label="Trang 4">~ Trang 4 ~</div>
+      <div class="page-number" aria-label="Trang 4 trên 4">~ Trang 4 ~</div>
       <nav class="page-nav" aria-label="Điều hướng giữa các trang">
-        <button class="nav-btn" onclick="turnPage(3)" aria-label="Trang trước">← Trang trước</button>
+        <button class="nav-btn" onclick="turnPage(3)" aria-label="Về trang 3">← Trang trước</button>
         <button class="nav-btn cover-btn" onclick="closePage()" aria-label="Đóng sách">🍃 Đóng sách</button>
       </nav>
     </div>
@@ -1327,9 +1432,11 @@ body::after{
   </div>
 </div>
 
+<!-- FIX 11: modal với caption và navigation -->
 <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Xem ảnh phóng to">
   <button class="modal-close" onclick="closeModal()" aria-label="Đóng ảnh">×</button>
   <img id="modalImg" alt="">
+  <div class="modal-caption" id="modalCaption"></div>
 </div>
 <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Cuộn lên đầu trang">↑</button>
 
@@ -1337,6 +1444,13 @@ body::after{
 let currentPage = 1;
 let touchStartX = 0;
 let touchEndX = 0;
+
+// FIX 3: announce page changes to screen readers
+function announce(msg) {
+  const el = document.getElementById('srAnnounce');
+  el.textContent = '';
+  requestAnimationFrame(() => { el.textContent = msg; });
+}
 
 function updateBreadcrumb(pageNum) {
   const breadcrumb = document.getElementById('breadcrumb');
@@ -1355,6 +1469,7 @@ function updatePageSelector(pageNum) {
   document.querySelectorAll('.page-select-btn').forEach(btn => {
     const isActive = +btn.dataset.page === pageNum;
     btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-current', isActive ? 'page' : 'false');
   });
 }
 
@@ -1377,10 +1492,11 @@ function animateProgressBar(duration) {
   }, duration / 50);
 }
 
+// FIX 1: cursor trail ít hơn để giảm DOM clutter
 let lastTrailTime = 0;
 document.addEventListener('mousemove', (e) => {
   const now = Date.now();
-  if (now - lastTrailTime > 50 && Math.random() > 0.7) {
+  if (now - lastTrailTime > 80 && Math.random() > 0.75) {
     lastTrailTime = now;
     const trail = document.createElement('div');
     trail.className = 'cursor-trail';
@@ -1441,7 +1557,6 @@ document.getElementById('openBookBtn').addEventListener('click', function(e) {
   if (this.dataset.processing === 'true') return;
   this.dataset.processing = 'true';
 
-  // Smooth fade-out cover, fade-in pages with no lag
   const cover = document.getElementById('bookCover');
   const pages = document.getElementById('bookPages');
   const page1 = document.getElementById('page1');
@@ -1470,6 +1585,7 @@ document.getElementById('openBookBtn').addEventListener('click', function(e) {
     syncDots(1);
     updateBreadcrumb(1);
     updatePageSelector(1);
+    announce('Đã mở nhật ký. Đang ở trang 1: Miền Ký Ức Mở Ra');
     this.dataset.processing = 'false';
     window.scrollTo({top: 0, behavior: 'smooth'});
     setTimeout(() => {
@@ -1483,7 +1599,7 @@ document.getElementById('openBookBtn').addEventListener('click', function(e) {
 function turnPage(n){
   if(n<1||n>4||currentPage===n) return;
   document.getElementById('loadingSpinner').classList.add('active');
-  animateProgressBar(400);
+  animateProgressBar(350);
   setTimeout(()=>{
     document.getElementById('page'+currentPage).style.display='none';
     document.getElementById('page'+n).style.display='block';
@@ -1491,22 +1607,26 @@ function turnPage(n){
     syncDots(n);
     updateBreadcrumb(n);
     updatePageSelector(n);
+    // FIX 3: announce page change
+    const titles = ['Miền Ký Ức Mở Ra','Ý Nghĩa Của Một Chuyến Đi','Hành Trình Ba Ngày','Đà Lạt – Miền Ký Ức'];
+    announce(`Trang ${n}: ${titles[n-1]}`);
     document.getElementById('loadingSpinner').classList.remove('active');
     window.scrollTo({top:0,behavior:'smooth'});
-  },400);
+  },350);
 }
 
 function closePage(){
   document.getElementById('loadingSpinner').classList.add('active');
-  animateProgressBar(400);
+  animateProgressBar(350);
   setTimeout(()=>{
     document.getElementById('bookPages').style.display='none';
     document.getElementById('bookCover').style.display='block';
     document.getElementById('page'+currentPage).style.display='none';
     document.getElementById('loadingSpinner').classList.remove('active');
     updateBreadcrumb(0);
+    announce('Đã đóng nhật ký, quay về bìa sách');
     window.scrollTo({top:0,behavior:'smooth'});
-  },400);
+  },350);
 }
 
 document.querySelectorAll('.journey-tab').forEach(tab=>{
@@ -1519,6 +1639,7 @@ document.querySelectorAll('.journey-tab').forEach(tab=>{
     tab.classList.add('active');
     tab.setAttribute('aria-selected', 'true');
     document.getElementById(tab.dataset.day).classList.add('active');
+    announce(`Đang xem ${tab.textContent.trim()}`);
   };
   tab.addEventListener('click', clickHandler);
   tab.addEventListener('keydown', (e) => {
@@ -1541,8 +1662,8 @@ function handleSwipe() {
     else if (diff < 0 && currentPage > 1) turnPage(currentPage - 1);
   }
 }
-document.getElementById('bookPages').addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
-document.getElementById('bookPages').addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleSwipe(); });
+document.getElementById('bookPages').addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+document.getElementById('bookPages').addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleSwipe(); }, {passive:true});
 
 document.querySelectorAll('.atrack').forEach(album => {
   let isDown = false, startX, scrollLeft;
@@ -1557,28 +1678,43 @@ document.querySelectorAll('.atrack').forEach(album => {
   });
 });
 
+// FIX 11: modal với caption
 const modal=document.getElementById('imageModal'), modalImg=document.getElementById('modalImg');
+let allModalImages = [];
+let currentModalIndex = 0;
+
+function openModal(img, index, images) {
+  allModalImages = images;
+  currentModalIndex = index;
+  modal.classList.add('active');
+  modalImg.src = img.src;
+  modalImg.alt = img.alt;
+  document.getElementById('modalCaption').textContent = img.alt || '';
+  document.body.style.overflow='hidden';
+}
+
 function closeModal(){
   modal.classList.remove('active');
   document.body.style.overflow='';
-  document.getElementById('modalImg').removeAttribute('src');
+  setTimeout(() => { document.getElementById('modalImg').removeAttribute('src'); }, 500);
 }
-document.querySelectorAll('.pola img,.story-image img,.ci img').forEach(img=>{
-  img.addEventListener('click',e=>{
+
+document.querySelectorAll('.pola img,.story-image img,.ci img').forEach((img, i, arr) => {
+  img.addEventListener('click', e => {
     e.stopPropagation();
-    modal.classList.add('active');
-    modalImg.src=img.src;
-    modalImg.alt=img.alt;
-    document.body.style.overflow='hidden';
+    openModal(img, i, [...arr]);
   });
 });
-document.getElementById('imageModal').addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+document.getElementById('imageModal').addEventListener('click', e => { if(e.target===modal) closeModal(); });
 
+// FIX: keyboard navigation trong modal
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape') closeModal();
-  if(document.getElementById('bookPages').style.display!=='block') return;
-  if(e.key==='ArrowRight'&&currentPage<4) turnPage(currentPage+1);
-  if(e.key==='ArrowLeft'&&currentPage>1) turnPage(currentPage-1);
+  if(!modal.classList.contains('active')) {
+    if(document.getElementById('bookPages').style.display!=='block') return;
+    if(e.key==='ArrowRight'&&currentPage<4) turnPage(currentPage+1);
+    if(e.key==='ArrowLeft'&&currentPage>1) turnPage(currentPage-1);
+  }
 });
 
 document.querySelectorAll('.story-card').forEach(card => {
@@ -1592,9 +1728,10 @@ document.querySelectorAll('.story-card').forEach(card => {
 });
 
 const scrollTopBtn=document.getElementById('scrollTop');
-window.addEventListener('scroll',()=>{ scrollTopBtn.classList.toggle('visible',window.scrollY>300); });
+window.addEventListener('scroll',()=>{ scrollTopBtn.classList.toggle('visible',window.scrollY>300); }, {passive:true});
 function scrollToTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
 
+// FIX 6: intersection observer với image loading shimmer
 const rv=new IntersectionObserver(es=>{
   es.forEach(e=>{
     if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; rv.unobserve(e.target); }
@@ -1608,13 +1745,14 @@ document.querySelectorAll('.story-card,.meaning-card,.pola,.dnote,.quote-box,.ca
   rv.observe(el);
 });
 
-function loadImage(img) {
-  return new Promise((resolve, reject) => {
-    const tempImg = new Image();
-    tempImg.onload = () => { img.src = tempImg.src; img.classList.remove('loading'); img.classList.add('loaded'); resolve(); };
-    tempImg.onerror = reject;
-    tempImg.src = img.getAttribute('src');
-  });
+// FIX 6: image load handler với shimmer class
+function handleImageLoad(img) {
+  if (img.complete && img.naturalWidth > 0) {
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', () => img.classList.add('loaded'));
+    img.addEventListener('error', () => { img.style.opacity = '.3'; img.classList.add('loaded'); });
+  }
 }
 
 window.addEventListener('load',()=>{
@@ -1622,13 +1760,21 @@ window.addEventListener('load',()=>{
   buildLeaves('lf1');
   buildLeaves('lf3');
 
-  document.querySelectorAll('img[src]').forEach(img=>{
-    if(!img.complete){
-      img.classList.add('loading');
-      img.style.opacity='0';
-      loadImage(img).then(() => { img.style.transition='opacity .6s'; img.style.opacity='1'; }).catch(() => { img.style.opacity='.3'; });
-    }
-  });
+  document.querySelectorAll('img').forEach(img => handleImageLoad(img));
+
+  // FIX: lazy-load images khi vào viewport
+  if ('IntersectionObserver' in window) {
+    const imgObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+          imgObs.unobserve(img);
+        }
+      });
+    }, { rootMargin: '200px' });
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => imgObs.observe(img));
+  }
 
   const dots = document.querySelectorAll('.pdot');
   setInterval(() => {
