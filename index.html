@@ -88,7 +88,7 @@ body::after{
   background: rgba(255,255,255,.9); backdrop-filter: blur(10px);
   padding: 7px 22px; border-radius: 30px;
   border: 2px solid rgba(62,114,73,.25);
-  font-family: 'Playfair Display', serif; font-size: 0.8rem;
+  font-family: 'Playfair Display', serif; font-size: 0.9rem;
   color: var(--forest-dark); z-index: 9999; opacity: 0; pointer-events: none;
   transition: all .3s; box-shadow: 0 4px 15px rgba(30,68,48,.15);
 }
@@ -100,7 +100,7 @@ body::after{
   padding: 8px 16px;
   background: rgba(255,255,255,.92); backdrop-filter: blur(10px);
   border: 2px solid rgba(62,114,73,.3); border-radius: 30px;
-  font-family: 'Playfair Display', serif; font-size: 0.82rem;
+  font-family: 'Playfair Display', serif; font-size: 0.95rem;
   color: var(--forest-dark); cursor: pointer; z-index: 9999;
   text-decoration: none;
   box-shadow: 0 4px 15px rgba(30,68,48,.15);
@@ -187,7 +187,8 @@ body::after{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(62,114,73,.14);border:1px solid rgba(62,114,73,.34);
   color:var(--g2);padding:8px 26px;border-radius:50px;
-  font-size:.82rem;font-family:'Playfair Display',serif;letter-spacing:.18em;
+  /* ↑ tăng 1.4x: 0.82rem → 1.15rem */
+  font-size:1.15rem;font-family:'Playfair Display',serif;letter-spacing:.18em;
   margin-bottom:22px;animation:fU 1.2s ease .12s both, badgeShimmer 3s ease-in-out infinite;
 }
 @keyframes badgeShimmer {
@@ -207,7 +208,9 @@ body::after{
 }
 
 .cover-title{
-  font-family:'Playfair Display',serif;font-size:5rem;font-weight:800;
+  font-family:'Playfair Display',serif;
+  /* ↑ tăng 1.4x: 5rem → 7rem */
+  font-size:7rem;font-weight:800;
   margin-bottom:20px;letter-spacing:.08em;
   text-shadow:0 0 30px rgba(62,114,73,.9),0 6px 20px rgba(0,0,0,.8),0 0 80px rgba(201,169,97,.5),2px 2px 0 rgba(0,0,0,.3);
   animation:titleShimmer 4s ease-in-out infinite,titleFloat 6s ease-in-out infinite,fU 1.2s ease .48s both;
@@ -219,13 +222,16 @@ body::after{
 @keyframes titleFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
 
 .cover-subtitle{
-  font-family:'Dancing Script',cursive;font-size:2.2rem;
+  font-family:'Dancing Script',cursive;
+  /* ↑ tăng 1.4x: 2.2rem → 3.08rem */
+  font-size:3.08rem;
   margin-bottom:36px;opacity:.95;
   text-shadow:0 4px 15px rgba(0,0,0,.7);
   animation:fU 1.2s ease .66s both;
 }
 .cover-quote{
-  font-size:1.1rem;line-height:1.9;max-width:650px;margin:0 auto 44px;
+  /* ↑ tăng 1.4x: 1.1rem → 1.54rem */
+  font-size:1.54rem;line-height:1.9;max-width:650px;margin:0 auto 44px;
   opacity:.92;font-style:italic;font-family:'Lora',serif;
   text-shadow:0 2px 10px rgba(0,0,0,.5);
   animation:fU 1.2s ease .82s both;
@@ -237,7 +243,7 @@ body::after{
     linear-gradient(135deg,#2d5a40,#3e7249),
     linear-gradient(45deg,transparent 40%,rgba(255,255,255,.2) 50%,transparent 60%);
   background-size:100% 100%,200% 200%;
-  color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;border-radius:50px;
+  color:#fff;text-decoration:none;font-weight:700;font-size:1.25rem;border-radius:50px;
   box-shadow:0 12px 35px rgba(30,68,48,.6),inset 0 2px 0 rgba(255,255,255,.5),0 0 40px rgba(62,114,73,.4);
   transition:all .3s cubic-bezier(.4,0,.2,1);
   animation:fU 1.2s ease 1s both,btnPulse 3s ease-in-out infinite,btnShimmer 4s linear infinite;
@@ -342,7 +348,7 @@ body::after{
 
 .page-number{
   position:absolute;bottom:28px;right:45px;
-  font-family:'Dancing Script',cursive;font-size:1.35rem;
+  font-family:'Dancing Script',cursive;font-size:1.55rem;
   color:var(--g5);
   background:rgba(249,247,240,.6);
   padding:6px 16px;border-radius:50px;
@@ -369,7 +375,7 @@ body::after{
   padding: 8px 14px;
   background: rgba(255,255,255,.7); border: 2px solid rgba(62,114,73,.2);
   border-radius: 10px;
-  font-family: 'Playfair Display', serif; font-size: 0.78rem;
+  font-family: 'Playfair Display', serif; font-size: 0.9rem;
   color: var(--forest-dark); cursor: pointer;
   transition: all .3s cubic-bezier(.4,0,.2,1);
   min-width: 88px; text-align: center; line-height: 1.3;
@@ -383,10 +389,10 @@ body::after{
   color: #fff; border-color: transparent;
   box-shadow: 0 6px 18px rgba(30,68,48,.32); transform: translateY(-2px);
 }
-.page-select-btn .ps-num { font-size: 1.05rem; font-weight: 700; }
-.page-select-btn .ps-icon { font-size: 1rem; }
+.page-select-btn .ps-num { font-size: 1.2rem; font-weight: 700; }
+.page-select-btn .ps-icon { font-size: 1.1rem; }
 .page-select-btn .ps-title {
-  font-size: 0.68rem; opacity: 0.85;
+  font-size: 0.82rem; opacity: 0.85;
   max-width: 82px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .page-select-btn.active .ps-title { opacity: 1; }
@@ -395,7 +401,8 @@ body::after{
 /* ── SECTION TITLE ── */
 .section-title{
   font-family:'Playfair Display',serif;
-  font-size:3.4rem; font-weight:700;
+  /* ↑ tăng 1.4x: 3.4rem → 4.76rem */
+  font-size:4.76rem; font-weight:700;
   text-align:center; margin-bottom:36px;
   position:relative; display:inline-block; width:100%;
   animation:writeIn 1.4s cubic-bezier(.4,0,.2,1), titleFloat 6s ease-in-out infinite;
@@ -431,7 +438,8 @@ body::after{
 
 .section-intro{
   text-align:center;max-width:820px;margin:0 auto 48px;
-  font-size:1.28rem;line-height:1.95;color:var(--forest-green);font-style:italic;
+  /* ↑ tăng 1.4x: 1.28rem → 1.79rem */
+  font-size:1.79rem;line-height:1.95;color:var(--forest-green);font-style:italic;
   font-family:'Lora',serif;animation:fU 1s ease .5s both;font-weight:400;
 }
 
@@ -502,11 +510,13 @@ body::after{
   transform:scale(1.1) rotate(-1deg);
   filter:sepia(.12) contrast(1.1) brightness(1.05);
 }
-.story-text{font-size:1.28rem;line-height:1.95;color:var(--ink-dark);font-family:'Lora',serif;font-weight:400;}
+/* ↑ tăng 1.4x: 1.28rem → 1.79rem */
+.story-text{font-size:1.79rem;line-height:1.95;color:var(--ink-dark);font-family:'Lora',serif;font-weight:400;}
 .story-text p{margin-bottom:14px;font-family:'Lora',serif;transition:transform .3s ease;}
 .story-card:hover .story-text p{transform:translateX(4px);}
 .story-text p:last-child{margin-bottom:0;}
-.story-text .lead{font-size:1.18rem;font-style:italic;font-family:'Lora',serif;color:var(--ink-dark);margin-bottom:18px;line-height:1.95;font-weight:400;}
+/* ↑ tăng 1.4x: 1.18rem → 1.65rem */
+.story-text .lead{font-size:1.65rem;font-style:italic;font-family:'Lora',serif;color:var(--ink-dark);margin-bottom:18px;line-height:1.95;font-weight:400;}
 
 /* ── POLAROID PHOTOS ── */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px;margin:50px 0;}
@@ -527,7 +537,7 @@ body::after{
 .polaroid:hover img{filter:sepia(.12) contrast(1.1);}
 .polaroid-caption{
   margin-top:15px;text-align:center;font-family:'Dancing Script',cursive;
-  font-size:1.15rem;color:var(--forest-green);
+  font-size:1.35rem;color:var(--forest-green);
   position:absolute;bottom:15px;left:0;right:0;font-weight:600;
 }
 .polaroid::before{
@@ -544,7 +554,7 @@ body::after{
 }
 .polaroid:hover .img-text-overlay{opacity:1;}
 .img-text-content{
-  color:#fff;text-align:center;font-family:'Lora',serif;font-size:1rem;
+  color:#fff;text-align:center;font-family:'Lora',serif;font-size:1.1rem;
   line-height:1.65;font-style:italic;transform:translateY(20px);transition:transform .5s ease;
   text-shadow:0 2px 8px rgba(0,0,0,.3);
 }
@@ -555,7 +565,7 @@ body::after{
 .journey-tab{
   padding:12px 32px;background:rgba(255,255,255,.65);color:var(--ink-dark);
   border:2px solid rgba(62,114,73,.25);border-radius:50px;
-  font-family:'Playfair Display',serif;font-weight:600;font-size:1rem;
+  font-family:'Playfair Display',serif;font-weight:600;font-size:1.18rem;
   cursor:pointer;position:relative;overflow:hidden;
   backdrop-filter:blur(10px);
   box-shadow:0 2px 8px rgba(14,30,20,.06);
@@ -588,10 +598,9 @@ body::after{
 
 /* ── ALBUM ── */
 .awrap{position:relative;margin-bottom:28px;}
-/* padding on sides gives arrows room outside the scroll area */
 .atrack{
   display:flex;gap:22px;overflow-x:auto;
-  padding:20px 56px 34px; /* horizontal padding so arrows don't overlap photos */
+  padding:20px 56px 34px;
   scroll-snap-type:x mandatory;scrollbar-width:thin;
   scrollbar-color:rgba(62,114,73,.36) transparent;cursor:grab;
   scroll-behavior:smooth; -webkit-overflow-scrolling: touch;
@@ -605,11 +614,9 @@ body::after{
   border:2px solid rgba(62,114,73,.4);border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   font-size:1.2rem;color:var(--g7);cursor:pointer;
-  /* arrows always on top — even above pola:hover z-index:20 */
   z-index:30;
   box-shadow:0 4px 14px rgba(14,30,20,.18);
   backdrop-filter:blur(10px);user-select:none;transition:all .25s;
-  /* prevent mouse events from the album track or pola from swallowing the arrow */
   pointer-events:all;
 }
 .aarr:focus { outline: 3px solid rgba(62,114,73,.6); outline-offset: 2px; }
@@ -641,7 +648,7 @@ body::after{
 .pola.wide img{width:320px;height:260px;}
 .pola:hover img{filter:saturate(1.18) contrast(1.06);}
 .pcap{position:absolute;bottom:14px;left:0;right:0;text-align:center;
-  font-family:'Dancing Script',cursive;font-size:1.05rem;color:var(--g7);padding:0 10px;font-weight:600;}
+  font-family:'Dancing Script',cursive;font-size:1.22rem;color:var(--g7);padding:0 10px;font-weight:600;}
 
 .dnote{
   padding:26px 34px;
@@ -654,8 +661,9 @@ body::after{
 @keyframes stTw{0%,100%{opacity:.40;transform:scale(1) rotate(0);}50%{opacity:1;transform:scale(1.6) rotate(28deg);}}
 .dnote:hover{transform:translateX(8px);border-left-color:var(--g6);
   box-shadow:0 6px 20px rgba(30,68,48,.12);}
-.nlbl{font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--g6);margin-bottom:10px;display:block;font-weight:600;}
-.ntxt{font-size:1.28rem;line-height:1.95;color:var(--ink-dark);font-family:'Lora',serif;font-weight:400;}
+.nlbl{font-family:'Dancing Script',cursive;font-size:1.45rem;color:var(--g6);margin-bottom:10px;display:block;font-weight:600;}
+/* ↑ tăng 1.4x: 1.28rem → 1.79rem */
+.ntxt{font-size:1.79rem;line-height:1.95;color:var(--ink-dark);font-family:'Lora',serif;font-weight:400;}
 
 /* ── MEANING CARDS ── */
 .meaning-grid{
@@ -678,11 +686,10 @@ body::after{
     inset 0 -2px 14px rgba(122,170,136,.18);
   transition:all .5s cubic-bezier(.4,0,.2,1);
   animation:cardFlip 1s ease;
-  width:330px;min-height:330px;height:auto;
+  width:360px;min-height:360px;height:auto;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   position:relative;overflow:hidden;
 }
-/* spinning border ring on hover */
 .meaning-card::before{
   content:'';position:absolute;top:50%;left:50%;width:200%;height:200%;
   transform:translate(-50%, -50%);
@@ -730,8 +737,10 @@ body::after{
   75%{transform:rotate(-10deg) scale(1.08) translateY(-6px);}
 }
 .meaning-card h4{
-  font-family:'Playfair Display',serif;font-size:1.45rem;
-  color:#162c1e; /* darker for legibility */
+  font-family:'Playfair Display',serif;
+  /* ↑ tăng 1.4x: 1.45rem → 2.03rem */
+  font-size:2.03rem;
+  color:#162c1e;
   margin-bottom:12px;font-weight:800;position:relative;z-index:2;
   line-height:1.3;
   text-shadow:0 1px 4px rgba(255,255,255,.5);
@@ -743,13 +752,14 @@ body::after{
   transform:scale(1.03);
 }
 .meaning-card p{
-  font-size:1.05rem;line-height:1.82;
-  color:#1e3a28; /* darker paragraph text */
-  position:relative;z-index:2;font-family:'Lora',serif;font-weight:500; /* slightly bolder */
-  max-width:242px;transition:all .3s ease;
+  /* ↑ tăng 1.4x: 1.05rem → 1.47rem */
+  font-size:1.47rem;line-height:1.82;
+  color:#1e3a28;
+  position:relative;z-index:2;font-family:'Lora',serif;font-weight:500;
+  max-width:262px;transition:all .3s ease;
 }
 .meaning-card:hover p{
-  color:#0f2018; /* even darker on hover */
+  color:#0f2018;
   transform:scale(1.01);
 }
 
@@ -768,12 +778,15 @@ body::after{
   to{opacity:1;transform:scale(1) translateY(0);}
 }
 .quote-box::before{content:'"';position:absolute;top:-24px;left:24px;font-size:8rem;line-height:1;font-family:'Playfair Display',serif;color:#3e7249;opacity:.28;}
-.quote-text{font-family:'Lora',serif;font-size:1.32rem;color:var(--forest-dark);line-height:1.85;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:400;}
+/* ↑ tăng 1.4x: 1.32rem → 1.85rem */
+.quote-text{font-family:'Lora',serif;font-size:1.85rem;color:var(--forest-dark);line-height:1.85;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:400;}
 
 .callout{
   padding:22px 32px;margin:28px auto;max-width:840px;
   background:rgba(62,114,73,.16);border-left:5px solid #2d5a40;border-radius:0 12px 12px 0;
-  font-family:'Lora',serif;font-size:1.3rem;line-height:1.9;
+  font-family:'Lora',serif;
+  /* ↑ tăng 1.4x: 1.3rem → 1.82rem */
+  font-size:1.82rem;line-height:1.9;
   color:var(--forest-dark);font-style:italic;font-weight:400;
   transition:all .4s ease;
 }
@@ -841,7 +854,8 @@ body::after{
 .ccard:hover .ci img{ transform:scale(1.08) rotate(-1deg); filter:saturate(1.18) contrast(1.07); }
 .ct{ width:100%;max-width:820px; }
 .ct p{
-  font-size:1.28rem;line-height:2.1;color:var(--ink-dark);
+  /* ↑ tăng 1.4x: 1.28rem → 1.79rem */
+  font-size:1.79rem;line-height:2.1;color:var(--ink-dark);
   margin-bottom:18px;font-family:'Lora',serif;font-weight:400;
   width:100%;text-align:left;transition:all .4s ease;
 }
@@ -854,7 +868,7 @@ body::after{
   padding:11px 28px;background:linear-gradient(135deg,#2d5a40,#3e7249);
   color:#fff;font-weight:700;border-radius:50px;
   box-shadow:0 5px 16px rgba(30,68,48,.45);transition:all .4s ease;
-  font-family:'Playfair Display',serif;font-size:0.9rem;
+  font-family:'Playfair Display',serif;font-size:1.05rem;
   border:2px solid rgba(62,114,73,.6);cursor:pointer;
   position:relative;overflow:hidden;z-index:100;
 }
@@ -875,8 +889,8 @@ body::after{
 
 .rdiv{display:flex;align-items:center;gap:15px;margin:36px 0;opacity:.28;}
 .rdiv::before,.rdiv::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,transparent,#2d5a40,transparent);}
-.sig{text-align:center;font-family:'Dancing Script',cursive;font-size:2.4rem;color:var(--forest-green);opacity:.7;margin:6px 0 36px;}
-.dclouds{text-align:center;font-size:1.3rem;letter-spacing:18px;opacity:.26;margin:12px 0;animation:dcWv 8s ease-in-out infinite;}
+.sig{text-align:center;font-family:'Dancing Script',cursive;font-size:2.8rem;color:var(--forest-green);opacity:.7;margin:6px 0 36px;}
+.dclouds{text-align:center;font-size:1.5rem;letter-spacing:18px;opacity:.26;margin:12px 0;animation:dcWv 8s ease-in-out infinite;}
 @keyframes dcWv{0%,100%{transform:translateY(0);opacity:.24;}50%{transform:translateY(-6px);opacity:.44;}}
 
 /* ── MODAL ── */
@@ -927,69 +941,70 @@ body::after{
 
 /* ── RESPONSIVE ── */
 @media(max-width:1100px){
-  .meaning-card{width:295px;min-height:295px;padding:40px 35px;}
-  .meaning-card p{max-width:220px;}
+  .meaning-card{width:320px;min-height:320px;padding:44px 38px;}
+  .meaning-card p{max-width:240px;}
   .cgrid{gap:50px;}
 }
 @media(max-width:900px){
   .page{padding:60px 55px 100px;}
-  .section-title{font-size:2.4rem;}
-  .section-intro{font-size:1.1rem;}
-  .story-text{font-size:1rem;}
+  .section-title{font-size:3.2rem;}
+  .section-intro{font-size:1.4rem;}
+  .story-text{font-size:1.3rem;}
   .meaning-grid{gap:24px;}
-  .meaning-card{width:280px;min-height:280px;padding:36px 30px;}
-  .meaning-card p{font-size:0.95rem;max-width:210px;}
-  .ntxt{font-size:1rem;}
+  .meaning-card{width:300px;min-height:300px;padding:38px 32px;}
+  .meaning-card p{font-size:1.2rem;max-width:225px;}
+  .ntxt{font-size:1.3rem;}
   .cgrid{gap:44px;}
-  .ct p{font-size:1.1rem;}
-  .quote-text{font-size:1.45rem;}
+  .ct p{font-size:1.4rem;}
+  .quote-text{font-size:1.6rem;}
 }
 @media(max-width:768px){
   body{padding:22px 10px;}
   .book-cover{padding:44px 30px;border:5px solid rgba(30,68,48,.4);}
-  .cover-title{font-size:3.2rem;}
-  .cover-subtitle{font-size:1.6rem;}
-  .cover-quote{font-size:0.95rem;}
+  .cover-title{font-size:4.2rem;}
+  .cover-subtitle{font-size:2.1rem;}
+  .cover-quote{font-size:1.2rem;}
   .page{padding:50px 28px 90px;border-left:36px solid rgba(30,68,48,.08);}
-  .section-title{font-size:2.2rem;}
-  .section-intro{font-size:1rem;}
+  .section-title{font-size:2.8rem;}
+  .section-intro{font-size:1.22rem;}
   .story-card{grid-template-columns:1fr!important;gap:26px;}
   .story-card:nth-child(even) .story-image{order:0;}
-  .story-text{font-size:1rem;}
+  .story-text{font-size:1.22rem;}
   .journey-tabs{flex-direction:column;}
   .journey-tab{width:100%;}
   .meaning-grid{flex-direction:column;align-items:center;}
-  .meaning-card{border-radius:20px;width:100%;max-width:380px;min-height:auto;height:auto;padding:34px 28px;}
-  .meaning-card p{max-width:100%;}
+  .meaning-card{border-radius:20px;width:100%;max-width:400px;min-height:auto;height:auto;padding:36px 30px;}
+  .meaning-card p{max-width:100%;font-size:1.15rem;}
   .cgrid{gap:34px;}
   .ci{width:92%;}
-  .ct p{font-size:1.05rem;}
-  .ntxt{font-size:1rem;}
-  .quote-text{font-size:1.3rem;}
-  .breadcrumb{font-size:0.74rem;padding:6px 16px;}
+  .ct p{font-size:1.22rem;}
+  .ntxt{font-size:1.22rem;}
+  .quote-text{font-size:1.45rem;}
+  .callout{font-size:1.3rem;}
+  .breadcrumb{font-size:0.82rem;padding:6px 16px;}
   .aarr{display:none;}
   .page-select-btn .ps-title { display: none; }
   .page-selector { gap: 5px; padding: 10px 8px; }
   .page-select-btn { min-width: 55px; padding: 7px 10px; }
-  .home-btn { font-size: 0.76rem; padding: 7px 12px; }
+  .home-btn { font-size: 0.82rem; padding: 7px 12px; }
 }
 @media(max-width:480px){
   .page{padding:38px 18px 80px;}
-  .section-title{font-size:1.9rem;}
-  .section-intro{font-size:0.92rem;}
-  .story-text{font-size:0.95rem;}
+  .section-title{font-size:2.3rem;}
+  .section-intro{font-size:1.1rem;}
+  .story-text{font-size:1.1rem;}
   .quote-box{padding:28px 20px;}
-  .quote-text{font-size:1.2rem;line-height:1.7;}
-  .callout{font-size:1rem;}
-  .sig{font-size:2rem;}
+  .quote-text{font-size:1.32rem;line-height:1.7;}
+  .callout{font-size:1.12rem;}
+  .sig{font-size:2.3rem;}
   .cgrid{gap:28px;}
-  .ct p{font-size:0.98rem;line-height:1.95;}
-  .ntxt{font-size:0.95rem;}
-  .cover-title{font-size:2.6rem;}
-  .cover-subtitle{font-size:1.4rem;}
-  .cover-quote{font-size:0.88rem;}
+  .ct p{font-size:1.1rem;line-height:1.95;}
+  .ntxt{font-size:1.1rem;}
+  .cover-title{font-size:3.2rem;}
+  .cover-subtitle{font-size:1.75rem;}
+  .cover-quote{font-size:1.05rem;}
   .selector-divider { display: none; }
-  .open-book-btn{font-size:0.92rem;padding:12px 32px;}
+  .open-book-btn{font-size:1.05rem;padding:12px 32px;}
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1430,7 +1445,6 @@ document.getElementById('openBookBtn').addEventListener('click', function(e) {
   if (this.dataset.processing === 'true') return;
   this.dataset.processing = 'true';
 
-  // Smooth fade-out cover, fade-in pages with no lag
   const cover = document.getElementById('bookCover');
   const pages = document.getElementById('bookPages');
   const page1 = document.getElementById('page1');
